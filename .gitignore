@@ -1,0 +1,6 @@
+*.sqlite3
+*.pyc
+__pycache__
+.gitpod.dockerfile
+.gitpod.yml
+.theia
