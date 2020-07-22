@@ -19,3 +19,10 @@ Mandatory Requirements:
 11. Attribution: Maintain clear separation between code written by you and code from external sources (e.g. libraries or tutorials). Attribute any code from external sources to its source via comments above the code and (for larger dependencies) in the README.
 12. Deployment: Deploy the final version of your code to a hosting platform such as Heroku.
 13. Security: Make sure to not include any passwords or secret keys in the project repository. Make sure to turn off the Django DEBUG mode, which could expose secrets.
+
+## Wireframe 
+![Wireframe Image](documentation/images/Wireframe.jpeg)
+
+## Database ER Diagram
+
+![Database ER Diagram](documentation/images/Database_ER_Diagram.jpeg)
