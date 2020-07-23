@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&family=Ubuntu:wght@500&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{% static 'css/base.css' %}">
 	{% endblock %}
 
@@ -44,26 +44,29 @@
 </head>
 
 <body>
-    <!-- Navbar -->
-	<nav class="white" role="navigation">
-		<div class="nav-wrapper container">
-			<a id="logo-container" href="{% url 'home' %}" class="brand-logo">Guate <strong>Coffees</strong></a>
-            <ul id="nav-mobile" class="side-nav">
-				<li><a href="#">Navbar Link</a></li>
-			</ul>
-			<ul class="right hide-on-med-and-down">
-				<li><a href="#">Navbar Link</a></li>
-			</ul>
-
-			
-			<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-		</div>
-	</nav>
-
-    <!-- Page Content -->
+    <header>
+        <div id="delivery-top-banner" class="row center waves-light cyan darken-2 white-text">
+            <h4 class="col s12 header logo-font">Free delivery on orders over ${{ free_delivery_threshold }}!</h4>                      
+        </div>
+        <!-- Navbar -->
+        <nav class="white" role="navigation">
+            <div class="nav-wrapper container">
+                <a id="logo-container" href="{% url 'home' %}" class="brand-logo">Guate Coffees</a>
+                <ul id="nav-mobile" class="side-nav">
+                    <li><a href="#">Navbar Link</a></li>
+                </ul>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#">Navbar Link</a></li>
+                </ul>			
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
+    <!-- Additional Header Content -->
     {% block page_header %}
     {% endblock %}
+    </header>    
 
+    <!-- Page Content -->
     {% block content %}
     {% endblock %}
 

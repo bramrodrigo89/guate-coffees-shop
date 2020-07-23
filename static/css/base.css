@@ -1,11 +1,38 @@
 /* Custom Stylesheet */
-/**
- * Taken from MaterializeCSS.com
- */
 
-nav ul a,
+ 
+html {
+    height: 100%;
+}
+
+body {
+    /* background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh - 164px); */
+    /* color: #555; */
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 20px;
+}
+
+.text-strong {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#delivery-top-banner {
+    margin-bottom: 0px;
+}
+
+nav {
+    background: url('/media/nav_background.jpeg') no-repeat center center fixed;
+    background-size: cover;
+}
+
 nav .brand-logo {
-  color: #444;
+    color: #444;
+}
+
+nav ul a {
+    color: white;
 }
 
 p {
@@ -22,24 +49,9 @@ p {
   height: auto;
   color: rgba(255,255,255,.9);
 }
-  .parallax-container .section {
+
+.parallax-container .section {
     width: 100%;
-  }
-
-@media only screen and (max-width : 992px) {
-  .parallax-container .section {
-    position: absolute;
-    top: 40%;
-  }
-  #index-banner .section {
-    top: 10%;
-  }
-}
-
-@media only screen and (max-width : 600px) {
-  #index-banner .section {
-    top: 0;
-  }
 }
 
 .icon-block {
@@ -51,4 +63,43 @@ p {
 
 footer.page-footer {
   margin: 0;
+}
+
+/* -------------------------------------Media Querries --------------- */
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+  nav .brand-logo {
+    left: 65%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 80%;
+    }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+        height: 500px;
+        line-height: 70px;
+        
+    }
+    nav .brand-logo {
+        font-size: 3.5rem;
+    }
+
+    nav ul a {
+        font-size: 2rem
+    }
 }
