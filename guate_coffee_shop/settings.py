@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     # Custom Apps
+    'social_app',
     'home',
 ]
 
