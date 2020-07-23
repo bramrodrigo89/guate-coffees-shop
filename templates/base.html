@@ -47,14 +47,15 @@
     <!-- Navbar -->
 	<nav class="white" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="#" class="brand-logo">Logo</a>
+			<a id="logo-container" href="{% url 'home' %}" class="brand-logo">Guate <strong>Coffees</strong></a>
+            <ul id="nav-mobile" class="side-nav">
+				<li><a href="#">Navbar Link</a></li>
+			</ul>
 			<ul class="right hide-on-med-and-down">
 				<li><a href="#">Navbar Link</a></li>
 			</ul>
 
-			<ul id="nav-mobile" class="side-nav">
-				<li><a href="#">Navbar Link</a></li>
-			</ul>
+			
 			<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 		</div>
 	</nav>
@@ -69,14 +70,11 @@
     <footer class="page-footer teal">
         <div class="container">
             <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="white-text">Company Bio</h5>
-                    <p class="grey-text text-lighten-4">We are a team of college students working on
-                        this project like it's our full time job. Any amount would help support and
-                        continue development on this project and is greatly appreciated.</p>
-
-
-                </div>
+                <div class="col l6 s12"><h5 class="white-text">Guate Coffes Shop</h5>
+				<p class="grey-text text-lighten-4">Coffee from Guatemala can be the perfect balance of full bodied, strong, sweet and
+					acid with complex flavor notes. It can appeal to a wide range of people and there is sure to be a coffee from this
+					country with your name on it. Guatemalan coffees roasted to order and shipped direct to you.</p>
+				</div>
                 <div class="col l3 s12">
                     <h5 class="white-text">Settings</h5>
                     <ul>
