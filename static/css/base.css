@@ -14,9 +14,16 @@ body {
     font-size: 20px;
 }
 
+/* ---------- Text, Margin, Paddings ---- */
+p {
+  line-height: 2rem;
+}
+
 .text-strong {
     font-family: 'Ubuntu', sans-serif;
 }
+
+/* ---------- Navbar ------------ */
 
 #delivery-top-banner {
     margin-bottom: 0px;
@@ -33,10 +40,6 @@ nav .brand-logo {
 
 nav ul a {
     color: white;
-}
-
-p {
-  line-height: 2rem;
 }
 
 .button-collapse {
@@ -67,22 +70,6 @@ footer.page-footer {
 
 /* -------------------------------------Media Querries --------------- */
 
-@media only screen and (max-width : 992px) {
-  .parallax-container .section {
-    position: absolute;
-    top: 40%;
-  }
-  #index-banner .section {
-    top: 10%;
-  }
-  nav .brand-logo {
-    left: 65%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    width: 80%;
-    }
-}
-
 @media only screen and (max-width : 600px) {
   #index-banner .section {
     top: 0;
@@ -99,7 +86,23 @@ footer.page-footer {
         font-size: 3.5rem;
     }
 
-    nav ul a {
-        font-size: 2rem
+    nav ul a, nav .right a {
+        font-size: 1.7rem
+    }
+}
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+  nav .brand-logo {
+    left: 65%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 80%;
     }
 }
