@@ -45,64 +45,45 @@
 <body>
     <header>
         <div id="delivery-top-banner" class="row center waves-light cyan darken-2 white-text">
-            <h4 class="col s12 header logo-font">Free delivery on orders over ${{ free_delivery_threshold }}!</h4>                      
+            <h4 class="col s12 header">Free delivery on orders over ${{ free_delivery_threshold }}!</h4>                      
         </div>
         <!-- Navbar -->
-        <nav class="white" role="navigation">
+        <nav class="cyan lighten-1" role="navigation">
             <div class="nav-wrapper container">
-                <a id="logo-container" href="{% url 'home' %}" class="brand-logo">Guate Coffees</a>
-                <ul id="nav-mobile" class="side-nav">
-                    <li><a href="#">Navbar Link</a></li>
-                </ul>
-                <div class="right hide-on-med-and-down row">
-                    <div class="col s4">
-                        <!-- Dropdown Trigger -->
-                        <ul>
-                            <li><a class='dropdown-button' data-beloworigin="true" href='#' data-activates='dropdown1'>Search</a></li>
-                        </ul>
-                        <!-- Dropdown Structure -->
-                        <ul id='dropdown1' class='dropdown-content'>
-                            <li><a href="#!">one</a></li>
-                            <li><a href="#!">two</a></li>
-                            <li class="divider" tabindex="-1"></li>
-                            <li><a href="#!">three</a></li>
-                            <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                            <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                        </ul>
-                    </div>
-                    <div class="col s4">
-                        <!-- Dropdown Trigger -->
-                        <ul>
-                            <li><a class='dropdown-button' data-beloworigin="true" href='#' data-activates='dropdown1'>Account</a></li>
-                        </ul>
-                        <!-- Dropdown Structure -->
-                        <ul id='dropdown1' class='dropdown-content'>
-                            <li><a href="#!">one</a></li>
-                            <li><a href="#!">two</a></li>
-                            <li class="divider" tabindex="-1"></li>
-                            <li><a href="#!">three</a></li>
-                            <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                            <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                        </ul>
-                    </div>
-                    <div class="col s4">
-                        <!-- Dropdown Trigger -->
-                        <ul>
-                            <li><a class='dropdown-button' data-beloworigin="true" href='#' data-activates='dropdown1'>Cart</a></li>
-                        </ul>
-                        <!-- Dropdown Structure -->
-                        <ul id='dropdown1' class='dropdown-content'>
-                            <li><a href="#!">one</a></li>
-                            <li><a href="#!">two</a></li>
-                            <li class="divider" tabindex="-1"></li>
-                            <li><a href="#!">three</a></li>
-                            <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                            <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                        </ul>
-                    </div>
+                <div class="navbar-links-container row">
+                    <!-- Brand Logo -->
+                    <a id="logo-link" href="{% url 'home' %}" class="brand-logo">Online Shop</a>
+                    <ul class="right hide-on-med-and-down">
+                        <!-- Search Link -->
+                        <li><a><i class="material-icons left">search</i>Search</a></li>
+                        <!-- Account Link -->
+                        <li><a class='dropdown-button' data-beloworigin="true" href='#' data-activates='dropdown_account'><i class="material-icons left">local_cafe</i>Account</a></li>
+                        <!-- Cart Link -->
+                        <li><a><i class="material-icons left">shopping_cart</i>Cart</a></li>
+                    </ul>
+                    <!-- Mobile Navbar -->
+                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul id="nav-mobile" class="side-nav">
+                        <li><a href="#">Navbar Link</a></li>
+                    </ul>
                 </div>
-                		
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                <div id="logo-image" class="logo-image-container">
+                    <img class="col materialboxed" src="{{ MEDIA_URL }}guatemalan_coffees_logo.png">
+                </div>
+                <!-- Account Dropdown Structure -->
+                <ul id='dropdown_account' class='dropdown-content'>
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.is_superuser %}
+                            <li><a href="#" class="dropdown-item">Product Management</a></li>
+                            <li class="divider" tabindex="-1"></li>
+                        {% endif %}
+                        <li><a href="#" class="dropdown-item">My Profile</a></li>
+                        <li><a href="#" class="dropdown-item">Logout</a></li>
+                    {% else %}
+                        <li><a href="#" class="dropdown-item">Register</a></li>
+                        <li><a href="#" class="dropdown-item">Login</a></li>
+                    {% endif %}
+                </ul>
             </div>
         </nav>
     <!-- Additional Header Content -->

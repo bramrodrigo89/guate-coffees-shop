@@ -6,10 +6,8 @@ html {
 }
 
 body {
-    /* background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
+    /* height: calc(100vh - 164px); */
     background-size: cover;
-    height: calc(100vh - 164px); */
-    /* color: #555; */
     font-family: 'Ubuntu Condensed', sans-serif;
     font-size: 20px;
 }
@@ -29,22 +27,28 @@ p {
     margin-bottom: 0px;
 }
 
-nav {
-    background: url('/media/nav_background.jpeg') no-repeat center center fixed;
-    background-size: cover;
-}
-
-nav .brand-logo {
-    color: #444;
-}
-
 nav ul a {
-    color: white;
+    color: #fafafa;
+    padding: 0 30px;
 }
 
 .button-collapse {
-  color: #26a69a;
+  color: #444;
 }
+
+#logo-image {
+    text-align: center;
+}
+
+.dropdown-item {
+    color: #444 !important;
+}
+
+#logo-image {
+        display: none;
+    }
+
+/* --------- Parallax ----------- */
 
 .parallax-container {
   min-height: 600px;
@@ -57,6 +61,8 @@ nav ul a {
     width: 100%;
 }
 
+/* --------- Section ------------- */
+
 .icon-block {
   padding: 0 15px;
 }
@@ -64,45 +70,74 @@ nav ul a {
   font-size: inherit;
 }
 
+/* ---------- Footer ------------ */
+
 footer.page-footer {
   margin: 0;
 }
 
 /* -------------------------------------Media Querries --------------- */
 
-@media only screen and (max-width : 600px) {
-  #index-banner .section {
-    top: 0;
-  }
+@media only screen and (max-width : 768px) {
+    #index-banner .section {
+        top: 20px;
+    }
 }
 
-@media only screen and (min-width: 601px) {
-    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+@media only screen and (min-width : 768px) {
+    nav {
+        background: url('/media/nav_background.jpeg') no-repeat center fixed;
+        background-size: cover;
         height: 500px;
-        line-height: 70px;
-        
+        padding-top: 20px;
     }
     nav .brand-logo {
-        font-size: 3.5rem;
+        color: #444;
+        left: 55%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        width: 80%
     }
 
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+    #index-banner .section {
+        top: 10%;
+    }
+    #logo-image {
+        display: block;
+    }
+    .logo-image-container img {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 30px
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    nav {
+        padding-top: 50px;
+    }
+    nav.container {
+        width: 80%
+    }
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+        line-height: 70px; 
+    }
+    nav .brand-logo {
+        font-size: 3.0rem;
+        color: #444;
+        left: 0%;
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+    }
     nav ul a, nav .right a {
         font-size: 1.7rem
     }
-}
-
-@media only screen and (max-width : 992px) {
-  .parallax-container .section {
-    position: absolute;
-    top: 40%;
-  }
-  #index-banner .section {
-    top: 10%;
-  }
-  nav .brand-logo {
-    left: 65%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    width: 80%;
+    .logo-image-container img {
+        margin-top: 50px;
     }
 }
+
