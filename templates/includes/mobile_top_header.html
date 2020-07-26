@@ -1,0 +1,20 @@
+<!-- Mobile Top Header Bar -->
+<div id="mobile-top-header" data-target="red" class="mobile-top-header hide-on-large-only">
+    <a class="waves-effect waves-light modal-trigger"><i class="material-icons">search</i>Search</a>
+    <a class='waves-effect waves-light dropdown-button' href='#' data-activates='mobile-dropdown-account'><i class="material-icons">local_cafe</i>Account</a>
+    <a class="waves-effect waves-light"><i class="material-icons">shopping_cart</i>Cart</a>
+</div>
+<!-- Account Dropdown Structure -->
+<ul id='mobile-dropdown-account' class='dropdown-content'>
+	{% if request.user.is_authenticated %}
+	{% if request.user.is_superuser %}
+	<li><a href="#" class="dropdown-item">Product Management</a></li>
+	<li class="divider" tabindex="-1"></li>
+	{% endif %}
+	<li><a href="#" class="dropdown-item">My Profile</a></li>
+	<li><a href="#" class="dropdown-item">Logout</a></li>
+	{% else %}
+	<li><a href="#" class="dropdown-item">Register</a></li>
+	<li><a href="#" class="dropdown-item">Login</a></li>
+	{% endif %}
+</ul>
