@@ -52,20 +52,22 @@
             <nav role="navigation">
                 <div class="nav-wrapper container">
                     <div class="navbar-links-container row">
-                        <!-- Brand Logo -->
-                        <a id="logo-link" href="{% url 'home' %}" class="brand-logo">Online Shop</a>
+                        <a id="logo-link" href="{% url 'home' %}" class="brand-logo">Logo Name</a>
+                        <!-- Desktop Link Bar -->
                         <ul class="right hide-on-med-and-down">
-                            <!-- Search Link -->
                             <li><a><i class="material-icons left">search</i>Search</a></li>
-                            <!-- Account Link -->
                             <li><a class='dropdown-button' href='#' data-activates='dropdown_account'><i class="material-icons left">local_cafe</i>Account</a></li>
-                            <!-- Cart Link -->
                             <li><a><i class="material-icons left">shopping_cart</i>Cart</a></li>
                         </ul>
-                        <!-- Mobile Navbar -->
-                        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-                        <ul id="nav-mobile" class="side-nav">
-                            <li><a href="#">Navbar Link</a></li>
+                        <!-- Mobile Content Pages Navbar Navbar -->
+                        <a href="#" data-activates="content-nav-mobile" class="button-collapse"><i id="mobile-button-collapse" class="material-icons">menu</i></a>
+                        <ul id="content-nav-mobile" class="side-nav">
+                            <li class="center-align">Content</li>
+                            <li><a class="waves-effect waves-light orange accent-2 black-text btn">Home</a></li>
+                            <li><a class="waves-effect waves-light black-text btn">Products</a></li>
+                            <li><a class="waves-effect waves-light deep-purple darken-3 btn">Coffee Club</a></li>
+                            <li><a class="waves-effect waves-light orange accent-2 black-text btn">About</a></li>
+                            <li><a class="waves-effect waves-light red btn">Contact</a></li>
                         </ul>
                     </div>
                     <div id="logo-image" class="logo-image-container">
@@ -91,8 +93,9 @@
             <!-- Additional Header Content -->
             {% block page_header %}
             {% endblock %}
+            <!-- Desktop Content Pages Navbar -->
             <div id="content-navbar" class="nav-extended center-align">
-                <div class="nav-content">
+                <div class="nav-content hide-on-med-and-down">
                     <a class="waves-effect waves-light orange accent-2 black-text btn">Home</a>
                     <a class="waves-effect waves-light black-text btn">Products</a>
                     <a class="waves-effect waves-light deep-purple darken-3 btn">Coffee Club</a>
