@@ -27,6 +27,25 @@ p {
     margin-bottom: 0px;
 }
 
+nav {
+    height: 200px;
+    padding-top: 10px;
+    background-color: #11bcd4;
+}
+
+#content-navbar {
+    padding: 20px 0px;
+    background-color: #d31245;
+}
+
+.nav-content .btn {
+    margin: 8px 8px;
+    width: 100px;
+    padding: 0;
+    height: 30px;
+    line-height: 30px;
+}
+
 nav ul a {
     color: #fafafa;
     padding: 0 30px;
@@ -38,15 +57,35 @@ nav ul a {
 
 #logo-image {
     text-align: center;
+    display: block;
 }
+
+.logo-image-container img {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        width: 150px;
+    }
 
 .dropdown-item {
     color: #444 !important;
 }
 
-#logo-image {
-        display: none;
-    }
+/* ---------- Home -------------- */
+
+.btn-floating.btn {
+    position: relative;
+    z-index: 3;
+    bottom: 200px;
+    font-size: 1.7rem;
+    left: 50%;
+    width: 150px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 0;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
 
 /* --------- Parallax ----------- */
 
@@ -69,6 +108,12 @@ nav ul a {
 .icon-block .material-icons {
   font-size: inherit;
 }
+.slider h3, .slider h5 {
+    text-shadow: 2px 2px 4px #000000;
+}
+.slider .indicators .indicator-item.active {
+    background-color: #26a69a;
+}
 
 /* ---------- Footer ------------ */
 
@@ -78,18 +123,23 @@ footer.page-footer {
 
 /* -------------------------------------Media Querries --------------- */
 
+/* Small */
 @media only screen and (max-width : 768px) {
     #index-banner .section {
         top: 20px;
     }
 }
 
+/* Tablet */
 @media only screen and (min-width : 768px) {
     nav {
+        height: 400px;
+        padding-top: 20px;
+        background-color: rgba(38, 198, 218, 0.0)
+    }
+    #navbar-background {
         background: url('/media/nav_background.jpeg') no-repeat center fixed;
         background-size: cover;
-        height: 500px;
-        padding-top: 20px;
     }
     nav .brand-logo {
         color: #444;
@@ -98,7 +148,9 @@ footer.page-footer {
         transform: translateX(-50%);
         width: 80%
     }
-
+    #content-navbar {
+        background-color: rgba(211, 18, 69, 0.7)
+    }
     .parallax-container .section {
         position: absolute;
         top: 40%;
@@ -110,15 +162,20 @@ footer.page-footer {
         display: block;
     }
     .logo-image-container img {
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 30px
+        margin-top: 30px;
+        width: 300px;
     }
 }
+
+/* Large */
 
 @media only screen and (min-width: 1024px) {
     nav {
         padding-top: 50px;
+        height: 500px;
+    }
+    nav .nav-content {
+        padding-bottom: 20px;
     }
     nav.container {
         width: 80%
@@ -128,6 +185,7 @@ footer.page-footer {
     }
     nav .brand-logo {
         font-size: 3.0rem;
+        width: 250px;
         color: #444;
         left: 0%;
         -webkit-transform: translateX(0%);
@@ -138,6 +196,7 @@ footer.page-footer {
     }
     .logo-image-container img {
         margin-top: 50px;
+        width: 400px;
     }
 }
 

@@ -48,47 +48,59 @@
             <h4 class="col s12 header">Free delivery on orders over ${{ free_delivery_threshold }}!</h4>                      
         </div>
         <!-- Navbar -->
-        <nav class="cyan lighten-1" role="navigation">
-            <div class="nav-wrapper container">
-                <div class="navbar-links-container row">
-                    <!-- Brand Logo -->
-                    <a id="logo-link" href="{% url 'home' %}" class="brand-logo">Online Shop</a>
-                    <ul class="right hide-on-med-and-down">
-                        <!-- Search Link -->
-                        <li><a><i class="material-icons left">search</i>Search</a></li>
-                        <!-- Account Link -->
-                        <li><a class='dropdown-button' data-beloworigin="true" href='#' data-activates='dropdown_account'><i class="material-icons left">local_cafe</i>Account</a></li>
-                        <!-- Cart Link -->
-                        <li><a><i class="material-icons left">shopping_cart</i>Cart</a></li>
-                    </ul>
-                    <!-- Mobile Navbar -->
-                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-                    <ul id="nav-mobile" class="side-nav">
-                        <li><a href="#">Navbar Link</a></li>
-                    </ul>
-                </div>
-                <div id="logo-image" class="logo-image-container">
-                    <img class="col materialboxed" src="{{ MEDIA_URL }}guatemalan_coffees_logo.png">
-                </div>
-                <!-- Account Dropdown Structure -->
-                <ul id='dropdown_account' class='dropdown-content'>
-                    {% if request.user.is_authenticated %}
-                        {% if request.user.is_superuser %}
-                            <li><a href="#" class="dropdown-item">Product Management</a></li>
-                            <li class="divider" tabindex="-1"></li>
+        <div id="navbar-background">
+            <nav role="navigation">
+                <div class="nav-wrapper container">
+                    <div class="navbar-links-container row">
+                        <!-- Brand Logo -->
+                        <a id="logo-link" href="{% url 'home' %}" class="brand-logo">Online Shop</a>
+                        <ul class="right hide-on-med-and-down">
+                            <!-- Search Link -->
+                            <li><a><i class="material-icons left">search</i>Search</a></li>
+                            <!-- Account Link -->
+                            <li><a class='dropdown-button' href='#' data-activates='dropdown_account'><i class="material-icons left">local_cafe</i>Account</a></li>
+                            <!-- Cart Link -->
+                            <li><a><i class="material-icons left">shopping_cart</i>Cart</a></li>
+                        </ul>
+                        <!-- Mobile Navbar -->
+                        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                        <ul id="nav-mobile" class="side-nav">
+                            <li><a href="#">Navbar Link</a></li>
+                        </ul>
+                    </div>
+                    <div id="logo-image" class="logo-image-container">
+                        <img class="col materialboxed" src="{{ MEDIA_URL }}guatemalan_coffees_logo.png">
+                    </div>
+                    <!-- Account Dropdown Structure -->
+                    <ul id='dropdown_account' class='dropdown-content'>
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.is_superuser %}
+                                <li><a href="#" class="dropdown-item">Product Management</a></li>
+                                <li class="divider" tabindex="-1"></li>
+                            {% endif %}
+                            <li><a href="#" class="dropdown-item">My Profile</a></li>
+                            <li><a href="#" class="dropdown-item">Logout</a></li>
+                        {% else %}
+                            <li><a href="#" class="dropdown-item">Register</a></li>
+                            <li><a href="#" class="dropdown-item">Login</a></li>
                         {% endif %}
-                        <li><a href="#" class="dropdown-item">My Profile</a></li>
-                        <li><a href="#" class="dropdown-item">Logout</a></li>
-                    {% else %}
-                        <li><a href="#" class="dropdown-item">Register</a></li>
-                        <li><a href="#" class="dropdown-item">Login</a></li>
-                    {% endif %}
-                </ul>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Additional Header Content -->
+            {% block page_header %}
+            {% endblock %}
+            <div id="content-navbar" class="nav-extended center-align">
+                <div class="nav-content">
+                    <a class="waves-effect waves-light orange accent-2 black-text btn">Home</a>
+                    <a class="waves-effect waves-light black-text btn">Products</a>
+                    <a class="waves-effect waves-light deep-purple darken-3 btn">Coffee Club</a>
+                    <a class="waves-effect waves-light orange accent-2 black-text btn">About</a>
+                    <a class="waves-effect waves-light red btn">Contact</a>
+                </div>
             </div>
-        </nav>
-    <!-- Additional Header Content -->
-    {% block page_header %}
-    {% endblock %}
+        </div>
     </header>    
 
     <!-- Page Content -->
@@ -143,10 +155,10 @@
     $('.dropdown-button').dropdown({
       inDuration: 300,
       outDuration: 225,
-      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      constrainWidth: true, 
       hover: true, // Activate on hover
       gutter: 0, // Spacing from edge
-      belowOrigin: false, // Displays dropdown below the button
+      belowOrigin: true, // Displays dropdown below the button
       alignment: 'left', // Displays dropdown with edge aligned to the left of button
       stopPropagation: false // Stops event propagation
     }
