@@ -40,7 +40,7 @@ p {
         background-size: cover;
 }
 
-nav {
+header nav {
     height: 200px;
     padding-top: 10px;
     background-color: rgba(0, 0, 0, 0.0)
@@ -82,7 +82,7 @@ nav {
     font-size: 20px;
 }
 
-nav ul a {
+header nav ul a {
     color: #fafafa;
     padding: 0 30px;
 }
@@ -151,6 +151,20 @@ nav ul a {
     background-color: #26a69a;
 }
 
+/* ---------- Search Modal ------ */
+
+#search-bar-modal .modal-content {
+    padding: 0;
+}
+
+#search-bar-modal nav, #search-bar-modal .modal {
+    background-color: rgba(0, 0, 0, 0.0);
+}
+
+#search-bar-modal i, #search-bar-modal input {
+    color: #444
+}
+
 /* ---------- Footer ------------ */
 
 footer.page-footer {
@@ -168,7 +182,7 @@ footer.page-footer {
 
 /* Tablet */
 @media only screen and (min-width : 768px) {
-    nav {
+    header nav {
         height: 400px;
         padding-top: 20px;
         background-color: rgba(0, 0, 0, 0.0)
@@ -210,7 +224,7 @@ footer.page-footer {
 /* Large */
 
 @media only screen and (min-width: 1024px) {
-    nav {
+    header nav {
         padding-top: 50px;
         height: 500px;
     }
@@ -220,7 +234,7 @@ footer.page-footer {
     nav.container {
         width: 80%
     }
-    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    header nav, header nav .nav-wrapper i, header nav a.button-collapse, header nav a.button-collapse i {
         line-height: 70px; 
     }
     nav .brand-logo {
@@ -231,7 +245,7 @@ footer.page-footer {
         -webkit-transform: translateX(0%);
         transform: translateX(0%);
     }
-    nav ul a, nav .right a {
+    header nav ul a, header nav .right a {
         font-size: 1.7rem
     }
     .logo-image-container img {
