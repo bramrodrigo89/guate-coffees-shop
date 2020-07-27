@@ -1,0 +1,17 @@
+<script>
+function createSuccessToast(message){
+    var toastHTML = 
+        `<strong> Alert! </strong>
+        <div> {{message}} </div>
+        <button class="btn-flat toast-action" onClick="dismissToast()">Dismiss</button>`;
+    Materialize.toast(toastHTML,10000);
+}
+
+function dismissToast() {
+    var toastElement = $('.toast').first()[0];
+    var toastInstance = toastElement.M_Toast;
+    toastInstance.remove();
+}
+
+createSuccessToast();
+</script>

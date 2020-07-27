@@ -175,19 +175,14 @@
             {% elif level == 30 %}
                 {% include 'includes/toasts/toast_warning.html' %}
             {% elif level == 25 %}
-                <script>
-                    createToast('You are logged in!');
-                </script>
+                {% include 'includes/toasts/toast_success.html' %}
             {% else %}
-                {% include 'includes/toasts/toast_info.html' %}
+                {% include 'includes/toasts/toast_alert.html' %}
             {% endif %}
         {% endwith %}
     {% endfor %}
 </div>
-<script>
-    var toastHTML = '<span>I am toast content</span><button class="btn-flat toast-action">Undo</button>';
-    M.toast({html: toastHTML});
-</script>
+
 {% endif %}
 
 {% block postloadjs %}

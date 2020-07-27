@@ -16,8 +16,16 @@
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
   {% endif %}
   <a class="btn btn-outline-black rounded-0" href="{% url 'home' %}">Cancel</a>
-  <button type="submit">{% trans 'Sign Out' %}</button>
+  <button id="button-signout" type="submit">{% trans 'Sign Out' %}</button>
 </form>
 
+{% endblock %}
 
+{% block postloadjs %}
+    {{ block.super }}
+    <script>
+        $(function() {
+            $("#button-signout").focus();
+        });
+    </script>
 {% endblock %}

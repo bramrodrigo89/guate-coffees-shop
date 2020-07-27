@@ -1,8 +1,8 @@
 <script>
 function createSuccessToast(message){
     var toastHTML = 
-        `<span> ${message} </span>
-        <button class="btn-flat toast-action">Done</button>`;
+        `<div> {{message}} </div>
+        <button class="btn-flat toast-action" onClick="dismissToast()">Done</button>`;
     Materialize.toast(toastHTML,10000);
 }
 
