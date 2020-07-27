@@ -155,6 +155,7 @@ header nav ul a {
 
 #search-bar-modal .modal-content {
     padding: 0;
+    overflow-y: hidden;
 }
 
 #search-bar-modal nav, #search-bar-modal .modal {
@@ -162,7 +163,8 @@ header nav ul a {
 }
 
 #search-bar-modal i, #search-bar-modal input {
-    color: #444
+    color: #444;
+    margin: 0;
 }
 
 /* ---------- Footer ------------ */

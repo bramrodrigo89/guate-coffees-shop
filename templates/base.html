@@ -34,6 +34,8 @@
 	<script src="https://kit.fontawesome.com/e9c73d7092.js" crossorigin="anonymous"></script>
 	<!-- Stripe -->
 	<script src="https://js.stripe.com/v3/"></script>
+    <!-- Custom JS -->
+    <script src="{% static 'js/base.js' %}"></script>
 	{% endblock %}
 
 	{% block extra_js %}
@@ -56,7 +58,7 @@
                         <!-- Desktop Top Header Bar -->
                         <ul class="right hide-on-med-and-down">
                             <li><a class="waves-effect modal-trigger" href="#search-bar-modal"><i class="material-icons left">search</i>Search</a></li>
-                            <li><a class="waves-effect dropdown-button" href='#' data-activates="dropdown_account"><i class="material-icons left">local_cafe</i>Account</a></li>
+                            <li><a class="waves-effect dropdown-button" data-beloworigin="true" data-stoppropagation="true" data-hover="true" href='#' data-activates="dropdown_account"><i class="material-icons left">local_cafe</i>Account</a></li>
                             <li><a class="waves-effect"><i class="material-icons left">shopping_cart</i>Cart</a></li>
                         </ul>
                         <!-- Mobile Content Pages Navbar Navbar -->
@@ -81,10 +83,10 @@
                                 <li class="divider" tabindex="-1"></li>
                             {% endif %}
                             <li><a href="#" class="dropdown-item">My Profile</a></li>
-                            <li><a href="#" class="dropdown-item">Logout</a></li>
+                            <li><a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a></li>
                         {% else %}
-                            <li><a href="#" class="dropdown-item">Register</a></li>
-                            <li><a href="#" class="dropdown-item">Login</a></li>
+                            <li><a href="{% url 'account_signup' %}" class="dropdown-item">Register</a></li>
+                            <li><a href="{% url 'account_login' %}" class="dropdown-item">Login</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -154,8 +156,8 @@
                 <div class="nav-wrapper">
                     <form>
                         <div class="input-field">
-                            <input id="search" type="search" required>
-                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <input name="search-query" id="search-query-input" type="search" placeholder="Search Our Site" required>
+                            <label class="label-icon" for="search-query-input"><i class="material-icons">search</i></label>
                             <i class="material-icons modal-close">close</i>
                         </div>
                     </form>
@@ -165,31 +167,29 @@
     </div>
 
 {% if messages %}
+<div class="toast-container">
+    {% for message in messages %}
+        {% with message.level as level %}
+            {% if level == 40 %}
+                {% include 'includes/toasts/toast_error.html' %}
+            {% elif level == 30 %}
+                {% include 'includes/toasts/toast_warning.html' %}
+            {% elif level == 25 %}
+                {% include 'includes/toasts/toast_success.html' %}
+            {% else %}
+                {% include 'includes/toasts/toast_info.html' %}
+            {% endif %}
+        {% endwith %}
+    {% endfor %}
+</div>
+<script>
+    var toastHTML = '<span>I am toast content</span><button class="btn-flat toast-action">Undo</button>';
+    M.toast({html: toastHTML});
+</script>
 {% endif %}
 
 {% block postloadjs %}
-<script type="text/javascript">
-    $('.dropdown-button').dropdown({
-      inDuration: 300,
-      outDuration: 225,
-      constrainWidth: true, 
-      hover: true, // Activate on hover
-      gutter: 0, // Spacing from edge
-      belowOrigin: true, // Displays dropdown below the button
-      alignment: 'left', // Displays dropdown with edge aligned to the left of button
-      stopPropagation: false // Stops event propagation
-    });
-
-    function stickyContentNavbar() {
-        var content_navbar = document.getElementById("content-navbar");
-        var sticky = content_navbar.offsetTop;
-        if (window.pageYOffset > sticky) {
-            content_navbar.classList.add("stuck");
-        } else {
-            content_navbar.classList.remove("stuck");
-        }
-    }
-
+<script type="text/javascript">    
     $(document).ready(function(){
         $('.button-collapse').sideNav();
         $('.parallax').parallax();
