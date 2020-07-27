@@ -2,7 +2,14 @@
 <div id="mobile-top-header" data-target="red" class="mobile-top-header hide-on-large-only">
     <a class="waves-effect waves-light modal-trigger" href="#search-bar-modal"><i class="material-icons">search</i>Search</a>
     <a id="mobile-account-dropdown-button" data-beloworigin="true" data-stoppropagation="true" class='waves-effect waves-light dropdown-button' href='#' data-activates='mobile-dropdown-account'><i class="material-icons">local_cafe</i>Account</a>
-    <a class="waves-effect waves-light"><i class="material-icons">shopping_cart</i>Cart</a>
+    <a href="#" class="{% if grand_total %}cyan-text {% endif %}waves-effect">
+        <i class="material-icons left">shopping_cart</i>
+        {% if grand_total %}
+            ${{ grand_total|floatformat:2 }} <span class="new badge cyan">3</span>
+        {% else %}
+            Cart
+        {% endif %}
+    </a>
 </div>
 <!-- Account Dropdown Structure -->
 <ul id='mobile-dropdown-account' class='dropdown-content'>

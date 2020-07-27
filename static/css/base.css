@@ -85,6 +85,7 @@ header nav {
 header nav ul a {
     color: #fafafa;
     padding: 0 30px;
+    text-shadow: 2px 2px 5px #000000;
 }
 
 .button-collapse {
