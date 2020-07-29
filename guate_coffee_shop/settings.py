@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     # Custom Apps
     'home',
     'social_app',
-    'products'
+    'products',
 ]
 
 SOCIALACCOUNT_PROVIDERS = {

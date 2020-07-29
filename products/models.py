@@ -1,15 +1,14 @@
 from django.db import models
 
 class Region(models.Model):
-    region_id = models.Charfield
     name = models.CharField(max_length=50)
-    friendly_name = models.CharField(max_length=50, null=False, blank=False)
-    description	= models.CharField(max_length=600, null=False, blank=False)
-    weather_temperature	= models.CharField(max_length=100, null=False, blank=False)
-    precipitation = models.CharField(max_length=100, null=False, blank=False)
-    humidity = models.CharField(max_length=100, null=False, blank=False)
-    altitute = models.CharField(max_length=100, null=False, blank=False)
-
+    friendly_name = models.CharField(max_length=50)
+    description	= models.TextField()
+    weather_temperature	= models.CharField(max_length=100)
+    precipitation = models.CharField(max_length=100)
+    humidity = models.CharField(max_length=100)
+    altitude = models.CharField(max_length=100)
+    
     def __str__(self):
         return self.name
 
@@ -17,30 +16,26 @@ class Region(models.Model):
         return self.friendly_name
 
 
-
 class Product(models.Model):
     region = models.ForeignKey('Region', null=True, blank=True, on_delete=models.SET_NULL)
-    sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
+    description_2 = models.TextField()
+    finca = models.CharField(max_length=30, null=True, blank=True)
+    roast_level = models.CharField(max_length=30)
+    cupping_notes = models.CharField(max_length=100, null=True, blank=True)
+    retail_price = models.DecimalField(max_digits=5, decimal_places=2)
+    new_product = models.BooleanField(default=False)
+    rating = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    main_image = models.ImageField(upload_to='main_image', null=True, blank=True)
 
-    image_url = models.URLField(max_length=1024, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
-
-    region
-    product_category
-    name
-    description
-    description_2
-    finca
-    roast_level
-    cupping_notes
-    retail_price = models.DecimalField(max_digits=6, decimal_places=2)
-    new_product
-    images
+    def __str__(self):
+        return self.name
     
-    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
 
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, related_name='other_image', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="other_image", null=True, blank=True)
 
     def __str__(self):
         return self.name
