@@ -1,7 +1,12 @@
 from django.contrib import admin
-from .models import Product, Region
+from .models import Product, Region, ProductImage
 
 # Register your models here.
+
+class ProductImagesAdmin(admin.TabularInline):
+    model = ProductImage
+    extra = 4
+
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
@@ -16,8 +21,9 @@ class ProductAdmin(admin.ModelAdmin):
         'new_product',
         'rating',
         'main_image',
-        'other_image'
+        'other_images'
     )
+    inlines = [ProductImagesAdmin,]
     ordering = ('region',)
 
 class RegionAdmin(admin.ModelAdmin):

@@ -17,7 +17,7 @@ class Region(models.Model):
 
 
 class Product(models.Model):
-    region = models.ForeignKey('Region', null=True, blank=True, on_delete=models.SET_NULL)
+    region = models.ForeignKey('Region', on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
     description_2 = models.TextField()
@@ -27,16 +27,16 @@ class Product(models.Model):
     retail_price = models.DecimalField(max_digits=5, decimal_places=2)
     new_product = models.BooleanField(default=False)
     rating = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
-    main_image = models.ImageField(upload_to='main_image', null=True, blank=True)
+    main_image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name
     
 
 class ProductImage(models.Model):
-    product = models.ForeignKey(Product, related_name='other_image', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="other_image", null=True, blank=True)
+    product = models.ForeignKey('Product', related_name='other_images', on_delete=models.CASCADE)
+    images = models.ImageField(null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.images
 
