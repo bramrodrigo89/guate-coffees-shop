@@ -1,0 +1,72 @@
+[
+  {
+    "region_id": 1,
+    "name": "highland_huehue",
+    "friendly_name": "Highland Huehuetenango",
+    "description": "Rich volcanic soil, low humidity, lots of sun, and cool nights characterize the Antigua Coffee region. This valley is surrounded by three volcanoes: Agua, Fuego, and Acatenango. Every once in a while, Fuego—one of Guatemala’s three active volcanoes—adds a fresh dusting of mineral-rich ash to Antigua’s soil.  Volcanic pumice in the soil retains moisture, which helps offset Antigua’s low rainfall. In Antigua, shade is especially dense to protect the coffee plants from the region’s occasional frost.",
+    "weather_temperature": "68 - 75 ºF",
+    "precipitation": "48 - 56 in",
+    "humidity": "70 - 80 %",
+    "altitute": "5000 - 6500 ft"
+  },
+  {
+    "region_id": 2,
+    "name": "rainforest_coban",
+    "friendly_name": "Rainforest Coban",
+    "description": "Cobán is cloudy, rainy, and cool all year long.  Most Rainforest Cobán is cultivated on the area’s distinctive rolling hills, under the tropical influences of the Atlantic Basin, in limestone and clay soils. Cobán has two seasons: rainy and rainier.  Cobán’s celebrated chipichipi frequently engulfs the region in a fine mist that falls from the dense cloud cover.",
+    "weather_temperature": "59 - 68 ºF",
+    "precipitation": "120 - 160 in",
+    "humidity": "85 - 95 %",
+    "altitute": "4300 - 5600 ft"
+  },
+  {
+    "region_id": 3,
+    "name": "new_oriente",
+    "friendly_name": "New Oriente",
+    "description": "In this region, coffee has been cultivated since the 1950s. Today, virtually every farm on the mountain has become a coffee-producing unit and what was once one of the poorest and most isolated areas of Guatemala is vibrant and growing.  Rainy and cloudy, Oriente is located on a former volcanic range. Its soil is made of metamorphic rock: balanced in minerals and quite different from soils in regions which have seen volcanic activity since coffee was first planted.",
+    "weather_temperature": "64 - 77 ºF",
+    "precipitation": "72 - 80 in",
+    "humidity": "70 - 80 %",
+    "altitute": "4300 - 5600 ft"
+  },
+  {
+    "region_id": 4,
+    "name": "antigua",
+    "friendly_name": "Antigua",
+    "description": "Rich volcanic soil, low humidity, lots of sun, and cool nights characterize the Antigua Coffee region. This valley is surrounded by three volcanoes: Agua, Fuego, and Acatenango. Every once in a while, Fuego—one of Guatemala’s three active volcanoes—adds a fresh dusting of mineral-rich ash to Antigua’s soil.  Volcanic pumice in the soil retains moisture, which helps offset Antigua’s low rainfall. In Antigua, shade is especially dense to protect the coffee plants from the region’s occasional frost.",
+    "weather_temperature": "64 - 72 ºF",
+    "precipitation": "32 - 48 in",
+    "humidity": "55 - 65 %",
+    "altitute": "5000 - 5600 ft"
+  },
+  {
+    "region_id": 5,
+    "name": "volcanic_san_marcos",
+    "friendly_name": "Volcanic San Marcos",
+    "description": "The warmest of the eight coffee-growing regions, San Marcos also has the highest rainfall pattern, reaching up to 200 inches (5,000 mm).  The seasonal rains come sooner than in other regions, producing the earliest flowering.  As in all of Guatemala’s remote regions, most of Volcanic San Marcos is cultivated on farms with their own processing mills. Because of the unpredictability of rainfall during the harvest season, much of the coffee is pre-dried in the sun and finished in a Guardiola dryer.",
+    "weather_temperature": "70 - 81 ºF",
+    "precipitation": "160 - 200 in",
+    "humidity": "70 - 80 %",
+    "altitute": "4300 - 6000 ft"
+  },
+  {
+    "region_id": 6,
+    "name": "traditional_atitlan",
+    "friendly_name": "Traditional Atitlan",
+    "description": "Of the five volcanic coffee regions of Guatemala, Atitlán’s soil is the richest in organic matter.  Ninety percent of Traditional Atitlán is cultivated along the slopes of the three volcanoes that dominate the shores of Lake Atitlán. The daily winds (called Xocomil) that stir the cold lake waters are an important influence on the microclimate.",
+    "weather_temperature": "68 - 72 ºF",
+    "precipitation": "72 - 92 in",
+    "humidity": "75 - 85 %",
+    "altitute": "5000 - 5600 ft"
+  },
+  {
+    "region_id": 7,
+    "name": "fraijanes_plateu",
+    "friendly_name": "Fraijanes Plateau",
+    "description": "Volcanic pumice soil, very high altitudes, plenty of rain, variable humidity, and an active volcano characterize the region.  Pacaya, the most active of Guatemala’s three erupting volcanoes, supplies the region with a light deposit of ash every so often, giving the soil an important mineral boost. The dry season has lots of sun.  Although clouds, fog, and heavy dew are common in the early morning, they burn off quickly allowing all Fraijanes Plateau to be sun-dried.",
+    "weather_temperature": "54 - 79 ºF",
+    "precipitation": "60 - 120 in",
+    "humidity": "70 - 90 %",
+    "altitute": "4500 - 6000 ft"
+  }
+]
