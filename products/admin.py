@@ -9,7 +9,7 @@ class ProductImagesAdmin(admin.ModelAdmin):
     #model = ProductImage
     #extra = 4
     list_display = (
-        'image'
+        'image',
         'product'
     )
 
@@ -46,4 +46,4 @@ class RegionAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Region, RegionAdmin)
-#admin.site.register(ProductImagesAdmin, ProductImagesAdmin)
+admin.site.register(ProductImage, ProductImagesAdmin)
