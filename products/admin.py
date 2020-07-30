@@ -3,9 +3,15 @@ from .models import Product, Region, ProductImage
 
 # Register your models here.
 
-class ProductImagesAdmin(admin.TabularInline):
-    model = ProductImage
-    extra = 4
+#class ProductImagesAdmin(admin.TabularInline):
+
+class ProductImagesAdmin(admin.ModelAdmin):
+    #model = ProductImage
+    #extra = 4
+    list_display = (
+        'image'
+        'product'
+    )
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -23,7 +29,7 @@ class ProductAdmin(admin.ModelAdmin):
         'main_image',
         'other_images'
     )
-    inlines = [ProductImagesAdmin,]
+    #inlines = [ProductImagesAdmin,]
     ordering = ('region',)
 
 class RegionAdmin(admin.ModelAdmin):
@@ -40,3 +46,4 @@ class RegionAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Region, RegionAdmin)
+#admin.site.register(ProductImagesAdmin, ProductImagesAdmin)
