@@ -88,6 +88,10 @@ header nav ul a {
     text-shadow: 2px 2px 5px #000000;
 }
 
+.dropdown-content a {
+    text-shadow: none;
+}
+
 .button-collapse {
   color: #444;
 }
