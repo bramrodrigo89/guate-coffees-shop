@@ -132,7 +132,7 @@
         "retail_price": 17.00,
         "rating": 5.0,
         "new_product": "True",
-        "main_image": "8_1.png, 8_2.jpg, 8_3.jpg, 8_4.jpg, 8_5.jpg"
+        "main_image": "8_1.png"
     }
   },
   {
@@ -149,7 +149,7 @@
         "retail_price": 14.00,
         "rating": 5.0,
         "new_product": "False",
-        "main_image": "9_1.png, 9_2.jpg, 9_3.jpg, 9_4.jpg"
+        "main_image": "9_1.png"
     }
   },
   {
@@ -166,7 +166,7 @@
         "retail_price": 15.00,
         "rating": 5.0,
         "new_product": "False",
-        "main_image": "10_1.jpg, 10_2.jpg, 10_3.jpg, 10_4.jpg, 10_5.jpg"
+        "main_image": "10_1.jpg"
     }
   }
 ]
