@@ -7,6 +7,17 @@ from .models import Product, Region, ProductImage
 from .forms import ProductForm
 
 # Create your views here.
+
+def all_products(request):
+    """ A main view to see all available products and filter options """
+
+    products = Product.objects.all()
+    context = {
+        'products':products,
+    }
+    return render (request, 'products/products.html', context)
+
+
 @login_required
 def add_product(request):
     """ Add a product to the store """
