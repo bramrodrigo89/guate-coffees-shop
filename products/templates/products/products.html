@@ -10,32 +10,53 @@
 		<div class="section">
 			<!--   Icon Section   -->
             <div class="row">
-                <div class="col s12">
+                <div class="col s12 m4">
+                    <div class="">
+                        <div class="collection">
+                            <a href="#!" class="collection-item">Alvin</a>
+                            <a href="#!" class="collection-item">Alvin</a>
+                            <a href="#!" class="collection-item">Alvin</a>
+                            <a href="#!" class="collection-item">Alvin</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m8">
                     <div class="row">
                         {% for product in products %}
-                        <div class="col s12 m6 l3">
+                        <div class="col s12 m6 l3 product-card-container">
                             <div class="card">
                                 <div class="card-image">
                                     {% if product.main_image %}
                                     <a href="">
-                                        <img class="materialboxed" src="{{ product.main_image.url }}" alt="{{ product.name }}">
+                                        <img class="" src="{{ product.main_image.url }}" alt="{{ product.name }}">
                                     </a>
                                     {% else %}
                                     <a href="">
-                                        <img class="materialboxed src="{{ MEDIA_URL }}no_image_available.png" alt="{{ product.name }}">
+                                        <img class=""" src="{{ MEDIA_URL }}no_image_available.png" alt="{{ product.name }}">
                                     </a>
                                     {% endif %}
                                     
-                                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                                    <a class="btn-floating halfway-fab waves-effect waves-light"><i class="material-icons">add</i></a>
                                 </div>
                                 <div class="card-content">
-                                    <span class="card-title">{{ product.name }}</span>
-                                    <p class="lead mb-0 text-left font-weight-bold">${{ product.retail_price }}</p>
-                                    {% if product.rating %}
-                                    <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
-                                    {% else %}
-                                    <small class="text-muted">No Rating</small>
+                                    {% if product.new_product%}
+                                    <span class="new badge"></span>
                                     {% endif %}
+                                    <span class="card-title">{{ product.name|truncatechars:35 }}</span>
+                                    <hr>
+                                    <p id="card-price-text">${{ product.retail_price }}</p>
+                                    <div class="rating-stars-container">
+                                        {% if product.rating %}
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                        <small class="text-muted">{{ product.rating }} / 5</small>
+                                        {% else %}
+                                        <small class="text-muted">No Rating</small>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -96,5 +117,6 @@
         $(document).ready(function(){
             $('.slider').slider();
         });
+        $(".button-collapse").sideNav();
 	</script>
 {% endblock %}
