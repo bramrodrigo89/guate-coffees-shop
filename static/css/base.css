@@ -189,8 +189,8 @@ header nav ul a {
 
 .product-card-container .card-image img {
     max-height: 245px;
-    width: 90%;
-    margin: auto auto 0px auto
+    width: auto;
+    margin: 10px auto 0px auto
 }
 
 .product-card-container .card-content {
@@ -198,7 +198,7 @@ header nav ul a {
 }
 
 .card-content .card-title {
-    height: 50%;
+    height: 45%;
 }
 
 .card-content .badge {
