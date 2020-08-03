@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load socialaccount %}
+{% load ratings %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+{% endblock %}
+
 
 {% block page_header %}
 {% endblock %}
@@ -8,18 +18,20 @@
 {% block content %}
     <div class="container">
 		<div class="section">
-			<!--   Icon Section   -->
+			<!--   Filters  -->
             <div class="row">
                 <div class="col s12 m4">
                     <div class="">
-                        <div class="collection">
-                            <a href="#!" class="collection-item">Alvin</a>
-                            <a href="#!" class="collection-item">Alvin</a>
-                            <a href="#!" class="collection-item">Alvin</a>
-                            <a href="#!" class="collection-item">Alvin</a>
-                        </div>
+                        <ul class="collection with-header">
+                            <li class="collection-header"><h4>Filter By Region</h4></li>
+                            <li><a href="#!" class="collection-item">All Regions</a></li>
+                            {% for region in regions %}
+                            <li><a href="#!" class="collection-item">{{ region.friendly_name }}</a></li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
+                <!-- Product Cards -->
                 <div class="col s12 m8">
                     <div class="row">
                         {% for product in products %}
@@ -27,30 +39,26 @@
                             <div class="card">
                                 <div class="card-image">
                                     {% if product.main_image %}
-                                    <a href="">
+                                    <a href="{% url 'product_detail' product.id %}">
                                         <img class="" src="{{ product.main_image.url }}" alt="{{ product.name }}">
                                     </a>
                                     {% else %}
-                                    <a href="">
+                                    <a href="{% url 'product_detail' product.id %}">
                                         <img class=""" src="{{ MEDIA_URL }}no_image_available.png" alt="{{ product.name }}">
                                     </a>
                                     {% endif %}
                                     
-                                    <a class="btn-floating halfway-fab waves-effect waves-light"><i class="material-icons">free_breakfast</i></a>
+                                    <a class="btn-floating halfway-fab waves-effect waves-light" href="{% url 'product_detail' product.id %}"><i class="material-icons">free_breakfast</i></a>
                                 </div>
                                 <div class="card-content">
                                     {% if product.new_product%}
                                     <span class="new badge"></span>
                                     {% endif %}
-                                    <span class="card-title">{{ product.name|truncatechars:35 }}</span>
+                                    <a class="black-text" href="{% url 'product_detail' product.id %}"><span class="card-title">{{ product.name|truncatechars:35 }}</span></a>
                                     <hr>
                                     <p id="card-price-text">${{ product.retail_price }}</p>
                                     <div class="rating-stars-container">
-                                        {% if product.rating %}
-                                        <small class="text-muted">{{ product.rating }} / 5</small>
-                                        {% else %}
-                                        <small class="text-muted">No Rating</small>
-                                        {% endif %}
+                                        {% ratings product %}
                                     </div>
                                 </div>
                             </div>
@@ -66,8 +74,7 @@
         <div class="section no-pad-bot">
             <div class="container">
                 <div class="row center">
-                    <h5 class="header col s12 light">A modern responsive front-end framework based on Material
-                        Design</h5>
+                    <h5 class="header col s12 light">The coffee industry in Guatemala is strong, and has a high percentage of coffee considered to be high quality. These coffees are sought by buyers all over the world.</h5>
                 </div>
             </div>
         </div>
@@ -78,7 +85,7 @@
             <div class="row">
                 <div class="col s12 center">
                     <h3><i class="mdi-content-send brown-text"></i></h3>
-                    <h4>Contact Us</h4>
+                    <h4>About Us</h4>
                     <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non
                         consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo,
@@ -97,8 +104,7 @@
         <div class="section no-pad-bot">
             <div class="container">
                 <div class="row center">
-                    <h5 class="header col s12 light">A modern responsive front-end framework based on
-                        Material Design</h5>
+                    <h5 class="header col s12 light-shadow">Unfortunately a large percentage of the Guatemalan population lives in poverty. When harvest season arrives, villagers will travel to coffee farms to work for the season in hopes to supplement their low village income.</h5>
                 </div>
             </div>
         </div>

@@ -12,10 +12,26 @@ def all_products(request):
     """ A main view to see all available products and filter options """
 
     products = Product.objects.all()
+    regions = Region.objects.all()
     context = {
-        'products':products,
+        'products': products,
+        'regions': regions,
     }
     return render (request, 'products/products.html', context)
+
+
+def product_detail(request, product_id):
+    """ A view to show an individual product's page """
+
+    product = get_object_or_404(Product, pk=product_id)
+    image_list = product.other_images.all()
+
+    context = {
+        'product': product,
+        'image_list': image_list,
+    }
+
+    return render(request, 'products/product_detail.html', context)
 
 
 @login_required

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'home',
     'social_app',
     'products',
+    'star_ratings',
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
