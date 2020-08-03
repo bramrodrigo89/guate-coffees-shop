@@ -138,22 +138,30 @@ header nav {
   color: rgba(255,255,255,.9);
 }
 
+.parallax-container .section {
+    position: absolute;
+    top: 30%;
+}
+
 .parallax-container .section, .container .section {
     width: 100%;
 }
 
 .about-parallax-container {
-    height: 350vh;
+    height: 300vh;
 }
 
 .question-parallax {
     height: 150vh;
-    padding-top: 200px;
+}
+
+#index-banner .section {
+    top: 30%;
 }
 
 .about-wrapper {
     background: white;
-    padding: 10% 0%;
+    padding: 5% 0%;
 }
 
 /* --------- Reviews ------------- */
@@ -174,7 +182,7 @@ header nav {
 
 .quote-collection .secondary-content {
     top: 50px !important;
-    right: 50px !important;
+    right: 10px !important;
 }
 
 .quote-collection .avatar {
@@ -260,9 +268,7 @@ footer.page-footer {
 
 /* Small */
 @media only screen and (max-width : 768px) {
-    #index-banner .section {
-        top: 20px;
-    }
+    
 }
 
 /* Tablet */
@@ -290,18 +296,11 @@ footer.page-footer {
         padding: 5px 10px;
         font-size: 1.7rem; 
     }
-    .parallax-container .section {
-        position: absolute;
-        top: 40%;
-    }
     .about-parallax-container {
-        height: 100vh;
+        height: 150vh;
     }
     .question-parallax {
         height: 60vh;
-    }
-    #index-banner .section {
-        top: 10%;
     }
     #logo-image {
         display: block;
