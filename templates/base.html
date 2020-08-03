@@ -60,10 +60,10 @@
                         <a id="logo-link" href="{% url 'home' %}" class="brand-logo">Logo Name</a>
                         <!-- Desktop Top Header Bar -->
                         <ul class="right hide-on-med-and-down">
-                            <li><a class="waves-effect modal-trigger" href="#search-bar-modal"><i class="material-icons left">search</i>Search</a></li>
-                            <li><a class="waves-effect dropdown-button" data-beloworigin="true" data-stoppropagation="true" data-hover="true" href='#' data-activates="dropdown_account"><i class="material-icons left">local_cafe</i>Account</a></li>
+                            <li><a class="waves-effect modal-trigger header-link" href="#search-bar-modal"><i class="material-icons left">search</i>Search</a></li>
+                            <li><a class="waves-effect dropdown-button header-link" data-beloworigin="true" data-stoppropagation="true" data-hover="true" href='#' data-activates="dropdown_account"><i class="material-icons left">local_cafe</i>Account</a></li>
                             <li>
-                                <a href="#" class="{% if grand_total %}cyan-text {% endif %}waves-effect">
+                                <a href="#" class="header-link {% if grand_total %}cyan-text {% endif %}waves-effect">
                                     <i class="material-icons left">shopping_cart</i>
                                     {% if grand_total %}
                                         ${{ grand_total|floatformat:2 }} <span class="new badge cyan">3</span>

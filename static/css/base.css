@@ -29,6 +29,7 @@ p {
     z-index: 10;
 }
 
+
 /* ---------- Navbar ------------ */
 
 #delivery-top-banner {
@@ -82,7 +83,7 @@ header nav {
     font-size: 20px;
 }
 
-header nav ul a {
+.header-link {
     color: #fafafa;
     padding: 0 30px;
     text-shadow: 2px 2px 5px #000000;
@@ -137,10 +138,48 @@ header nav ul a {
   color: rgba(255,255,255,.9);
 }
 
-.parallax-container .section {
+.parallax-container .section, .container .section {
     width: 100%;
 }
 
+.about-parallax-container {
+    height: 350vh;
+}
+
+.question-parallax {
+    height: 150vh;
+    padding-top: 200px;
+}
+
+.about-wrapper {
+    background: white;
+    padding: 10% 0%;
+}
+
+/* --------- Reviews ------------- */
+
+.quote-collection {
+    border: 0;
+    overflow: unset;
+}
+
+.quote-img {
+    height: 100px !important;
+    width: 100px !important;
+}
+
+.quote-collection blockquote {
+    margin-top: 120px;
+}
+
+.quote-collection .secondary-content {
+    top: 50px !important;
+    right: 50px !important;
+}
+
+.quote-collection .avatar {
+    padding-left: 20px !important;
+}
 /* --------- Section ------------- */
 
 .icon-block {
@@ -254,6 +293,12 @@ footer.page-footer {
     .parallax-container .section {
         position: absolute;
         top: 40%;
+    }
+    .about-parallax-container {
+        height: 100vh;
+    }
+    .question-parallax {
+        height: 60vh;
     }
     #index-banner .section {
         top: 10%;
