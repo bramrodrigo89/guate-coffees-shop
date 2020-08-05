@@ -242,7 +242,7 @@ header nav {
 }
 
 .card-content .card-title {
-    height: 45%;
+    height: 35%;
 }
 
 .rating-stars-container {
@@ -257,10 +257,27 @@ header nav {
 }
 
 #card-price-text {
-    color: #00a890
+    color: #00a890;
+    font-size: 1.2em;
+    margin-bottom: 10px;
 }
 
+/* Detail Product Page */
 
+.carousel {
+    height: 280px;
+}
+.star-ratings {
+    font-size: 1.0rem
+}
+
+.price-rating-container {
+    text-align: center;
+}
+
+.add-to-cart-button {
+    margin: 20px 10px;
+}
 
 /* ---------- Footer ------------ */
 
@@ -313,6 +330,9 @@ footer.page-footer {
         margin-top: 30px;
         width: 300px;
     }
+    .price-rating-container {
+        text-align: left;
+}
 }
 
 /* Large */
