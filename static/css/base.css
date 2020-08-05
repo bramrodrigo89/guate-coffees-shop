@@ -29,6 +29,10 @@ p {
     z-index: 10;
 }
 
+.small-text {
+    font-size: 1.1rem;
+}
+
 
 /* ---------- Navbar ------------ */
 
@@ -265,7 +269,7 @@ header nav {
 /* Detail Product Page */
 
 .carousel {
-    height: 280px;
+    height: 300px;
 }
 .star-ratings {
     font-size: 1.0rem
