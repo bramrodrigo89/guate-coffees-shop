@@ -268,9 +268,6 @@ header nav {
 
 /* Detail Product Page */
 
-.carousel {
-    height: 300px;
-}
 .star-ratings {
     font-size: 1.0rem
 }
@@ -281,6 +278,21 @@ header nav {
 
 .add-to-cart-button {
     margin: 20px 10px;
+}
+
+.carousel-slider img {
+    max-height: 350px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto !important;
+}
+
+#other-images-slider .indicator-item {
+    background-color: rgb(0 150 136 / 0.3) !important;
+}
+#other-images-slider .indicator-item.active {
+    background-color: #009688 !important;
 }
 
 /* ---------- Footer ------------ */

@@ -73,51 +73,59 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
-                <div class="col s12 m6">
-                </div>
                 <div class="col s12 m6">
                     <table class="striped">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Item Name</th>
-                            <th>Item Price</th>
+                            <th>Origin</th>
+                            <td>{{ product.region.friendly_name }}</td>
+                            
                         </tr>
                         </thead>
 
                         <tbody>
                         <tr>
-                            <td>Alvin</td>
-                            <td>Eclair</td>
-                            <td>$0.87</td>
+                            <th>Finca</th>
+                            <td>{{ product.finca }}</td>
+                            
                         </tr>
                         <tr>
-                            <td>Alan</td>
-                            <td>Jellybean</td>
-                            <td>$3.76</td>
+                            <th>Roast Level</th>
+                            <td>{{ product.roast_level }}</td>
+                            
                         </tr>
                         <tr>
-                            <td>Jonathan</td>
-                            <td>Lollipop</td>
-                            <td>$7.00</td>
+                            <th>Cupping Notes</th>
+                            <td>{{ product.cupping_notes }}</td>
+                            
                         </tr>
                         </tbody>
                     </table>
                 </div>
+                <div class="col s12 m6">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 m6">
+                <!-- Carousel -->
+                {% if image_list %}
+                    <h5 class="center-align cyan-text text-darken-3">More Pictures</h5>
+                    <div id="other-images-slider" class="carousel carousel-slider">
+                        {% for item in image_list %}
+                        <a class="carousel-item"><img class="" src="{{ item.image.url }}" alt="{{ product.name }}"></a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                </div>
+                <div class="col s12 m6">
+                    
+                </div>
             </div>
         </div>
     </div>
-    <!-- Carousel -->
-    {% if image_list %}
-    <div class="carousel">
-        <h5 class="center-align cyan-text text-darken-3">More Pictures</h5>
-        {% for item in image_list %}
-        <a class="carousel-item"><img class="materialboxed" width="250" data-caption="{{ product.name }}" src="{{ item.image.url }}" alt="{{ product.name }}"></a>
-        {% endfor %}
-    </div>
-    {% endif %}
+    
     <div class="container">
 		<div class="section">
             <div class="row">
@@ -148,7 +156,11 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('.collapsible').collapsible();
-            $('.carousel').carousel();
+            $('.carousel.carousel-slider').carousel({
+                fullWidth: true,
+                indicators: true,
+                noWrap: true,
+            });
             $('.materialboxed').materialbox();
         });
         $(".button-collapse").sideNav();
