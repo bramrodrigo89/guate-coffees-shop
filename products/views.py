@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.db.models.functions import Lower
 
@@ -13,9 +14,23 @@ def all_products(request):
 
     products = Product.objects.all()
     regions = Region.objects.all()
+    query = None
+
+    if request.GET:
+        if 'search-query' in request.GET:
+            query = request.GET['search-query']
+            if not query:
+                messages.error(request, 'You did not entery any search critereia' )
+                return redirect(reverse('products'))
+            
+            search_queries = Q(name__icontains=query) | Q(description__icontains=query) | Q(description_2__icontains=query) | Q(roast_level__icontains=query)
+            products = products.filter(search_queries)
+
+
     context = {
         'products': products,
         'regions': regions,
+        'search_query': query,
     }
     return render (request, 'products/products.html', context)
 

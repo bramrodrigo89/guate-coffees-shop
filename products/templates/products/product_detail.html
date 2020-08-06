@@ -28,6 +28,7 @@
             <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li> 
         </ul>
 	</div>
+    <!-- Product Introduction: Name, Main Image, Main Description -->
     <div class="container">
 		<div class="section">
             <div class="row">
@@ -73,59 +74,117 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <!-- Further Information: Table, Other Pictures, Add To Cart Options -->
+    <div class="container">
+		<div class="section">
             <div class="row">
                 <div class="col s12 m6">
-                    <table class="striped">
-                        <thead>
-                        <tr>
-                            <th>Origin</th>
-                            <td>{{ product.region.friendly_name }}</td>
-                            
-                        </tr>
-                        </thead>
+                    <div class="row">
+                        <div class="col s12">
+                            <table class="striped">
+                                <thead>
+                                <tr>
+                                    <th>Origin</th>
+                                    <td>{{ product.region.friendly_name }}</td>
+                                </tr>
+                                </thead>
 
-                        <tbody>
-                        <tr>
-                            <th>Finca</th>
-                            <td>{{ product.finca }}</td>
-                            
-                        </tr>
-                        <tr>
-                            <th>Roast Level</th>
-                            <td>{{ product.roast_level }}</td>
-                            
-                        </tr>
-                        <tr>
-                            <th>Cupping Notes</th>
-                            <td>{{ product.cupping_notes }}</td>
-                            
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col s12 m6">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col s12 m6">
-                <!-- Carousel -->
-                {% if image_list %}
-                    <h5 class="center-align cyan-text text-darken-3">More Pictures</h5>
-                    <div id="other-images-slider" class="carousel carousel-slider">
-                        {% for item in image_list %}
-                        <a class="carousel-item"><img class="" src="{{ item.image.url }}" alt="{{ product.name }}"></a>
-                        {% endfor %}
+                                <tbody>
+                                <tr>
+                                    <th>Finca</th>
+                                    <td>{{ product.finca|title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Roast Level</th>
+                                    <td>{{ product.roast_level|title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Cupping Notes</th>
+                                    <td>{{ product.cupping_notes|title }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col s12">
+                        <!-- Carousel -->
+                        {% if image_list %}
+                            <h5 class="center-align cyan-text text-darken-3">More Pictures</h5>
+                            <div id="other-images-slider" class="carousel carousel-slider">
+                                {% for item in image_list %}
+                                <a class="carousel-item"><img class="" src="{{ item.image.url }}" alt="{{ product.name }}"></a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        </div>
                     </div>
-                {% endif %}
                 </div>
                 <div class="col s12 m6">
+                    Add Product to Cart
                     
+                    <form class="form" action="#" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select multiple>
+                                    <option value="" disabled selected>Choose Grind Options</option>
+                                    <option value="bean">Whole Bean</option>
+                                    <option value="coarse">Coarse</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="fine">Fine</option>
+                                </select>
+                                <label>Grind Size Options</label>
+                            </div>
+
+                            <!-- Adapt from here -->
+
+                            <div class="input-field col s12">
+                                <p class="mt-3"><strong>Quantity:</strong></p>
+                                <div class="form-group w-50">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="decrement-qty btn btn-black rounded-0" 
+                                                data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                                <span class="icon">
+                                                    <i class="fas fa-minus"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <input class="form-control qty_input" type="number"
+                                            name="quantity" value="1" min="1" max="99"
+                                            data-item_id="{{ product.id }}"
+                                            id="id_qty_{{ product.id }}">
+                                        <div class="input-group-append">
+                                            <button class="increment-qty btn btn-black rounded-0"
+                                                data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                                <span class="icon">
+                                                    <i class="fas fa-plus"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col{% if s %}-12 mt-2{% endif %}">
+                                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="text-uppercase">Keep Shopping</span>
+                                </a>
+                                <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
+                            </div>
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        </div>
+                    </form>
+
+                    <!-- Until here -->
                 </div>
             </div>
         </div>
     </div>
-    
+    <!-- Accordion: More About Product, Region Information, Reviews -->
     <div class="container">
 		<div class="section">
             <div class="row">
@@ -159,9 +218,10 @@
             $('.carousel.carousel-slider').carousel({
                 fullWidth: true,
                 indicators: true,
-                noWrap: true,
             });
             $('.materialboxed').materialbox();
+            $('select').material_select();
+            autoplay() 
         });
         $(".button-collapse").sideNav();
         $('.collapsible-header').on('click', function(){

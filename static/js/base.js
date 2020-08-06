@@ -19,3 +19,10 @@ function dismissToast() {
     var toastInstance = toastElement.M_Toast;
     toastInstance.remove();
 }
+
+// Start AutoPlay for Carousel items or Carousel Sliders
+
+function autoplay() {
+    $('.carousel').carousel('next');
+    setTimeout(autoplay, 4500);
+}
