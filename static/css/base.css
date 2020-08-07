@@ -280,7 +280,7 @@ header nav {
     margin: 20px 10px;
 }
 
-.carousel-slider img {
+#main-image-product, .card-title img {
     max-height: 350px;
     display: block;
     margin-left: auto;

@@ -41,13 +41,9 @@
                      <div class="card hoverable">
                         <div class="card-image">
                             {% if product.main_image %}
-                            <a href="{% url 'product_detail' product.id %}">
-                                <img class="materialboxed" data-caption="{{ product.name }}" src="{{ product.main_image.url }}" alt="{{ product.name }}">
-                            </a>
+                            <img id="product-main-image" class="materialboxed main-image-product" data-caption="{{ product.name }}" src="{{ product.main_image.url }}" alt="{{ product.name }}">
                             {% else %}
-                            <a href="{% url 'product_detail' product.id %}">
-                                <img class="" src="{{ MEDIA_URL }}no_image_available.png" alt="{{ product.name }}">
-                            </a>
+                            <img class="" src="{{ MEDIA_URL }}no_image_available.png" alt="{{ product.name }}">
                             {% endif %}
                         </div>
                     </div>
@@ -156,7 +152,7 @@
                                             data-item_id="{{ product.id }}"
                                             id="id_qty_{{ product.id }}">
                                         <div class="input-group-append">
-                                            <button class="increment-qty btn btn-black rounded-0"
+                                            <button class="btn"
                                                 data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
                                                 <span class="icon">
                                                     <i class="fas fa-plus"></i>
@@ -167,7 +163,7 @@
                                 </div>
                             </div>
                             <div class="col{% if s %}-12 mt-2{% endif %}">
-                                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">
+                                <a href="{% url 'products' %}" class="btn">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
@@ -224,6 +220,9 @@
             autoplay() 
         });
         $(".button-collapse").sideNav();
+        $('#product-main-image').on('click', function(){
+            $(this).toggleClass('main-image-product');
+        });
         $('.collapsible-header').on('click', function(){
             console.log('you clicked!')
         })

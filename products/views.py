@@ -15,15 +15,20 @@ def all_products(request):
     products = Product.objects.all()
     regions = Region.objects.all()
     query = None
+    region = None
 
     if request.GET:
+        if 'region' in request.GET:
+            region = request.GET('region')
+            products = products.filter(region__name__in=region)
+
         if 'search-query' in request.GET:
             query = request.GET['search-query']
             if not query:
                 messages.error(request, 'You did not entery any search critereia' )
                 return redirect(reverse('products'))
             
-            search_queries = Q(name__icontains=query) | Q(description__icontains=query) | Q(description_2__icontains=query) | Q(roast_level__icontains=query)
+            search_queries = Q(name__icontains=query) | Q(description__icontains=query) | Q(description_2__icontains=query) | Q(roast_level__icontains=query) | Q(region__name__in=query)
             products = products.filter(search_queries)
 
 
