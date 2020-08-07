@@ -19,8 +19,12 @@ def all_products(request):
 
     if request.GET:
         if 'region' in request.GET:
-            region = request.GET('region')
+            region = request.GET['region']
+            print(region)
+
             products = products.filter(region__name__in=region)
+            region = Region.objects.filter(name__in=region)
+
 
         if 'search-query' in request.GET:
             query = request.GET['search-query']
@@ -36,6 +40,7 @@ def all_products(request):
         'products': products,
         'regions': regions,
         'search_query': query,
+        'region_query':region,
     }
     return render (request, 'products/products.html', context)
 

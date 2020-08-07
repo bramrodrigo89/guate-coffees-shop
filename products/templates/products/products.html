@@ -24,9 +24,9 @@
                     <div class="">
                         <ul class="collection with-header">
                             <li class="collection-header"><h4>Filter By Region</h4></li>
-                            <li><a href="{ url 'products '}"class="collection-item">All Regions</a></li>
+                            <li><a href="{% url 'products' %}"class="collection-item">All Regions</a></li>
                             {% for region in regions %}
-                            <li><a href="{ url 'products '}?region={{region.name}}" class="collection-item">{{ region.friendly_name }}</a></li>
+                            <li><a href="{% url 'products' %}?region={{region.name}}" class="collection-item">{{ region.friendly_name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>

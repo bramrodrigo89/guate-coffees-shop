@@ -291,8 +291,13 @@ header nav {
 #other-images-slider .indicator-item {
     background-color: rgb(0 150 136 / 0.3) !important;
 }
+
 #other-images-slider .indicator-item.active {
     background-color: #009688 !important;
+}
+
+.input-field.col .dropdown-content [type="checkbox"] + label {
+    top: -10px !important;
 }
 
 /* ---------- Footer ------------ */

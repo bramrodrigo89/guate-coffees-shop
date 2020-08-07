@@ -41,7 +41,7 @@
                      <div class="card hoverable">
                         <div class="card-image">
                             {% if product.main_image %}
-                            <img id="product-main-image" class="materialboxed main-image-product" data-caption="{{ product.name }}" src="{{ product.main_image.url }}" alt="{{ product.name }}">
+                            <img id="main-image-product" class="materialboxed" data-caption="{{ product.name }}" src="{{ product.main_image.url }}" alt="{{ product.name }}">
                             {% else %}
                             <img class="" src="{{ MEDIA_URL }}no_image_available.png" alt="{{ product.name }}">
                             {% endif %}
@@ -117,20 +117,20 @@
                     </div>
                 </div>
                 <div class="col s12 m6">
-                    Add Product to Cart
+                    <h5 class="cyan-text text-darken-3">Add Product to Cart</h5>
                     
                     <form class="form" action="#" method="POST">
                         {% csrf_token %}
                         <div class="row">
                             <div class="input-field col s12">
-                                <select multiple>
-                                    <option value="" disabled selected>Choose Grind Options</option>
-                                    <option value="bean">Whole Bean</option>
-                                    <option value="coarse">Coarse</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="fine">Fine</option>
+                                <select class="icons">
+                                <option value="" disabled selected>Choose Grind Option</option>
+                                <option value="bean" data-icon="{{ MEDIA_URL }}coffee_bean_icon.png">Whole Bean</option>
+                                <option value="coarse" data-icon="">Coarse</option>
+                                <option value="medium" data-icon="">Medium</option>
+                                <option value="fine" data-icon="">Fine</option>
                                 </select>
-                                <label>Grind Size Options</label>
+                                <label>Select Grind</label>
                             </div>
 
                             <!-- Adapt from here -->
