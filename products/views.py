@@ -19,12 +19,9 @@ def all_products(request):
 
     if request.GET:
         if 'region' in request.GET:
-            region = request.GET['region']
-            print(region)
-
+            region = request.GET['region'].split()
             products = products.filter(region__name__in=region)
             region = Region.objects.filter(name__in=region)
-
 
         if 'search-query' in request.GET:
             query = request.GET['search-query']
@@ -32,9 +29,8 @@ def all_products(request):
                 messages.error(request, 'You did not entery any search critereia' )
                 return redirect(reverse('products'))
             
-            search_queries = Q(name__icontains=query) | Q(description__icontains=query) | Q(description_2__icontains=query) | Q(roast_level__icontains=query) | Q(region__name__in=query)
+            search_queries = Q(name__icontains=query) | Q(description__icontains=query) | Q(description_2__icontains=query) | Q(roast_level__icontains=query) | Q(region__friendly_name__in=query)
             products = products.filter(search_queries)
-
 
     context = {
         'products': products,
