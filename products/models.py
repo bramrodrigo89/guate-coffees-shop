@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.contenttypes.fields import GenericRelation
+from star_ratings.models import Rating
 
 
 class Region(models.Model):
@@ -28,6 +30,7 @@ class Product(models.Model):
     retail_price = models.DecimalField(max_digits=5, decimal_places=2, default=1.00)
     new_product = models.BooleanField(default=False)
     rating = models.DecimalField(max_digits=3, decimal_places=2, default=5.00, null=True, blank=True)
+    ratings = GenericRelation(Rating, related_query_name='products')
     main_image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
