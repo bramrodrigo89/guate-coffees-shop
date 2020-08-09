@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from django.db.models.functions import Lower
 
 from .models import Product, Region, ProductImage
 from .forms import ProductForm
@@ -24,13 +23,18 @@ def all_products(request):
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
+            if sortkey == 'new':
+                sortkey = 'new_product'
 
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
-
-            products = products.order_by(sortkey)
+            
+            if sortkey == 'new_product':
+                products = products.filter(new_product=True)
+            else:
+                products = products.order_by(sortkey)
 
         if 'region' in request.GET:
             region_query = request.GET['region'].split()
@@ -47,7 +51,7 @@ def all_products(request):
             search_queries = Q(name__icontains=query) | Q(description__icontains=query) | Q(description_2__icontains=query) | Q(roast_level__icontains=query) | Q(region__friendly_name__in=query)
             products = products.filter(search_queries)
 
-    current_sorting = f'{region_query_name}_{sort}_{direction}'
+    current_sorting = f'{sort}_{direction}'
 
     context = {
         'products': products,

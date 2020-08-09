@@ -53,7 +53,7 @@
                         <div class="col s12">
                             <div class="chip">
                                 <img src="{{ MEDIA_URL }}explore_icon.png" alt="Explore Icon">
-                                {{ product.region.friendly_name }}
+                                <a href="{% url 'products' %}?region={{region.name}}">{{ product.region.friendly_name }}</a>
                             </div>
                             <div class="chip">
                                 <img src="{{ MEDIA_URL }}coffee_bean_icon.png" alt="Explore Icon">

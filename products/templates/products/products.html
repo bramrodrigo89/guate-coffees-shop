@@ -34,7 +34,7 @@
                             <li class="collection-item center-align">
                                 <a href="{% url 'products' %}?sort=retail_price&direction=asc" class="waves-effect waves-light white black-text btn filter-products-btn">Lowest Price</a>
                                 <a href="{% url 'products' %}?sort=rating&direction=desc" class="waves-effect waves-light white black-text btn filter-products-btn">Best Ratings</a>
-                                <a href="{% url 'products' %}?sort=new_product" class="waves-effect waves-light white black-text btn filter-products-btn">New Products</a>
+                                <a href="{% url 'products' %}?sort=new" class="waves-effect waves-light white black-text btn filter-products-btn">New Products</a>
                             </li>
                             <li class="collection-item">
                                 <div class="input-field">
@@ -73,11 +73,15 @@
                                     {% if product.new_product%}
                                     <span class="new badge"></span>
                                     {% endif %}
-                                    <a class="black-text" href="{% url 'product_detail' product.id %}"><span class="card-title">{{ product.name|truncatechars:35 }}</span></a>
+                                    <a class="black-text" href="{% url 'product_detail' product.id %}"><span class="card-title">{{ product.name|safe|truncatechars:31 }}</span></a>
                                     <hr>
                                     <p id="card-price-text">${{ product.retail_price }}</p>
                                     <div class="rating-stars-container">
                                         {% ratings product %}
+                                    </div>
+                                    <div class="chip">
+                                        <img src="{{ MEDIA_URL }}explore_icon.png" alt="Explore Icon">
+                                        <a href="{% url 'products' %}?region={{product.region.name}}">{{ product.region.friendly_name }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -137,7 +141,33 @@
         $(document).ready(function(){
             $('.slider').slider();
             $('select').material_select();
+            $(".button-collapse").sideNav();
         });
-        $(".button-collapse").sideNav();
 	</script>
+    <script type="text/javascript">
+        $('.filter-products-btn').change(function() {
+            var currentUrl = new URL(window.location);
+            var search_params = currentUrl.searchParams
+
+            var selector = $(this);
+
+            
+
+            var selectedVal = selector.val();
+            if(selectedVal != "reset"){
+                var sort = selectedVal.split("_")[0];
+                var direction = selectedVal.split("_")[1];
+
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
 {% endblock %}

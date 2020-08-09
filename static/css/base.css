@@ -259,7 +259,11 @@ header nav {
 
 .rating-stars-container {
     height: 20%;
-    overflow-y: auto;
+    overflow-y: hidden;
+}
+
+.chip a {
+    color: rgba(0, 0, 0, 0.6) !important;
 }
 
 .card-content .badge {
