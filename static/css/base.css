@@ -288,6 +288,13 @@ header nav {
     width: auto !important;
 }
 
+.product-detail-table td, .product-detail-table th {
+    font-size: 1rem;
+}
+.expandable-image-product {
+    max-height: none !important;
+}
+
 #other-images-slider .indicator-item {
     background-color: rgb(0 150 136 / 0.3) !important;
 }

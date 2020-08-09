@@ -64,8 +64,9 @@
                         </div>
                         <div class="col s12 small-text">
                             <h5 class="cyan-text text-darken-3">About This Product:</h5>
-                            <p class="small-text">{{ product.description|safe|truncatewords:"30"|linebreaks }}</p>
-                            <a href="{{ url_for_full_content }}">Read more</a>
+                            <p id="truncated-product-description" class="small-text">{{ product.description|truncatewords:"30" }}</p>
+                            <p id="full-product-description" class="hide small-text">{{ product.description }}</p>
+                            <a id="read-more-description-link">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -79,7 +80,7 @@
                 <div class="col s12 m6">
                     <div class="row">
                         <div class="col s12">
-                            <table class="striped">
+                            <table class="striped product-detail-table">
                                 <thead>
                                 <tr>
                                     <th>Origin</th>
@@ -88,10 +89,12 @@
                                 </thead>
 
                                 <tbody>
+                                {% if product.finca %}
                                 <tr>
                                     <th>Finca</th>
                                     <td>{{ product.finca|title }}</td>
                                 </tr>
+                                {% endif %}
                                 <tr>
                                     <th>Roast Level</th>
                                     <td>{{ product.roast_level|title }}</td>
@@ -126,9 +129,9 @@
                                 <select class="icons">
                                 <option value="" disabled selected>Choose Grind Option</option>
                                 <option value="bean" data-icon="{{ MEDIA_URL }}coffee_bean_icon.png">Whole Bean</option>
-                                <option value="coarse" data-icon="">Coarse</option>
-                                <option value="medium" data-icon="">Medium</option>
-                                <option value="fine" data-icon="">Fine</option>
+                                <option value="coarse" data-icon="{{ MEDIA_URL }}coffee_coarse_grind_icon.png">Coarse</option>
+                                <option value="medium" data-icon="{{ MEDIA_URL }}coffee_medium_grind_icon.png">Medium</option>
+                                <option value="fine" data-icon="{{ MEDIA_URL }}coffee_fine_grind_icon.png">Fine</option>
                                 </select>
                                 <label>Select Grind</label>
                             </div>
@@ -220,11 +223,21 @@
             autoplay() 
         });
         $(".button-collapse").sideNav();
-        $('#product-main-image').on('click', function(){
-            $(this).toggleClass('main-image-product');
+        $('#main-image-product,#materialbox-overlay').on('click', function(){
+            $('#main-image-product').toggleClass('expandable-image-product');
         });
-        $('.collapsible-header').on('click', function(){
-            console.log('you clicked!')
-        })
+        $('#materialbox-overlay').on('click', function(){
+            console.log('you clicked')
+            $('#main-image-product').toggleClass('expandable-image-product');
+        });
+        $('#read-more-description-link').on('click', function(){
+            $('#truncated-product-description').toggleClass('hide')
+            $('#full-product-description').toggleClass('hide')
+            if ($(this).text() == "Read More") {
+                $(this).text("Less Text");
+            } else {
+                $(this).text("Read More");
+            };
+        });
 	</script>
 {% endblock %}
