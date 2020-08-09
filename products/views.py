@@ -15,13 +15,28 @@ def all_products(request):
     products = Product.objects.all()
     regions = Region.objects.all()
     query = None
-    region = None
+    region_query = None
+    region_query_name = None
+    sort = None
+    direction = None
 
     if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+
+            products = products.order_by(sortkey)
+
         if 'region' in request.GET:
-            region = request.GET['region'].split()
-            products = products.filter(region__name__in=region)
-            region = Region.objects.filter(name__in=region)
+            region_query = request.GET['region'].split()
+            products = products.filter(region__name__in=region_query)
+            region_query = Region.objects.filter(name__in=region_query)
+            region_query_name = region_query[0].name
 
         if 'search-query' in request.GET:
             query = request.GET['search-query']
@@ -32,11 +47,15 @@ def all_products(request):
             search_queries = Q(name__icontains=query) | Q(description__icontains=query) | Q(description_2__icontains=query) | Q(roast_level__icontains=query) | Q(region__friendly_name__in=query)
             products = products.filter(search_queries)
 
+    current_sorting = f'{region_query_name}_{sort}_{direction}'
+
     context = {
         'products': products,
         'regions': regions,
         'search_query': query,
-        'region_query':region,
+        'region_query':region_query,
+        'region_query_name': region_query_name,
+        'current_sorting': current_sorting,
     }
     return render (request, 'products/products.html', context)
 

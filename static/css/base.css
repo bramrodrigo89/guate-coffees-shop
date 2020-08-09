@@ -225,6 +225,14 @@ header nav {
 
 /* All Products Page */
 
+.filter-products-collection {
+    overflow: visible !important;
+}
+
+.filter-products-btn {
+    width: 80%;
+    margin: 5px 0px;
+}
 .product-card-container .card-image, .card-content {
     height: 250px;
     padding-top: 5px;
@@ -250,7 +258,7 @@ header nav {
 }
 
 .rating-stars-container {
-    height: 25%;
+    height: 20%;
     overflow-y: auto;
 }
 
