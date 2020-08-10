@@ -18,6 +18,7 @@ def all_products(request):
     region_query_name = None
     sort = None
     direction = None
+    current_sorting = None
 
     if request.GET:
         if 'sort' in request.GET:
@@ -33,6 +34,8 @@ def all_products(request):
             
             if sortkey == 'new_product':
                 products = products.filter(new_product=True)
+                sort = 'new'
+                direction = None
             else:
                 products = products.order_by(sortkey)
 
@@ -52,6 +55,8 @@ def all_products(request):
             products = products.filter(search_queries)
 
     current_sorting = f'{sort}_{direction}'
+    print(current_sorting)
+    print(region_query_name)
 
     context = {
         'products': products,
