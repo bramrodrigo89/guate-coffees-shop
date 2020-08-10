@@ -262,6 +262,9 @@ header nav {
     overflow-y: hidden;
 }
 
+.product-card-container .chip {
+    width: 100%
+}
 .chip a {
     color: rgba(0, 0, 0, 0.6) !important;
 }
