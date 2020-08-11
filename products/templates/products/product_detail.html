@@ -18,15 +18,10 @@
 {% block content %}
     <!-- Floating Fixed button: Actions -->
 	<div class="fixed-action-btn">
-        <span class="">Actions</span>
-		<a class="btn-floating btn-large waves-effect waves-light cyan darken-2">
-			<i class="large material-icons">widgets</i>
+        <span class="mr-20">Add To Cart</span>
+		<a href="#add-product-to-cart-form" class="btn-floating btn-large waves-effect waves-light cyan darken-2">
+			<i class="large material-icons">add_shopping_cart</i>
 		</a>
-        <ul>
-            <li><span>All Products</span><a class="btn-floating red"><i class="material-icons">view_module</i></a></li>
-            <li>Check Out<a class="btn-floating yellow darken-1"><i class="material-icons">shopping_cart</i></a></li>
-            <li>My Profile<a class="btn-floating green"><i class="material-icons">account_circle</i></a></li>
-        </ul>
 	</div>
     <!-- Product Introduction: Name, Main Image, Main Description -->
     <div class="container">
@@ -73,14 +68,14 @@
             </div>
         </div>
     </div>
-    <!-- Further Information: Table, Other Pictures, Add To Cart Options -->
+    <!-- Further Information: Table, Add To Cart Options -->
     <div class="container">
 		<div class="section">
             <div class="row mb-0">
                 <div class="col s12 m6">
                     <div class="row">
                         <div class="col s12">
-                            <h5 class="center-align  cyan-text text-darken-3">Facts Table</h5>
+                            <h5 class="center-align cyan-text text-darken-3">Facts Table</h5>
                             <table class="striped product-detail-table">
                                 <thead>
                                 <tr>
@@ -107,71 +102,77 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col s12 mt-20">
-                        <!-- Carousel -->
-                        {% if image_list %}
-                            <h5 class="center-align cyan-text text-darken-3">More Pictures</h5>
-                            <div id="other-images-slider" class="carousel carousel-slider mt-20">
-                                {% for item in image_list %}
-                                <a class="carousel-item"><img class="" src="{{ item.image.url }}" alt="{{ product.name }}"></a>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                        </div>
                     </div>
                 </div>
                 <div class="col s12 m6">
-                    <div class="col s12">
-                        <h5 class="center-align cyan-text text-darken-3">Add Product to Cart</h5>
-                        <form class="form" action="#" method="POST">
-                            {% csrf_token %}
-                            <div class="row">
-                                <div class="input-field col s12 grind-option-selector">
-                                    <select class="icons grind-option-selector">
-                                        <option value="" disabled selected>Choose Grind Option</option>
-                                        <option value="bean" data-icon="{{ MEDIA_URL }}coffee_bean_icon.png">Whole Bean</option>
-                                        <option value="coarse" data-icon="{{ MEDIA_URL }}coffee_coarse_grind_icon.png">Coarse</option>
-                                        <option value="medium" data-icon="{{ MEDIA_URL }}coffee_medium_grind_icon.png">Medium</option>
-                                        <option value="fine" data-icon="{{ MEDIA_URL }}coffee_fine_grind_icon.png">Fine</option>
-                                    </select>
-                                    <label class="option-label">Select grind for your coffee first</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <p class="option-label">How many items would you like to add?</p>
-                                    <div class="decrement-input-group">
-                                        <div class="col s4 center-align">
-                                            <button class="decrement-qty btn" data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
-                                                <span class="material-icons left">remove</span>
-                                            </button>
-                                        </div>
-                                        <div class="col s4 center-align">
-                                            <input class="qty_input center-align" type="number" name="quantity" value="1" min="1" max="50" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
-                                        </div>
-                                        <div class="col s4 center-align">
-                                            <button class="increment-qty btn" data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
-                                                <span class="material-icons left">add</span>
-                                            </button>
+                    <div class="row">
+                        <div class="col s12">
+                            <a id="add-product-to-cart-form"></a>
+                            <h5 class="center-align cyan-text text-darken-3">Add Product to Cart</h5>
+                            <form class="form" action="#" method="POST">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="input-field col s12 grind-option-selector">
+                                        <select class="icons grind-option-selector">
+                                            <option value="" disabled selected>Choose Grind Option</option>
+                                            <option value="bean" data-icon="{{ MEDIA_URL }}coffee_bean_icon.png">Whole Bean</option>
+                                            <option value="coarse" data-icon="{{ MEDIA_URL }}coffee_coarse_grind_icon.png">Coarse</option>
+                                            <option value="medium" data-icon="{{ MEDIA_URL }}coffee_medium_grind_icon.png">Medium</option>
+                                            <option value="fine" data-icon="{{ MEDIA_URL }}coffee_fine_grind_icon.png">Fine</option>
+                                        </select>
+                                        <label class="option-label">Select grind for your coffee first</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <p class="option-label">How many items would you like to add?</p>
+                                        <div class="decrement-input-group">
+                                            <div class="col s4 center-align">
+                                                <button class="decrement-qty btn" data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                                    <span class="material-icons left">remove</span>
+                                                </button>
+                                            </div>
+                                            <div class="col s4 center-align">
+                                                <input class="qty_input center-align" type="number" name="quantity" value="1" min="1" max="50" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+                                            </div>
+                                            <div class="col s4 center-align">
+                                                <button class="increment-qty btn" data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                                    <span class="material-icons left">add</span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col s12 mt-20 align-center center-align">
+                                        <p class="option-label">Subtotal</p>
+                                        <h5 class="detail-price-label cyan-text text-darken-3">$ <span id="subtotal-price-label">{{ product.retail_price }}</span></h5>
+                                        <input type="submit" class="btn" value="Add to Bag">
+                                    </div>
+                                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                 </div>
-                                <div class="col s12">
-                                    <a href="{% url 'products' %}" class="btn">
-                                        <span class="icon">
-                                            <i class="fas fa-chevron-left"></i>
-                                        </span>
-                                        <span class="text-uppercase">Keep Shopping</span>
-                                    </a>
-                                    <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
-                                </div>
-                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Accordion: More About Product, Region Information, Reviews -->
+    <!-- Further Information: Other Images -->
+    {% if image_list|length > 0 %}
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <!-- Carousel -->
+                <div class="col s12 mt-20">
+                    <h5 class="center-align cyan-text text-darken-3">More Pictures</h5>
+                    <div id="other-images-slider" class="carousel carousel-slider mt-20">
+                        {% for item in image_list %}
+                        <a class="carousel-item"><img class="" src="{{ item.image.url }}" alt="{{ product.name }}"></a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- Swipeable Tabs: More About Product, Region Information, Reviews -->
     <div class="container">
 		<div class="section">
             <div class="row">
