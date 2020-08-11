@@ -16,16 +16,16 @@
 {% endblock %}
 
 {% block content %}
+    <!-- Floating Fixed button: Actions -->
 	<div class="fixed-action-btn">
-        <span>Add To Cart</span>
+        <span class="">Actions</span>
 		<a class="btn-floating btn-large waves-effect waves-light cyan darken-2">
-			<i class="large material-icons">add_shopping_cart</i>
+			<i class="large material-icons">widgets</i>
 		</a>
         <ul>
-            <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li> 
+            <li><span>All Products</span><a class="btn-floating red"><i class="material-icons">view_module</i></a></li>
+            <li>Check Out<a class="btn-floating yellow darken-1"><i class="material-icons">shopping_cart</i></a></li>
+            <li>My Profile<a class="btn-floating green"><i class="material-icons">account_circle</i></a></li>
         </ul>
 	</div>
     <!-- Product Introduction: Name, Main Image, Main Description -->
@@ -56,7 +56,7 @@
                                 <a href="{% url 'products' %}?region={{region.name}}">{{ product.region.friendly_name }}</a>
                             </div>
                             <div class="chip">
-                                <img src="{{ MEDIA_URL }}coffee_bean_icon.png" alt="Explore Icon">
+                                <img src="{{ MEDIA_URL }}coffee_bean_icon.png" alt="Coffee Bean Icon">
                                 {{ product.roast_level|capfirst }} Roast
                             </div>
                             <h4 class="detail-price-label cyan-text text-darken-3">$ {{ product.retail_price }}</h4>
@@ -76,41 +76,42 @@
     <!-- Further Information: Table, Other Pictures, Add To Cart Options -->
     <div class="container">
 		<div class="section">
-            <div class="row">
+            <div class="row mb-0">
                 <div class="col s12 m6">
                     <div class="row">
                         <div class="col s12">
+                            <h5 class="center-align  cyan-text text-darken-3">Facts Table</h5>
                             <table class="striped product-detail-table">
                                 <thead>
                                 <tr>
-                                    <th>Origin</th>
+                                    <th><span class="btn-floating no-cursor mr-20"><i class="material-icons" aria-hidden="true">explore</i></span>Origin</th>
                                     <td>{{ product.region.friendly_name }}</td>
                                 </tr>
                                 </thead>
-
                                 <tbody>
                                 {% if product.finca %}
                                 <tr>
-                                    <th>Finca</th>
+                                    <th><span class="btn-floating no-cursor mr-20"><i class="material-icons" aria-hidden="true">pin_drop</i></span>Finca</th>
                                     <td>{{ product.finca|title }}</td>
                                 </tr>
                                 {% endif %}
                                 <tr>
-                                    <th>Roast Level</th>
+                                    <th><span class="btn-floating no-cursor mr-20"><img class="img-icon" src="{{ MEDIA_URL }}coffee_bean_icon.png" alt="Coffee Bean Icon"></span>Roast Level</th>
+                                    
                                     <td>{{ product.roast_level|title }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Cupping Notes</th>
+                                    <th><span class="btn-floating no-cursor mr-20"><i class="material-icons" aria-hidden="true">free_breakfast</i></span>Cupping Notes</th>
                                     <td>{{ product.cupping_notes|title }}</td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col s12">
+                        <div class="col s12 mt-20">
                         <!-- Carousel -->
                         {% if image_list %}
                             <h5 class="center-align cyan-text text-darken-3">More Pictures</h5>
-                            <div id="other-images-slider" class="carousel carousel-slider">
+                            <div id="other-images-slider" class="carousel carousel-slider mt-20">
                                 {% for item in image_list %}
                                 <a class="carousel-item"><img class="" src="{{ item.image.url }}" alt="{{ product.name }}"></a>
                                 {% endfor %}
@@ -120,8 +121,8 @@
                     </div>
                 </div>
                 <div class="col s12 m6">
-                    <h5 class="cyan-text text-darken-3">Add Product to Cart</h5>
                     <div class="col s12">
+                        <h5 class="center-align cyan-text text-darken-3">Add Product to Cart</h5>
                         <form class="form" action="#" method="POST">
                             {% csrf_token %}
                             <div class="row">
@@ -137,18 +138,18 @@
                                 </div>
                                 <div class="input-field col s12">
                                     <p class="option-label">How many items would you like to add?</p>
-                                    <div class="quantity-input-group">
+                                    <div class="decrement-input-group">
                                         <div class="col s4 center-align">
-                                            <button class="change-qty btn" data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
-                                                <span class="material-icons">remove</span>
+                                            <button class="decrement-qty btn" data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                                <span class="material-icons left">remove</span>
                                             </button>
                                         </div>
                                         <div class="col s4 center-align">
                                             <input class="qty_input center-align" type="number" name="quantity" value="1" min="1" max="50" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
                                         </div>
                                         <div class="col s4 center-align">
-                                            <button class="change-qty btn" data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
-                                                <span class="material-icons">add</span>
+                                            <button class="increment-qty btn" data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                                <span class="material-icons left">add</span>
                                             </button>
                                         </div>
                                     </div>
@@ -166,8 +167,6 @@
                             </div>
                         </form>
                     </div>
-
-                    <!-- Until here -->
                 </div>
             </div>
         </div>
@@ -177,20 +176,55 @@
 		<div class="section">
             <div class="row">
                 <div class="col s12">
-					<ul class="collapsible" data-collapsible="accordion">
-						<li>
-							<div class="collapsible-header"><i class="material-icons">filter_drama</i>More About This Product</div>
-							<div class="collapsible-body"><span>{{ product.description_2 }}</span></div>
-						</li>
-						<li>
-							<div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-							<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-						</li>
-						<li>
-							<div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-							<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-						</li>
-					</ul>
+                    <ul id="tabs-swipe-product-info" class="tabs">
+                        <li class="tab col s3"><a href="#more-info-product-tab">More About This Product</a></li>
+                        <li class="tab col s3"><a class="active" href="#about-this-region-tab">About Region</a></li>
+                        <li class="tab col s3"><a href="#product-reviews-tab">Reviews</a></li>
+                    </ul>
+                    <div id="more-info-product-tab" class="col s12 mt-50">
+                        <h5 class="cyan-text text-darken-3">{{ product.name }}</h5>
+                        <p class="small-text">{{ product.description_2 }}</p>
+                    </div>
+                    <div id="about-this-region-tab" class="col s12 mt-50">
+                        <div class="row">
+                        <div class="col s12 m6">
+                            <h5 class="center-align  cyan-text text-darken-3">{{ product.region.friendly_name }}</h5>
+                            <p class="small-text">{{ product.region.description }}</p>
+                        </div>
+                        <div class="col s12 m6">
+                            <h5 class="center-align  cyan-text text-darken-3">Region Facts</h5>
+                            <table class="striped product-detail-table">
+                                <thead>
+                                <tr>
+                                    <th><span class="btn-floating no-cursor mr-20"><i class="fa fa-thermometer-three-quarters material-icons" aria-hidden="true"></i></span>Temperature</th>
+                                    <td>{{ product.region.weather_temperature }}</td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% if product.finca %}
+                                <tr>
+                                    <th><span class="btn-floating no-cursor mr-20"><i class="fa fa-cloud material-icons" aria-hidden="true"></i></span>Precipitation</th>
+                                    <td>{{ product.region.precipitation }}</td>
+                                </tr>
+                                {% endif %}
+                                <tr>
+                                    <th><span class="btn-floating no-cursor mr-20"><i class="fa fa-tint material-icons" aria-hidden="true"></i></span>Humidity</th>
+                                    <td>{{ product.region.humidity }}</td>
+                                </tr>
+                                <tr>
+                                    <th><span class="btn-floating no-cursor mr-20"><i class="material-icons" aria-hidden="true">terrain</i></span>Altitude</th>
+                                    <td>{{ product.region.altitude }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                        
+                    </div>
+                    <div id="product-reviews-tab" class="col s12">
+                        <p>Reviews go here</p>
+                    </div>
                 </div>
             </div>
 		</div>
@@ -209,24 +243,9 @@
             });
             $('.materialboxed').materialbox();
             $('select').material_select();
+            $('ul.tabs').tabs('select_tab', 'tab_id');
             autoplay() 
         });
-        $(".button-collapse").sideNav();
-        $('#main-image-product,#materialbox-overlay').on('click', function(){
-            $('#main-image-product').toggleClass('expandable-image-product');
-        });
-        $('#materialbox-overlay').on('click', function(){
-            console.log('you clicked')
-            $('#main-image-product').toggleClass('expandable-image-product');
-        });
-        $('#read-more-description-link').on('click', function(){
-            $('#truncated-product-description').toggleClass('hide')
-            $('#full-product-description').toggleClass('hide')
-            if ($(this).text() == "Read More") {
-                $(this).text("Less Text");
-            } else {
-                $(this).text("Read More");
-            };
-        });
 	</script>
+    {% include 'products/includes/product_detail_script.html' %}
 {% endblock %}
