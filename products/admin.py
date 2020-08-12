@@ -20,8 +20,8 @@ class ProductAdmin(admin.ModelAdmin):
         'cupping_notes',
         'retail_price',
         'new_product',
-        'rating',
         'main_image',
+        'rating',
     )
     inlines = [ProductImagesAdmin,]
     ordering = ('pk',)
