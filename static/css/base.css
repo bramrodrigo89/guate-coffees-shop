@@ -335,6 +335,11 @@ header nav {
     width: 50%;
 }
 
+.detail-subtotal-label {
+    margin-left: 25%;
+    margin-right: 30%;
+}
+
 .expandable-image-product {
     max-height: none !important;
 }
