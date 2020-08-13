@@ -6,172 +6,171 @@
 {% endblock %}
 
 {% block content %}
-    <div class="slider">
-        <ul class="slides">
-            <li>
-                <img alt="Guatemala Background Image" src="{{ MEDIA_URL }}background8.jpg"> <!-- Semuc Champei image -->
-                <div class="caption center-align">
-                    <h3>One Of The World's Best</h3>
-                    <h5 class="light grey-text text-lighten-3">High quality coffees.</h5>
-                </div>
-            </li>
-            <li>
-                <img alt="Guatemala Background Image" src="{{ MEDIA_URL }}background5.jpg"> <!-- Atitlan image -->
-                <div class="caption left-align">
-                    <h3>A Blessed Country</h3>
-                    <h5 class="light grey-text text-lighten-3">With unique growing conditions.</h5>
-                </div>
-            </li>
-            <li>
-                <img alt="Guatemala Background Image" src="{{ MEDIA_URL }}background9.jpg"> <!-- Tikal image -->
-                <div class="caption right-align">
-                    <h3>7 Coffee Regions</h3>
-                    <h5 class="light grey-text text-lighten-3">With distinct cup profiles.</h5>
-                </div>
-            </li>
-            <li>
-                <img alt="Guatemala Background Image" src="{{ MEDIA_URL }}background7.jpg"> <!-- Volcano landscape image -->
-                <div class="caption center-align">
-                    <h3>Enjoy your Coffee!</h3>
-                    <h5 class="light grey-text text-lighten-3">Begin your own experience.</h5>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <a href="{% url 'products' %}" class="btn-floating btn waves-effect waves-light deep-purple darken-3">Buy Now</a>
-    <div class="container">
-		<div class="section">
-			<!--   Icon Section   -->
-            <div class="row">
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center brown-text"><i class="material-icons">free_breakfast</i></h2>
-                        <h5 class="center">Guatemalan Coffee</h5>
-
-                        <p class="light">Guatemala in particular is a favorite among coffee fanatics, and for good reason too. Coffee from Guatemala can be the perfect balance of full bodied, strong and sweet with a gentle acidity and complex flavor notes.</p>
-                        <p class="light">It can appeal to a wide range of people and there is sure to be a coffee from this country with your name on it.</p>
-
-                    </div>
-                </div>
-
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center brown-text"><i class="material-icons">wb_sunny</i></h2>
-                        <h5 class="center">Choose From 7 Regions</h5>
-
-                        <p class="light">The climate in Guatemala is one of the most diverse in the world for coffee production.</p>
-                        <p class="light">There are 7 main growing regions within Guatemala, with Antigua, Huehuetenango and Atitlan being the most popular. Each region has its own set of unique growing conditions and microclimates.</p>
-                    </div>
-                </div>
-
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center brown-text"><i class="material-icons">storefront</i></h2>
-                        <h5 class="center">Start Your Experience!</h5>
-
-                        <p class="light">Search through our online store for that coffe option with your name on it. Let us contribute to improve the quality of life for many communities and families by choosing our store. We are commited to create economic opportunities for small farmers in Guatemala, as well as to meet your coffee taste expectations.</p>
-                    </div>
+<!-- Intro Parallax Section -->
+<div class="slider">
+    <ul class="slides">
+        <li>
+            <img alt="Guatemala Background Image" src="{{ MEDIA_URL }}background8.jpg"> <!-- Semuc Champei image -->
+            <div class="caption center-align">
+                <h3>One Of The World's Best</h3>
+                <h5 class="light grey-text text-lighten-3">High quality coffees.</h5>
+            </div>
+        </li>
+        <li>
+            <img alt="Guatemala Background Image" src="{{ MEDIA_URL }}background5.jpg"> <!-- Atitlan image -->
+            <div class="caption left-align">
+                <h3>A Blessed Country</h3>
+                <h5 class="light grey-text text-lighten-3">With unique growing conditions.</h5>
+            </div>
+        </li>
+        <li>
+            <img alt="Guatemala Background Image" src="{{ MEDIA_URL }}background9.jpg"> <!-- Tikal image -->
+            <div class="caption right-align">
+                <h3>7 Coffee Regions</h3>
+                <h5 class="light grey-text text-lighten-3">With distinct cup profiles.</h5>
+            </div>
+        </li>
+        <li>
+            <img alt="Guatemala Background Image" src="{{ MEDIA_URL }}background7.jpg"> <!-- Volcano landscape image -->
+            <div class="caption center-align">
+                <h3>Enjoy your Coffee!</h3>
+                <h5 class="light grey-text text-lighten-3">Begin your own experience.</h5>
+            </div>
+        </li>
+    </ul>
+</div>
+<a href="{% url 'products' %}" class="btn-floating btn waves-effect waves-light deep-purple darken-3">Buy Now</a>
+<!-- Icon Description Section -->
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">free_breakfast</i></h2>
+                    <h5 class="center">Guatemalan Coffee</h5>
+                    <p class="light">Guatemala in particular is a favorite among coffee fanatics, and for good reason too. Coffee from Guatemala can be the perfect balance of full bodied, strong and sweet with a gentle acidity and complex flavor notes.</p>
+                    <p class="light">It can appeal to a wide range of people and there is sure to be a coffee from this country with your name on it.</p>
                 </div>
             </div>
-		</div>
-	</div>
-    
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">wb_sunny</i></h2>
+                    <h5 class="center">Choose From 7 Regions</h5>
 
-    <div class="parallax-container valign-wrapper about-parallax-container">
-        <div class="section">
-            <div class="about-wrapper">
-                <div class="row center">
-                    <div class="container">
-                        <h3 class="brown-text"><i class=""></i>About Us</h3>
-                        <h5 class="header col s12 brown-text">A modern responsive front-end framework based on Material Design</h5>
-                        <p class="col s12 left-align black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non
-                            consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo,
-                            ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium
-                            eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis
-                            nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed
-                            ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat.
-                            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-                            Curae;
-                        </p>
-                    </div>
-                </div>                
+                    <p class="light">The climate in Guatemala is one of the most diverse in the world for coffee production.</p>
+                    <p class="light">There are 7 main growing regions within Guatemala, with Antigua, Huehuetenango and Atitlan being the most popular. Each region has its own set of unique growing conditions and microclimates.</p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">storefront</i></h2>
+                    <h5 class="center">Start Your Experience!</h5>
+
+                    <p class="light">Search through our online store for that coffe option with your name on it. Let us contribute to improve the quality of life for many communities and families by choosing our store. We are commited to create economic opportunities for small farmers in Guatemala, as well as to meet your coffee taste expectations.</p>
+                </div>
             </div>
         </div>
-        <div class="parallax"><img src="{{ MEDIA_URL }}background4.jpg" alt="Coffee Plant Fruits Image"></div>
     </div>
-    <div class="container">
-        <div class="section">
-            <div class="row about-wrapper">
-                <div class="col s12 center">
-                    <h4 class="brown-text">Tell Us What You Think!</h4>
-                    <div class="row">
-                        <div class="col s12 m6">
-                            <ul class="collection quote-collection">
-                                <li class="collection-item avatar">
-                                    <img src="{{ MEDIA_URL }}alex.jpg" alt="Guy smiling image" class="circle quote-img">
-                                    <blockquote>
-                                        <h5 class="">The Perfect Flavor Balance!</h5>
-                                        <span class="material-icons">format_quote</span>
-                                        I never thought coffee could have a perfect balance of sweet notes and acidity with a full body. <br> I can't have another coffee!
-                                        <span class="material-icons">format_quote</span>
-                                        <br><br>- Josh Stevens, CA
-                                    </blockquote>
-                                    <span href="#!" class="secondary-content">
-                                        <i class="material-icons">grade</i>
-                                        <i class="material-icons">grade</i>
-                                        <i class="material-icons">grade</i>
-                                        <i class="material-icons">grade</i>
-                                        <i class="material-icons">grade</i>
-                                     5/5
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col s12 m6">
-                            <ul class="collection quote-collection">
-                                <li class="collection-item avatar">
-                                    <img src="{{ MEDIA_URL }}michelle.jpg" alt="Girl smiling image" class="circle quote-img">
-                                    <blockquote>
-                                        <h5 class="">My Stomach Is Happy Now</h5>
-                                        <span class="material-icons">format_quote</span>
-                                        Because of some stomach issues I could not tolerate coffee before. <br>But now I do since I drink Guatemalan coffees!
-                                        <span class="material-icons">format_quote</span>
-                                        <br><br>- Erica McCartney, NY
-                                    </blockquote>
-                                    <span href="#!" class="secondary-content">
-                                        <i class="material-icons">grade</i>
-                                        <i class="material-icons">grade</i>
-                                        <i class="material-icons">grade</i>
-                                        <i class="material-icons">grade</i>
-                                        <i class="material-icons">grade</i>
-                                     5/5
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
+</div>
+<!-- About Us Section -->
+<div class="parallax-container valign-wrapper about-parallax-container">
+    <div class="section">
+        <div class="about-wrapper">
+            <div class="row center">
+                <div class="container">
+                    <h3 class="brown-text"><i class=""></i>About Us</h3>
+                    <h5 class="header col s12 brown-text">A modern responsive front-end framework based on Material Design</h5>
+                    <p class="col s12 left-align black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non
+                        consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo,
+                        ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium
+                        eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis
+                        nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed
+                        ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat.
+                        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+                        Curae;
+                    </p>
+                </div>
+            </div>                
+        </div>
+    </div>
+    <div class="parallax"><img src="{{ MEDIA_URL }}background4.jpg" alt="Coffee Plant Fruits Image"></div>
+</div>
+<!-- Promotional Reviews Section -->
+<div class="container">
+    <div class="section">
+        <div class="row about-wrapper">
+            <div class="col s12 center">
+                <h4 class="brown-text">Tell Us What You Think!</h4>
+                <div class="row">
+                    <div class="col s12 m6">
+                        <ul class="collection quote-collection">
+                            <li class="collection-item avatar">
+                                <img src="{{ MEDIA_URL }}alex.jpg" alt="Guy smiling image" class="circle quote-img">
+                                <blockquote>
+                                    <h5 class="">The Perfect Flavor Balance!</h5>
+                                    <span class="material-icons">format_quote</span>
+                                    I never thought coffee could have a perfect balance of sweet notes and acidity with a full body. <br> I can't have another coffee!
+                                    <span class="material-icons">format_quote</span>
+                                    <br><br>- Josh Stevens, CA
+                                </blockquote>
+                                <span href="#!" class="secondary-content">
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    5/5
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col s12 m6">
+                        <ul class="collection quote-collection">
+                            <li class="collection-item avatar">
+                                <img src="{{ MEDIA_URL }}michelle.jpg" alt="Girl smiling image" class="circle quote-img">
+                                <blockquote>
+                                    <h5 class="">My Stomach Is Happy Now</h5>
+                                    <span class="material-icons">format_quote</span>
+                                    Because of some stomach issues I could not tolerate coffee before. <br>But now I do since I drink Guatemalan coffees!
+                                    <span class="material-icons">format_quote</span>
+                                    <br><br>- Erica McCartney, NY
+                                </blockquote>
+                                <span href="#!" class="secondary-content">
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    5/5
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="index-banner" class="parallax-container question-parallax">
-		<div class="section no-pad-bot">
-			<div class="container">
-				<br><br>
-				<h1 class="header center cyan-text text-lighten-2 light-shadow">Enjoyed Our Coffee?</h1>
-				<div class="row center">
-					<h5 class="header col s12 light">Do you have a favorite coffee from our store?</h5>
-                    <h5>Let us know leaving a review of our products!</h5>
-				</div>
-				<div class="row center">
-					<a href="{% url 'products' %}" id="download-button" class="btn-large waves-effect waves-light cyan darken-2">Get Started</a>
-				</div>
-				<br><br>
+</div>
+<!-- Enjoyed Our Coffe? Section -->
+<div id="index-banner" class="parallax-container question-parallax">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <br><br>
+            <h1 class="header center cyan-text text-lighten-2 light-shadow">Enjoyed Our Coffee?</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">Do you have a favorite coffee from our store?</h5>
+                <h5>Let us know leaving a review of our products!</h5>
             </div>
-		</div>
-		<div class="parallax"><img src="{{ MEDIA_URL }}background7.jpg" alt="Guatemalan Antigua Town Background Image"></div>
-	</div>
+            <div class="row center">
+                <a href="{% url 'products' %}" id="download-button" class="btn-large waves-effect waves-light cyan darken-2">Get Started</a>
+            </div>
+            <br><br>
+        </div>
+    </div>
+    <div class="parallax"><img src="{{ MEDIA_URL }}background7.jpg" alt="Guatemalan Antigua Town Background Image"></div>
+</div>
 {% endblock %}
 
 {% block postloadjs %}

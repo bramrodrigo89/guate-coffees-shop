@@ -380,6 +380,13 @@ header nav {
     padding: 10px;
 }
 
+/* Cart Page */
+
+.div-cover-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
 /* ---------- Footer ------------ */
 
 footer.page-footer {
