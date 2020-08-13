@@ -329,6 +329,7 @@ header nav {
 
 .detail-subtotal-label {
     font-size: 1.4rem;
+    display: block;
 }
 
 #other-images-slider .indicator-item {
@@ -349,8 +350,9 @@ header nav {
 }
 
 .option-label {
-    font-size: 1.2rem !important;
+    font-size: 1.4rem !important;
     color: black !important;
+    display: block;
 }
 
 .fixed-action-btn-title {

@@ -4,8 +4,11 @@
         var currentValue = parseInt($(`.id_qty_${itemId}`).val());
         var minusDisabled = currentValue < 2;
         var plusDisabled = currentValue > 49;
+        var itemPrice = parseFloat($('.item-price-label').html());
+        var subtotal = currentValue*itemPrice;
         $(`.decrement-qty_${itemId}`).prop('disabled', minusDisabled);
         $(`.increment-qty_${itemId}`).prop('disabled', plusDisabled);
+        $('.item-subtotal-label').html(subtotal.toFixed(2));
     }
 
     // Ensure proper enabling/disabling of all inputs on page load
