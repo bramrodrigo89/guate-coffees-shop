@@ -19,7 +19,7 @@
 <!-- Floating Fixed button: Actions -->
 <div class="fixed-action-btn">
     <span class="mr-20">Add To Cart</span>
-    <a href="#add-product-to-cart-form" class="btn-floating btn-large waves-effect waves-light cyan darken-2">
+    <a id="add-to-cart-floating-btn" href="#add-to-cart-modal" class="btn-floating btn-large modal-trigger waves-effect waves-light cyan darken-2">
         <i class="large material-icons">add_shopping_cart</i>
     </a>
 </div>
@@ -68,6 +68,14 @@
         </div>
     </div>
 </div>
+<!-- Back to Products Button -->
+<div class="container">
+    <div class="row">
+        <div class="col s12 center-align">
+            <a href="{% url 'products' %}" class="waves-effect waves-light btn"><i class="material-icons left">chevron_left</i>Back To Products</a>
+        </div>
+    </div>
+</div>
 <!-- Further Information: Table, Add To Cart Options -->
 <div class="container">
     <div class="section">
@@ -104,56 +112,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col s12 m6">
-                <div class="row">
-                    <div class="col s12">
-                        <a id="add-product-to-cart-form"></a>
-                        <h5 class="center-align cyan-text text-darken-3">Add Product to Cart</h5>
-                        <form class="form" action="#" method="POST">
-                            {% csrf_token %}
-                            <div class="row">
-                                <div class="input-field col s12 grind-option-selector">
-                                    <select class="icons grind-option-selector">
-                                        <option value="" disabled selected>Choose Grind Option</option>
-                                        <option value="bean" data-icon="{{ MEDIA_URL }}coffee_bean_icon.png">Whole Bean</option>
-                                        <option value="coarse" data-icon="{{ MEDIA_URL }}coffee_coarse_grind_icon.png">Coarse</option>
-                                        <option value="medium" data-icon="{{ MEDIA_URL }}coffee_medium_grind_icon.png">Medium</option>
-                                        <option value="fine" data-icon="{{ MEDIA_URL }}coffee_fine_grind_icon.png">Fine</option>
-                                    </select>
-                                    <label class="option-label">Select grind for your coffee first</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <p class="option-label">How many items would you like to add?</p>
-                                    <div class="decrement-input-group mt-20">
-                                        <div class="col s4 center-align">
-                                            <button class="decrement-qty btn" data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
-                                                <span class="material-icons left">remove</span>
-                                            </button>
-                                        </div>
-                                        <div class="col s4 center-align">
-                                            <input class="qty_input center-align" type="number" name="quantity" value="1" min="1" max="50" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
-                                        </div>
-                                        <div class="col s4 center-align">
-                                            <button class="increment-qty btn" data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
-                                                <span class="material-icons left">add</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col s12 mt-20 left">
-                                    <span class="option-label">Subtotal</span>
-                                    <span class="detail-subtotal-label cyan-text text-darken-3">$ <span id="subtotal-price-label">{{ product.retail_price }}</span></span>
-
-                                    <div class="center-align col s12">
-                                        <input type="submit" class="btn mt-20" value="Add to Bag">
-                                    </div>
-                                    
-                                </div>
-                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            <div id="add-to-cart-container" class="col s12 m6">
+                {% include 'products/includes/add_to_cart_form.html' %}
             </div>
         </div>
     </div>
@@ -233,7 +193,17 @@
         </div>
     </div>
 </div>
-    
+
+<!-- Modal For Adding Products to Cart -->
+<div id="add-to-cart-modal" class="modal">
+	<div class="modal-content">
+		{% include 'products/includes/add_to_cart_form.html' %}
+	</div>
+	<div class="modal-footer">
+		<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+	</div>
+</div>
+
 {% endblock %}
 
 {% block postloadjs %}
@@ -248,7 +218,7 @@
         $('.materialboxed').materialbox();
         $('select').material_select();
         $('ul.tabs').tabs('select_tab', 'tab_id');
-        autoplay() 
+        autoplay();
     });
 </script>
 {% include 'products/includes/product_detail_script.html' %}

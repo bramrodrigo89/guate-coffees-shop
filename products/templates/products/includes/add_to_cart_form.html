@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col s12">
+        <h5 class="center-align cyan-text text-darken-3">Add Product to Cart</h5>
+        <form class="form" action="#" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12 grind-option-selector">
+                    <select class="icons grind-option-selector">
+                        <option value="" disabled selected>Choose Grind Option</option>
+                        <option value="bean" data-icon="{{ MEDIA_URL }}coffee_bean_icon.png">Whole Bean</option>
+                        <option value="coarse" data-icon="{{ MEDIA_URL }}coffee_coarse_grind_icon.png">Coarse</option>
+                        <option value="medium" data-icon="{{ MEDIA_URL }}coffee_medium_grind_icon.png">Medium</option>
+                        <option value="fine" data-icon="{{ MEDIA_URL }}coffee_fine_grind_icon.png">Fine</option>
+                    </select>
+                    <label class="option-label">Select grind for your coffee first</label>
+                </div>
+                <div class="input-field col s12">
+                    <p class="option-label">How many items would you like to add?</p>
+                    <div class="row decrement-input-group mt-20">
+                        <div class="col s4 center-align">
+                            <button class="decrement-qty decrement-qty_{{ product.id }} btn" data-item_id="{{ product.id }}">
+                                <span class="material-icons change-qty-icon">remove</span>
+                            </button>
+                        </div>
+                        <div class="col s4 center-align">
+                            <input class="qty_input center-align id_qty_{{ product.id }}" type="number" name="quantity" value="1" min="1" max="50" data-item_id="{{ product.id }}">
+                        </div>
+                        <div class="col s4 center-align">
+                            <button class="increment-qty increment-qty_{{ product.id }} btn" data-item_id="{{ product.id }}">
+                                <span class="material-icons change-qty-icon">add</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 mt-20">
+                    <div class="row">
+                        <div class="col s6 right-align">
+                            <span class="option-label">Subtotal</span>
+                        </div>
+                        <div class="col s6 left-align">
+                            <span class="detail-subtotal-label cyan-text text-darken-3">$ <span class="subtotal-price-label">{{ product.retail_price }}</span></span>
+                        </div>
+                    </div>
+                    <div class="center-align col s12">
+                        <button type="submit" class="waves-effect waves-light btn mt-20 add-to-cart-btn"><i class="material-icons left">add_shopping_cart</i>Add To Cart</button>
+                    </div>
+                </div>
+                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+            </div>
+        </form>
+    </div>
+</div>

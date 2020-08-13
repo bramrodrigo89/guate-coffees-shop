@@ -322,26 +322,13 @@ header nav {
     margin: 20px 10px;
 }
 
-#main-image-product, .card-title img {
-    max-height: 350px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto !important;
-}
-
 .product-detail-table td, .product-detail-table th {
     font-size: 1rem;
     width: 50%;
 }
 
 .detail-subtotal-label {
-    margin-left: 25%;
-    margin-right: 30%;
-}
-
-.expandable-image-product {
-    max-height: none !important;
+    font-size: 1.4rem;
 }
 
 #other-images-slider .indicator-item {
@@ -377,6 +364,20 @@ header nav {
     margin: 8px;
     filter: invert(1);
 }
+
+.decrement-qty, .increment-qty {
+    width: 70px;
+    padding: 0 !important;
+}
+
+.change-qty-icon {
+    line-height: unset;
+}
+
+.modal .modal-content {
+    padding: 10px;
+}
+
 /* ---------- Footer ------------ */
 
 footer.page-footer {
