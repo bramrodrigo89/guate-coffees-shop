@@ -66,7 +66,7 @@
                                 <a href="{% url 'view_cart' %}" class="header-link {% if grand_total %}cyan-text {% endif %}waves-effect">
                                     <i class="material-icons left">shopping_cart</i>
                                     {% if grand_total %}
-                                        ${{ grand_total|floatformat:2 }} <span class="new badge cyan">3</span>
+                                        ${{ grand_total|floatformat:2 }} <span class="new badge cyan">{{ product_count }}</span>
                                     {% else %}
                                         Cart
                                     {% endif %}

@@ -9,7 +9,7 @@ def cart_items(request):
     cart_items = []
     total = 0
     product_count = 0
-    cart = request.session.get('get', {})
+    cart = request.session.get('cart', {})
     print(cart)
     for item_id, quantity in cart.items():
         product = get_object_or_404(Product, pk=item_id)
@@ -21,8 +21,6 @@ def cart_items(request):
             'quantity': quantity,
         })
 
-    
-
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
@@ -32,6 +30,7 @@ def cart_items(request):
     
     grand_total = delivery + total
     
+    print(product_count)
     context = {
         'cart_items': cart_items,
         'total': total,
