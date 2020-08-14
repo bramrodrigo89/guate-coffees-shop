@@ -8,7 +8,7 @@
 {% block content %}
 <!-- Floating Fixed button: Actions -->
 <div class="fixed-action-btn">
-    <span class="mr-20">Go To Products</span>
+    <span class="mr-20">Keep Shopping</span>
     <a id="add-to-cart-floating-btn" href="{% url 'products' %}" class="btn-floating btn-large modal-trigger waves-effect waves-light cyan darken-2">
         <i class="large material-icons">keyboard_arrow_left</i>
     </a>
@@ -22,23 +22,82 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m8">
                 {% if cart_items %}
-                    {{ cart_items }}
+                <div class="table-cart-container">
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th class="cart-table-product-col-name">Product</th>
+                                <th class="cart-table-product-col-img"></th>
+                                <th class="center-align">Number</th>
+                                <th class="center-align">Price</th>
+                                <th class="center-align">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart_items %}
+                            <tr>
+                                <td class="cart-table-product-col-name">{{ item.product.name|truncatechars:25 }}</td>
+                                <td class="cart-table-product-col-img center-align">
+                                    {% if item.product.main_image %}
+                                    <a href="{% url 'product_detail' item.product.id %}">
+                                        <img class="circle quote-img" src="{{ item.product.main_image.url }}" alt="Product small image">
+                                    </a>
+                                    {% else %}
+                                    <a href="{% url 'product_detail' item.product.id %}">
+                                        <img class="circle quote-img" src="{{ MEDIA_URL }}no_image_available.png" alt="Product small image">
+                                    </a>
+                                    {% endif %}
+                                </td>
+                                <td class="center-align">{{ item.quantity }}</td>
+                                <td class="center-align">{{ item.product.retail_price }}</td>
+                                <td class="center-align">{{ item.product.retail_price }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
                 {% else %}
                 <h5>Your Cart Is Empty!</h5>
                 <p>Start adding products to your back and come back here later.</p>
                 {% endif %}
             </div>
-            <div class="col s12 m6">
-                {% if cart_items %}
+            <div class="col s12 m4 center-align">
+                {% if cart_items %} 
+                    <h5 class="mt-20">You're Almost Done!</h5>
+                    <div class="card checkout-card">
+                        <div class="card-image">
+                            <img src="{{ MEDIA_URL }}full_cups.jpg">
+                            <a href="#"> <span class="card-title light-shadow">Go To Secure Checkout <i class="material-icons">lock</i></span></a>
+                            <a href="#" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">chevron_right</i></a>
+                        </div>
+                        <div class="card-content right-align">
+                            <h6 class="mt-20"><strong>Cart Items Total: ${{ total|floatformat:2 }}</strong></h6>
+                            <h6>Delivery Fee: ${{ delivery|floatformat:2 }}</h6>
+                            <h5><strong>Grand Total: <span class="teal-text text-darken-3">${{ grand_total|floatformat:2 }}</span></strong></h5>
+                            {% if free_delivery_delta > 0 %}
+                                <p class="yellow-text text-darken-4">
+                                    You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more!
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
                 {% else %}
                 <img src="{{ MEDIA_URL }}empty_cups.jpg" alt="Empty Cups image" class="div-cover-image">
                 {% endif %}
             </div>
         </div>
     </div>
-    <hr>
+</div>
+<!-- Back to Products Button -->
+<div class="container">
+    <div class="row">
+        <div class="col s12 center-align">
+            <a href="{% url 'products' %}" class="waves-effect waves-light btn"><i class="material-icons left">chevron_left</i>Back To Products</a>
+        </div>
+    </div>
+    <hr class="mt-50">
 </div>
 <!-- Reviews Section -->
 <div class="container">

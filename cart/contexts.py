@@ -10,7 +10,7 @@ def cart_items(request):
     total = 0
     product_count = 0
     cart = request.session.get('cart', {})
-    print(cart)
+    
     for item_id, quantity in cart.items():
         product = get_object_or_404(Product, pk=item_id)
         total += quantity * product.retail_price
@@ -30,7 +30,6 @@ def cart_items(request):
     
     grand_total = delivery + total
     
-    print(product_count)
     context = {
         'cart_items': cart_items,
         'total': total,
