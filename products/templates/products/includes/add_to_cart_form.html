@@ -1,12 +1,12 @@
 <div class="row">
-    <div class="col s12">
-        <h5 class="center-align cyan-text text-darken-3">Add Product to Cart</h5>
+    <h5 class="center-align cyan-text text-darken-3">Add Product to Cart</h5>
+    <div class="col s12 card">
         <form class="form" action="{% url 'add_to_cart' product.id %}" method="POST">
             {% csrf_token %}
             <div class="row">
                 <div class="input-field col s12 grind-option-selector">
-                    <select class="icons grind-option-selector">
-                        <option value="" disabled selected>Choose Grind Option</option>
+                    <select name="grind" class="icons grind-option-selector validate">
+                        <option value="none" selected>Choose Grind Option</option>
                         <option value="bean" data-icon="{{ MEDIA_URL }}coffee_bean_icon.png">Whole Bean</option>
                         <option value="coarse" data-icon="{{ MEDIA_URL }}coffee_coarse_grind_icon.png">Coarse</option>
                         <option value="medium" data-icon="{{ MEDIA_URL }}coffee_medium_grind_icon.png">Medium</option>

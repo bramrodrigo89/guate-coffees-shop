@@ -11,15 +11,17 @@ def cart_items(request):
     product_count = 0
     cart = request.session.get('cart', {})
     
-    for item_id, quantity in cart.items():
+    for item_id, item_dict in cart.items():
         product = get_object_or_404(Product, pk=item_id)
-        total += quantity * product.retail_price
-        product_count += quantity
-        cart_items.append({
-            'item_id': item_id,
-            'product': product,
-            'quantity': quantity,
-        })
+        for grind, quantity in item_dict['product_by_grind'].items():
+            total += quantity * product.retail_price
+            product_count += quantity
+            cart_items.append({
+                'item_id': item_id,
+                'product': product,
+                'grind': grind,
+                'quantity': quantity,
+            })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)

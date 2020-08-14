@@ -28,7 +28,7 @@
                     <table class="striped">
                         <thead>
                             <tr>
-                                <th class="cart-table-product-col-name">Product</th>
+                                <th class="cart-table-product-col-name">Product name</th>
                                 <th class="cart-table-product-col-img"></th>
                                 <th class="center-align">Number</th>
                                 <th class="center-align">Price</th>
@@ -38,7 +38,14 @@
                         <tbody>
                             {% for item in cart_items %}
                             <tr>
-                                <td class="cart-table-product-col-name">{{ item.product.name|truncatechars:25 }}</td>
+                                <td class="cart-table-product-col-name">
+                                    {{ item.product.name|truncatechars:30 }}
+                                    <p class="brown-text text-darken-1"></p>
+                                    <div class="chip">
+                                        <img src="{{ MEDIA_URL }}coffee_bean_icon.png" alt="Coffee Bean Icon">
+                                        <strong>Grind: </strong>{{ item.grind|title }}
+                                    </div>
+                                </td>
                                 <td class="cart-table-product-col-img center-align">
                                     {% if item.product.main_image %}
                                     <a href="{% url 'product_detail' item.product.id %}">
@@ -51,8 +58,8 @@
                                     {% endif %}
                                 </td>
                                 <td class="center-align">{{ item.quantity }}</td>
-                                <td class="center-align">{{ item.product.retail_price }}</td>
-                                <td class="center-align">{{ item.product.retail_price }}</td>
+                                <td class="center-align">${{ item.product.retail_price }}</td>
+                                <td class="center-align">${{ item.product.retail_price }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
