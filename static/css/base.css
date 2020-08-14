@@ -54,6 +54,10 @@ p {
     cursor: auto;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .pad-10pe {
     padding: 10%;
 }
@@ -395,6 +399,12 @@ header nav {
 .checkout-card {
     width: 90%;
     margin: 5% 5%;
+}
+
+.update-form {
+    width: 80%;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 /* ---------- Footer ------------ */

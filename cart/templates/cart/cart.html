@@ -43,7 +43,7 @@
                                     <p class="brown-text text-darken-1"></p>
                                     <div class="chip">
                                         <img src="{{ MEDIA_URL }}coffee_bean_icon.png" alt="Coffee Bean Icon">
-                                        <strong>Grind: </strong>{{ item.grind|title }}
+                                        <strong></strong>{{ item.grind|title }}
                                     </div>
                                 </td>
                                 <td class="cart-table-product-col-img center-align">
@@ -56,8 +56,33 @@
                                         <img class="circle quote-img" src="{{ MEDIA_URL }}no_image_available.png" alt="Product small image">
                                     </a>
                                     {% endif %}
+                                    <!-- Update this links -->
+                                    <a class="update-link text-info pointer"><small>Update</small></a>
+                                    <a class="remove-item text-danger float-right pointer" id="remove_{{ item.item_id }}" data-size="{{ item.size }}"><small>Remove</small></a>
+                                    <!-- Until here -->
                                 </td>
-                                <td class="center-align">{{ item.quantity }}</td>
+                                <td class="center-align">
+                                    <form class="form row update-form" method="POST" action="">
+                                        {% csrf_token %}
+                                        <div class="input-field col s12">
+                                            <div class="row">
+                                                <div class="col s12 center-align">
+                                                    <button class="decrement-qty decrement-qty_{{ item.item_id }} btn-flat" data-item_id="{{ item.item_id }}">
+                                                        <span class="material-icons change-qty-icon cyan-text text-darken-2">remove</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col s12 center-align">
+                                                    <input class="qty_input center-align id_qty_{{ item.item_id }}" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="50" data-item_id="{{ item.item_id }}">
+                                                </div>
+                                                <div class="col s12 center-align">
+                                                    <button class="increment-qty increment-qty_{{ item.item_id }} btn-flat" data-item_id="{{ item.item_id }}">
+                                                        <span class="material-icons change-qty-icon cyan-text text-darken-2">add</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </td>
                                 <td class="center-align">${{ item.product.retail_price }}</td>
                                 <td class="center-align">${{ item.product.retail_price }}</td>
                             </tr>
@@ -183,10 +208,35 @@
 {% endblock %}
 
 {% block postloadjs %}
-    {{ block.super }}
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.slider').slider();
-        });
-	</script>
+{{ block.super }}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.slider').slider();
+        $('.materialboxed').materialbox();
+        $('select').material_select();
+        $('ul.tabs').tabs('select_tab', 'tab_id');
+    });
+</script>
+{% include 'products/includes/product_detail_script.html' %}
+<script type="text/javascript">
+    // Update quantity on click
+    $('.update-link').click(function(e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    })
+
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var size = $(this).data('size');
+        var url = `/bag/remove/${itemId}`;
+        var data = {'csrfmiddlewaretoken': csrfToken, 'size': size};
+
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+    })
+</script>
 {% endblock %}
