@@ -55,8 +55,6 @@ def all_products(request):
             products = products.filter(search_queries)
 
     current_sorting = f'{sort}_{direction}'
-    print(current_sorting)
-    print(region_query_name)
 
     context = {
         'products': products,

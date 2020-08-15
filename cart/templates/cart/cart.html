@@ -235,8 +235,8 @@
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];
         var grind = $(this).data('grind');
-        var url = `/cart/remove/${itemId}`;
-        var data = {'csrfmiddlewaretoken': csrfToken, 'grind': grind};
+        var url = `/cart/remove/${itemId}/`;
+        var data = {'csrfmiddlewaretoken/': csrfToken, 'grind': grind};
 
         $.post(url, data)
          .done(function() {

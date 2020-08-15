@@ -44,7 +44,29 @@ def update_cart(request, item_id):
         cart[item_id]['product_by_grind'][grind] = quantity
     else:
         del cart[item_id]['product_by_grind'][grind]
+        if not cart[item_id]['item_by_size']:
+            cart.pop(item_id)
 
     request.session['cart'] = cart
     
     return redirect(reverse(view_cart))
+
+
+def remove_from_cart(request, item_id):
+    """ Remove items from cart when requested """
+    
+    try:
+        grind = request.POST.get('grind')
+        cart = request.session.get('cart', {})
+
+        del cart[item_id]['product_by_grind'][grind]
+        if not cart[item_id]['item_by_size']:
+            cart.pop(item_id)
+
+        request.session['cart'] = cart
+        
+        return HttpResponse(status=200)
+
+    except Exception as e:
+        print('at least i came here')
+        return HttpResponse(status=500)
