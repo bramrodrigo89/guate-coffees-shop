@@ -402,9 +402,29 @@ header nav {
 }
 
 .update-form {
-    width: 80%;
+    width: 100%;
     margin-left: auto !important;
     margin-right: auto !important;
+}
+
+.table-cart-container {
+    overflow-x: auto;
+}
+
+.cart-table-product-col-name {
+    min-width: 115px;
+}
+
+.update-quantity-col {
+    width: 80px;
+}
+
+.price-update-col {
+    width: 70px;
+}
+
+.update-quantity-col .btn-flat {
+    width: 60px;
 }
 
 /* ---------- Footer ------------ */
@@ -417,8 +437,14 @@ footer.page-footer {
 
 /* Small */
 @media only screen and (max-width : 768px) {
-    
+    table.responsive-table th, table.responsive-table td {
+    margin: 0;
+    vertical-align: middle;
+    height: 180px;
 }
+
+
+
 
 /* Tablet */
 @media only screen and (min-width : 768px) {
