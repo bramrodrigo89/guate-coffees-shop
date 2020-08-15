@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load socialaccount %}
+{% load cart_tools %}
 
 {% block page_header %}
 {% endblock %}
@@ -86,7 +87,7 @@
                                     <p><a class="update-link pointer"><small>Update</small></a></p>
                                 </td>
                                 <td class="center-align price-update-col">
-                                    $ {{ item.product.retail_price }}
+                                    $ {{ item.product.retail_price | calc_subtotal:item.quantity }}
                                     <!-- Update link -->
                                     <p><a class="remove-item pointer" id="remove_{{ item.item_id }}" data-grind="{{ item.grind }}"><small>Remove</small></a></p>
                                 </td>
