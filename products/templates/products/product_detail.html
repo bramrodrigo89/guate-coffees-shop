@@ -17,7 +17,7 @@
 
 {% block content %}
 <!-- Floating Fixed button: Actions -->
-<div class="fixed-action-btn">
+<div class="fixed-action-btn hide-on-med-and-up">
     <span class="mr-20">Add To Cart</span>
     <a id="add-to-cart-floating-btn" href="#add-to-cart-modal" class="btn-floating btn-large modal-trigger waves-effect waves-light cyan darken-2">
         <i class="large material-icons">add_shopping_cart</i>
@@ -69,7 +69,7 @@
     </div>
 </div>
 <!-- Back to Products Button -->
-<div class="container">
+<div class="container mt-20">
     <div class="row">
         <div class="col s12 center-align">
             <a href="{% url 'products' %}" class="waves-effect waves-light btn"><i class="material-icons left">chevron_left</i>Back To Products</a>
@@ -77,13 +77,13 @@
     </div>
 </div>
 <!-- Further Information: Table, Add To Cart Options -->
-<div class="container">
+<div class="container mt-50">
     <div class="section">
         <div class="row mb-0">
             <div class="col s12 m6">
                 <div class="row">
-                    <div class="col s12">
-                        <h5 class="center-align cyan-text text-darken-3">Facts Table</h5>
+                    <div class="col s12 facts-table-container">
+                        <h5 class="center-align cyan-text text-darken-3">Product Facts</h5>
                         <table class="striped product-detail-table">
                             <thead>
                             <tr>
@@ -110,9 +110,36 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="col s12 mt-50">
+                            <h5 class="center-align  cyan-text text-darken-3">Region Facts</h5>
+                            <table class="striped product-detail-table">
+                                <thead>
+                                    <tr>
+                                        <th><span class="btn-floating no-cursor mr-20"><i class="fa fa-thermometer-three-quarters material-icons" aria-hidden="true"></i></span>Temperature</th>
+                                        <td>{{ product.region.weather_temperature }}</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if product.finca %}
+                                    <tr>
+                                        <th><span class="btn-floating no-cursor mr-20"><i class="fa fa-cloud material-icons" aria-hidden="true"></i></span>Precipitation</th>
+                                        <td>{{ product.region.precipitation }}</td>
+                                    </tr>
+                                    {% endif %}
+                                    <tr>
+                                        <th><span class="btn-floating no-cursor mr-20"><i class="fa fa-tint material-icons" aria-hidden="true"></i></span>Humidity</th>
+                                        <td>{{ product.region.humidity }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th><span class="btn-floating no-cursor mr-20"><i class="material-icons" aria-hidden="true">terrain</i></span>Altitude</th>
+                                        <td>{{ product.region.altitude }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                 </div>
             </div>
-            <div id="add-to-cart-container" class="col s12 m6">
+            <div id="add-to-cart-container" class="col s12 m6 card hide-on-small-only">
                 {% include 'products/includes/add_to_cart_form.html' %}
             </div>
         </div>
@@ -142,8 +169,8 @@
         <div class="row">
             <div class="col s12">
                 <ul id="tabs-swipe-product-info" class="tabs">
-                    <li class="tab col s3"><a href="#more-info-product-tab">More About This Product</a></li>
-                    <li class="tab col s3"><a class="active" href="#about-this-region-tab">About Region</a></li>
+                    <li class="tab col s3"><a class="active" href="#more-info-product-tab">More About This Product</a></li>
+                    <li class="tab col s3"><a href="#about-this-region-tab">About Region</a></li>
                     <li class="tab col s3"><a href="#product-reviews-tab">Reviews</a></li>
                 </ul>
                 <div id="more-info-product-tab" class="col s12 mt-50">
@@ -165,7 +192,6 @@
                                         <td>{{ product.region.weather_temperature }}</td>
                                     </tr>
                                 </thead>
-
                                 <tbody>
                                     {% if product.finca %}
                                     <tr>
@@ -197,7 +223,60 @@
 <!-- Modal For Adding Products to Cart -->
 <div id="add-to-cart-modal" class="modal">
 	<div class="modal-content">
-		{% include 'products/includes/add_to_cart_form.html' %}
+		<div class="row">
+            <h5 class="center-align cyan-text text-darken-3">Add Product to Cart</h5>
+            <div class="col s12">
+                <form class="form" action="{% url 'add_to_cart' product.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s12 grind-option-selector">
+                            <select name="grind" class="icons grind-option-selector validate">
+                                <option value="none" selected>Choose Grind Option</option>
+                                <option value="bean" data-icon="{{ MEDIA_URL }}coffee_bean_icon.png">Whole Bean</option>
+                                <option value="coarse" data-icon="{{ MEDIA_URL }}coffee_coarse_grind_icon.png">Coarse</option>
+                                <option value="medium" data-icon="{{ MEDIA_URL }}coffee_medium_grind_icon.png">Medium</option>
+                                <option value="fine" data-icon="{{ MEDIA_URL }}coffee_fine_grind_icon.png">Fine</option>
+                            </select>
+                            <label class="option-label">Select grind for your coffee first</label>
+                        </div>
+                        <div class="modal-input-field col s12">
+                            <p class="option-label">How many items would you like to add?</p>
+                            <div class="row mt-20">
+                                <div class="col s4 center-align">
+                                    <button class="modal-decrement-qty modal-decrement-qty_{{ product.id }} btn" data-item_id="{{ product.id }}">
+                                        <span class="material-icons change-qty-icon">remove</span>
+                                    </button>
+                                </div>
+                                <div class="col s4 center-align">
+                                    <input class="modal_qty_input center-align modal_id_qty_{{ product.id }}" type="number" name="quantity" value="1" min="1" max="50" data-item_id="{{ product.id }}">
+                                </div>
+                                <div class="col s4 center-align">
+                                    <button class="modal-increment-qty modal-increment-qty_{{ product.id }} btn" data-item_id="{{ product.id }}">
+                                        <span class="material-icons change-qty-icon">add</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <div class="row">
+                                <div class="col s6 right-align">
+                                    <span class="option-label">Price:</span>
+                                    <span class="option-label">Subtotal:</span>
+                                </div>
+                                <div class="col s6 left-align">
+                                    <span class="detail-subtotal-label cyan-text text-darken-3">$ <span class="modal-item-price-label">{{ product.retail_price }}</span></span>
+                                    <span class="detail-subtotal-label cyan-text text-darken-3">$ <span class="modal-item-subtotal-label">{{ product.retail_price }}</span></span>
+                                </div>
+                            </div>
+                            <div class="center-align col s12">
+                                <button type="submit" class="waves-effect waves-light btn mt-20 add-to-cart-btn"><i class="material-icons left">add_shopping_cart</i>Add To Cart</button>
+                            </div>
+                        </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </div>
+                </form>
+            </div>
+        </div>
 	</div>
 	<div class="modal-footer">
 		<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>

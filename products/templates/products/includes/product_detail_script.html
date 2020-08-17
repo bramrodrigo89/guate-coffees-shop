@@ -11,11 +11,27 @@
         $('.item-subtotal-label').html(subtotal.toFixed(2));
     }
 
-    // Ensure proper enabling/disabling of all inputs on page load
+    function modalHandleEnableDisable(itemId) {
+        var currentValue = parseInt($(`.modal_id_qty_${itemId}`).val());
+        var minusDisabled = currentValue < 2;
+        var plusDisabled = currentValue > 49;
+        var itemPrice = parseFloat($('.modal-item-price-label').html());
+        var subtotal = currentValue*itemPrice;
+        $(`.modal-decrement-qty_${itemId}`).prop('disabled', minusDisabled);
+        $(`.modal-increment-qty_${itemId}`).prop('disabled', plusDisabled);
+        $('.modal-item-subtotal-label').html(subtotal.toFixed(2));
+    }
+
+    // Ensure proper enabling/disabling of all inputs on page load (including modal inputs)
     var allQtyInputs = $('.qty_input');
+    var modalQtyInputs = $('.modal_qty_input');
     for(var i = 0; i < allQtyInputs.length; i++){
         var itemId = $(allQtyInputs[i]).data('item_id');
         handleEnableDisable(itemId);
+    }
+    for(var i = 0; i < modalQtyInputs.length; i++){
+        var itemId = $(modalQtyInputs[i]).data('item_id');
+        modalHandleEnableDisable(itemId);
     }
 
     // Check enable/disable every time the input is changed
@@ -23,30 +39,54 @@
         var itemId = $(this).data('item_id');
         handleEnableDisable(itemId);
     });
+    $('.modal_qty_input').change(function() {
+        var itemId = $(this).data('item_id');
+        modalHandleEnableDisable(itemId);
+    });
 
     // Increment quantity input
     $('.increment-qty').click(function(e) {
        e.preventDefault();
-       var closestInput = $(this).closest('tr').find('.qty_input')[0];
+       var closestInput = $(this).closest('.input-field').find('.qty_input')[0];
        var currentValue = parseInt($(closestInput).val());
        $(closestInput).val(currentValue + 1);
        var itemId = $(this).data('item_id');
        handleEnableDisable(itemId);
     });
 
+    // Increment quantity input (modal)
+    $('.modal-increment-qty').click(function(e) {
+       e.preventDefault();
+       var closestInput = $(this).closest('.modal-input-field').find('.modal_qty_input')[0];
+       var currentValue = parseInt($(closestInput).val());
+       $(closestInput).val(currentValue + 1);
+       var itemId = $(this).data('item_id');
+       modalHandleEnableDisable(itemId);
+    });
+
+
     // Decrement quantity input
     $('.decrement-qty').click(function(e) {
        e.preventDefault();
-       var closestInput = $(this).closest('tr').find('.qty_input')[0];
+       var closestInput = $(this).closest('.input-field').find('.qty_input')[0];
        var currentValue = parseInt($(closestInput).val());
        $(closestInput).val(currentValue - 1);
        var itemId = $(this).data('item_id');
        handleEnableDisable(itemId);
     });
 
+    // Decrement quantity input (modal)
+    $('.modal-decrement-qty').click(function(e) {
+       e.preventDefault();
+       var closestInput = $(this).closest('.modal-input-field').find('.modal_qty_input')[0];
+       var currentValue = parseInt($(closestInput).val());
+       $(closestInput).val(currentValue - 1);
+       var itemId = $(this).data('item_id');
+       modalHandleEnableDisable(itemId);
+    });
+
     // Add To art Floating Button: scroll to Add To Cart section
     $('#add-to-cart-floating-btn').click(function(e) {
-        window.scrollTo(0,1000);
         $('.add-to-cart-btn').addClass('pulse');
     });
 
