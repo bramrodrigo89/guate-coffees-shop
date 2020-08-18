@@ -12,7 +12,7 @@ def view_cart(request):
 def add_to_cart(request, item_id):
     """ Add a quantity of the specified product to the shopping cart """
 
-    product = Product.objects.get(pk=item_id)
+    product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     grind = request.POST.get('grind')
     redirect_url = request.POST.get('redirect_url')
@@ -40,16 +40,17 @@ def add_to_cart(request, item_id):
 def update_cart(request, item_id):
     """ Update item quantities in cart and delete them if requested """
 
+    product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     grind = request.POST.get('grind')
     cart = request.session.get('cart', {})
 
     if quantity > 0:
         cart[item_id]['product_by_grind'][grind] = quantity
-        messages.success(request, 'Product updated in your cart!')
+        messages.success(request, f'{product.name} quantity updated to in your cart!')
     else:
         del cart[item_id]['product_by_grind'][grind]
-        messages.success(request, 'Product deleted from your cart!')
+        messages.success(request, f'{product.name} deleted from your cart!')
         if not cart[item_id]['product_by_grind']:
             cart.pop(item_id)
 
@@ -61,12 +62,14 @@ def update_cart(request, item_id):
 def remove_from_cart(request, item_id):
     """ Remove items from cart when requested """
     
+    product = get_object_or_404(Product, pk=item_id)
     try:
         grind = request.POST.get('grind')
         cart = request.session.get('cart', {})
 
         del cart[item_id]['product_by_grind'][grind]
-        messages.success(request, 'Product deleted from your cart!')
+        messages.success(request, f'{product.name} deleted from your cart!')
+
         if not cart[item_id]['product_by_grind']:
             cart.pop(item_id)
 
@@ -75,5 +78,5 @@ def remove_from_cart(request, item_id):
         return HttpResponse(status=200)
 
     except Exception as e:
-        print('at least i came here')
+        messages.error(request, f'Error removing item from your cart: {e}')
         return HttpResponse(status=500)
