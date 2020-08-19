@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'social_app',
     'products',
     'cart',
-    'checkout'
+    'checkout',
     'star_ratings',
 ]
 
