@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'phone_field',
     # Country Fields
     'django_countries',
+    # Materialize Form CSS
+    'materializecssform',
     # Custom Apps
     'home',
     'social_app',
@@ -174,6 +176,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+MATERIALIZECSS_ICON_SET = 'fontawesome'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

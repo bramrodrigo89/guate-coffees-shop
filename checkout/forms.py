@@ -15,13 +15,14 @@ class OrderForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
-            'full_name': 'Full Name',
-            'email': 'Email Address',
-            'postcode': 'Postal Code',
+            'full_name': 'Example: John A Smith',
+            'email': 'your_email@mail.com',
+            'phone_number': '(123) 456 - 7890',
+            'postcode': 'ZIP',
             'town_or_city': 'Town or City',
-            'street_address1': 'Street Address 1',
-            'street_address2': 'Street Address 2',
-            'state': 'State',
+            'street_address1': 'Number, Street Name',
+            'street_address2': 'Apartment Number, PO BOx',
+            'state': 'Example: CA',
         }
 
         self.fields['full_name'].widget.attrs['autofocus'] = True
@@ -33,4 +34,3 @@ class OrderForm(forms.ModelForm):
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
-            self.fields[field].label = False
