@@ -44,11 +44,16 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    # Phone-Field for Django
+    'phone_field',
+    # Country Fields
+    'django_countries',
     # Custom Apps
     'home',
     'social_app',
     'products',
     'cart',
+    'checkout'
     'star_ratings',
 ]
 
