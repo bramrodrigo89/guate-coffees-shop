@@ -17,7 +17,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -38,25 +37,26 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # The following apps are required by All-Auth:
+
+    # All-Auth:
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    # Phone-Field for Django
-    'phone_field',
-    # Country Fields
-    'django_countries',
-    # Materialize Form CSS
-    'materializecssform',
+    
     # Custom Apps
     'home',
     'social_app',
     'products',
     'cart',
     'checkout',
+
+    #Other Apps
     'star_ratings',
+    'materializecssform',
+    'django_countries',
+    'phonenumber_field',
 ]
 
 SOCIALACCOUNT_PROVIDERS = {

@@ -31,41 +31,61 @@
                 <p>Please complete the following information to complete your order</p>
 				<form action="{% url 'checkout' %}" method="POST" id="payment-form">
 					{% csrf_token %}
-					<fieldset class="mt-20">
-						<legend class="fieldset-label">User Details</legend>
-						{{ order_form.full_name | materializecss:'icon=person' }}
-						{{ order_form.email | materializecss:'icon=email' }}
-					</fieldset>
-					<fieldset class="mt-20">
-						<legend class="fieldset-label">Delivery</legend>
-						{{ order_form.phone_number | materializecss:'custom_size=s12 m6, icon=person' }}
-						{{ order_form.street_address1 | materializecss:'custom_size=s12 m6, icon=person' }}
-						{{ order_form.street_address2 | materializecss:'custom_size=s12 m6, icon=person' }}
-						{{ order_form.town_or_city | materializecss:'custom_size=s12 m4, icon=person' }}
-						{{ order_form.state | materializecss:'custom_size=s12 m4, icon=person' }}
-						{{ order_form.postcode | materializecss:'custom_size=s12 m4, icon=person' }}
-						{{ order_form.country | materializecss:'custom_size=s12 m6, icon=person' }}
-						<div class="form-check form-check-inline">
-							{% if user.is_authenticated %}
-							<label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
-							<input class="form-check-input" type="checkbox" id="id-save-info" name="save-info" checked>
-							{% else %}
-							<label class="form-check-label" for="id-save-info">
-                                <a class="cyan-text" href="{% url 'account_signup' %}">Create an account</a> or 
-                                <a class="cyan-text" href="{% url 'account_login' %}">login</a> to save this information
-                            </label>
-							{% endif %}
+                    <h5 class="header cyan-text text-darken-3 mt-20">User Info</h5>
+					<div class="card horizontal mt-20">
+						<div class="card-stacked">
+                            <div class="card-content">
+                            {{ order_form.username | materializecss:'icon=fas fa-user' }}
+                            {{ order_form.email | materializecss:'icon=far fa-envelope' }}
+                            {{ order_form.first_name | materializecss:'custom_size=s12 m6' }}
+                            {{ order_form.last_name | materializecss:'custom_size=s12 m6' }}
+                            </div>
 						</div>
-					</fieldset>
-					<fieldset class="mt-20">
-						<legend class="fieldset-label">Payment</legend>
-						<!-- A Stripe card element will go here -->
-						<div class="" id="card-element"></div>
-						<!-- Used to display form errors -->
-						<div class="red-text" id="card-errors" role="alert"></div>
-						<!-- Pass the client secret to the view so we can get the payment intent id -->
-						<input type="hidden" value="{{ client_secret }}" name="client_secret">
-				    </fieldset>
+					</div>
+                    <h5 class="header cyan-text text-darken-3 mt-20">Delivery Info</h5>
+					<div class="card horizontal mt-20">
+						<div class="card-stacked">
+                            <div class="card-content">
+                            {{ order_form.phone_number | materializecss:'icon=fas fa-phone' }}
+                            {{ order_form.street_address1 | materializecss:'custom_size=s12 m6, icon=fas fa-house-user' }}
+                            {{ order_form.street_address2 | materializecss:'custom_size=s12 m6' }}
+                            {{ order_form.town_or_city | materializecss:'custom_size=s12 m4' }}
+                            {{ order_form.state | materializecss:'custom_size=s12 m4' }}
+                            {{ order_form.postcode | materializecss:'custom_size=s12 m4' }}
+                            {{ order_form.country | materializecss:'custom_size=s12 m6' }}
+                            </div>
+                            <div class="card-action">
+                                {% if user.is_authenticated %}
+                                <input type="checkbox" class="filled-in" id="save-info-box" checked="checked" />
+                                <label for="save-info-box">Save this delivery information to my profile</label>
+                                {% else %}
+                                <label class="form-check-label" for="id-save-info">
+                                    <a class="cyan-text mx-20" href="{% url 'account_signup' %}">Create an account</a> or 
+                                    <a class="cyan-text mx-20" href="{% url 'account_login' %}">login</a> to save this information
+                                </label>
+                                {% endif %}
+                            </div>
+						</div>
+					</div>
+					<h5 class="header cyan-text text-darken-3 mt-20">Payment Info</h5>
+					<div class="card horizontal mt-20">
+						<div class="card-stacked">
+                            <div class="card-content">
+                                <!-- A Stripe card element will go here -->
+                                <div class="" id="card-element"></div>
+                                <!-- Used to display form errors -->
+                                <div class="red-text" id="card-errors" role="alert"></div>
+                                <!-- Pass the client secret to the view so we can get the payment intent id -->
+                                <input type="hidden" value="{{ client_secret }}" name="client_secret">
+                            </div>
+                            <div class="card-action">
+                                <span class="icon">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </span>
+                                <span>Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span> 
+                            </div>
+						</div>
+					</div>
 				
                     <div class="submit-button mt-20 right-align">
                         <a href="{% url 'view_cart' %}" class="btn">
@@ -80,23 +100,41 @@
                                 <i class="fas fa-lock"></i>
                             </span>
                         </button>
-                        <p class="">
-                            <span class="icon">
-                                <i class="fas fa-exclamation-circle"></i>
-                            </span>
-                            <span>Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span>
-                        </p>
+                        
                     </div>
 				</form>
             </div>
             <div class="col s12 m4 center-align">
                 {% if cart_items %} 
-                    <h5 class="mt-20">You're Almost Done!</h5>
+                    <h5 class="mt-20">Forgot something?</h5>
                     <div class="card checkout-card">
                         <div class="card-image">
                             <img src="{{ MEDIA_URL }}full_cups.jpg">
-                            <a href="#"> <span class="card-title light-shadow">Go To Secure Checkout <i class="material-icons">lock</i></span></a>
-                            <a href="#" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">chevron_right</i></a>
+                            <a href="{% url 'view_cart' %}"> <span class="card-title light-shadow">Back To Cart <i class="material-icons">shopping_cart</i></span></a>
+                            <a href="{% url 'view_cart' %}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">chevron_left</i></a>
+                        </div>
+                        <div class="card-content">
+                            <h5>Order Summary</h5>
+                        </div>
+                        <div class="collection-wrapper">
+                            <ul class="collection">
+                                {% for item in cart_items %}
+                                <li class="collection-item avatar">
+                                    {% if item.product.main_image %}
+                                    <a href="{% url 'product_detail' item.product.id %}">
+                                        <img class="circle" src="{{ item.product.main_image.url }}" alt="Product small image">
+                                    </a>
+                                    {% else %}
+                                    <a href="{% url 'product_detail' item.product.id %}">
+                                        <img class="circle" src="{{ MEDIA_URL }}no_image_available.png" alt="Product small image">
+                                    </a>
+                                    {% endif %}
+                                    <span class="title">{{ item.product.name|truncatechars:10 }}</span>
+                                    <h6>{{ item.grind|title }}<h6>
+                                    <a href="#!" class="secondary-content">$ {{ item.product.retail_price | calc_subtotal:item.quantity }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
                         </div>
                         <div class="card-content right-align">
                             <h6 class="mt-20"><strong>Cart Items Total: ${{ total|floatformat:2 }}</strong></h6>
@@ -115,16 +153,6 @@
             </div>
         </div>
     </div>
-</div>
-
-<!-- Back to Products Button -->
-<div class="container">
-    <div class="row">
-        <div class="col s12 center-align">
-            <a href="{% url 'products' %}" class="waves-effect waves-light btn"><i class="material-icons left">chevron_left</i>Back To Products</a>
-        </div>
-    </div>
-    <hr class="mt-50">
 </div>
 <!-- Reviews Section -->
 <div class="container">
