@@ -107,8 +107,8 @@
                     <div class="card checkout-card">
                         <div class="card-image">
                             <img src="{{ MEDIA_URL }}full_cups.jpg">
-                            <a href="#"> <span class="card-title light-shadow">Go To Secure Checkout <i class="material-icons">lock</i></span></a>
-                            <a href="#" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">chevron_right</i></a>
+                            <a href="{% url 'checkout' %}"> <span class="card-title light-shadow">Go To Secure Checkout <i class="material-icons">lock</i></span></a>
+                            <a href="{% url 'checkout' %}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">chevron_right</i></a>
                         </div>
                         <div class="card-content right-align">
                             <h6 class="mt-20"><strong>Cart Items Total: ${{ total|floatformat:2 }}</strong></h6>

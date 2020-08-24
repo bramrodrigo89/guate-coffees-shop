@@ -119,7 +119,7 @@
                         <div class="collection-wrapper">
                             <ul class="collection">
                                 {% for item in cart_items %}
-                                <li class="collection-item avatar">
+                                <li class="collection-item avatar collection-cart-summary">
                                     {% if item.product.main_image %}
                                     <a href="{% url 'product_detail' item.product.id %}">
                                         <img class="circle" src="{{ item.product.main_image.url }}" alt="Product small image">
@@ -130,7 +130,7 @@
                                     </a>
                                     {% endif %}
                                     <span class="title">{{ item.product.name|truncatechars:10 }}</span>
-                                    <h6>{{ item.grind|title }}<h6>
+                                    <h6>{{ item.grind|title }} ({{ item.quantity }} Units)<h6>
                                     <a href="#!" class="secondary-content">$ {{ item.product.retail_price | calc_subtotal:item.quantity }}</a>
                                 </li>
                                 {% endfor %}
