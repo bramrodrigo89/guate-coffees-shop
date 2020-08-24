@@ -150,7 +150,7 @@ header nav {
 
 /* ---------- Home -------------- */
 
-.btn-floating.btn {
+#buy-home-btn {
     position: relative;
     z-index: 3;
     bottom: 170px;

@@ -82,19 +82,13 @@
                                 <span class="icon">
                                     <i class="fas fa-exclamation-circle"></i>
                                 </span>
-                                <span>Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span> 
+                                <span class="">Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span> 
                             </div>
 						</div>
 					</div>
 				
-                    <div class="submit-button mt-20 right-align">
-                        <a href="{% url 'view_cart' %}" class="btn">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="">Edit Cart</span>
-                        </a>
-                        <button id="submit-button" class="btn">
+                    <div class="submit-button mt-50 right-align">
+                        <button id="submit-button" class="btn waves-effect waves-light deep-purple darken-3">
                             <span class="">Complete Order</span>
                             <span class="icon">
                                 <i class="fas fa-lock"></i>
@@ -221,7 +215,7 @@
                 <h5>Let us know leaving a review of our products!</h5>
             </div>
             <div class="row center">
-                <a href="{% url 'products' %}" id="download-button" class="btn-large waves-effect waves-light cyan darken-2">Get Started</a>
+                <a href="{% url 'products' %}" id="download-button" class="btn-large waves-effect waves-light deep-purple darken-3">Get Started</a>
             </div>
             <br><br>
         </div>
