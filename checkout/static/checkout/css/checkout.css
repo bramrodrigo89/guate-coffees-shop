@@ -1,3 +1,64 @@
+.checkout-card {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 50px;
+}
+
 .collection-cart-summary {
     padding-left: 35px !important;
+}
+
+#save-info-box + label:after {
+    border: 2px solid #00695c;
+    background-color: #00695c;
+}
+
+.StripeElement {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #d62703;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+/* -------------------------------------Media Querries --------------- */
+
+/* Small */
+@media only screen and (max-width : 768px) {
+    .submit-button {
+        text-align: center !important;
+    }
+    
+}
+
+/* Tablet */
+@media only screen and (min-width : 768px) {
+    .checkout-card {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+/* Large */
+
+@media only screen and (min-width: 1024px) {
+
 }

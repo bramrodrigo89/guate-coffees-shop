@@ -47,8 +47,8 @@
 						<div class="card-stacked">
                             <div class="card-content">
                             {{ order_form.phone_number | materializecss:'icon=fas fa-phone' }}
-                            {{ order_form.street_address1 | materializecss:'custom_size=s12 m6, icon=fas fa-house-user' }}
-                            {{ order_form.street_address2 | materializecss:'custom_size=s12 m6' }}
+                            {{ order_form.street_address_1 | materializecss:'custom_size=s12 m6, icon=fas fa-house-user' }}
+                            {{ order_form.street_address_2 | materializecss:'custom_size=s12 m6' }}
                             {{ order_form.town_or_city | materializecss:'custom_size=s12 m4' }}
                             {{ order_form.state | materializecss:'custom_size=s12 m4' }}
                             {{ order_form.postcode | materializecss:'custom_size=s12 m4' }}
@@ -56,7 +56,7 @@
                             </div>
                             <div class="card-action">
                                 {% if user.is_authenticated %}
-                                <input type="checkbox" class="filled-in" id="save-info-box" checked="checked" />
+                                <input type="checkbox" class="filled-in teal darken-3" id="save-info-box" checked="checked" />
                                 <label for="save-info-box">Save this delivery information to my profile</label>
                                 {% else %}
                                 <label class="form-check-label" for="id-save-info">
@@ -79,16 +79,16 @@
                                 <input type="hidden" value="{{ client_secret }}" name="client_secret">
                             </div>
                             <div class="card-action">
-                                <span class="icon">
+                                <span class="icon teal-text text-darken-3">
                                     <i class="fas fa-exclamation-circle"></i>
                                 </span>
-                                <span class="">Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span> 
+                                <span class="">Your card will be charged <strong class="teal-text text-darken-3">${{ grand_total|floatformat:2 }}</strong></span> 
                             </div>
 						</div>
 					</div>
 				
                     <div class="submit-button mt-50 right-align">
-                        <button id="submit-button" class="btn waves-effect waves-light deep-purple darken-3">
+                        <button id="checkout-button" class="btn waves-effect waves-light deep-purple darken-3">
                             <span class="">Complete Order</span>
                             <span class="icon">
                                 <i class="fas fa-lock"></i>
@@ -229,9 +229,11 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('.slider').slider();
-        $('.materialboxed').materialbox();
         $('select').material_select();
         $('ul.tabs').tabs('select_tab', 'tab_id');
     });
 </script>
+{{ stripe_public_key|json_script:"id_stripe_public_key" }}
+{{ client_secret|json_script:"id_client_secret" }}
+<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}

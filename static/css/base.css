@@ -415,11 +415,6 @@ header nav {
     object-fit: cover;
 }
 
-.checkout-card {
-    width: 90%;
-    margin: 5% 5%;
-}
-
 .update-form {
     width: 100%;
     margin-left: auto !important;
@@ -460,6 +455,7 @@ footer.page-footer {
     margin: 0;
     vertical-align: middle;
     height: 180px;
+    }
 }
 
 
@@ -509,10 +505,6 @@ footer.page-footer {
     .mobile-selector {
         display: none !important;
     }
-    .checkout-card {
-        width: 80%;
-        margin: 0 10%;
-    }
 }
 
 /* Large */
@@ -541,6 +533,9 @@ footer.page-footer {
     }
     header nav ul a, header nav .right a {
         font-size: 1.7rem
+    }
+    .header-link {
+        font-size: 2rem;
     }
     .logo-image-container img {
         margin-top: 50px;
