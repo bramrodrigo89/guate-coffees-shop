@@ -7,15 +7,14 @@ var elements = stripe.elements();
 var style = {
     base: {
         color: "#000",
-        fontFamily: 'Roboto, sans-serif',
+        fontFamily: 'Ubuntu Condensed, sans-serif',
         fontSmoothing: "antialiased",
-        fontSize: "16px",
         "::placeholder": {
             color: "#aab7c4"
         }
     },
     invalid: {
-        fontFamily: 'Roboto, sans-serif',
+        fontFamily: 'Ubuntu Condensed, sans-serif',
         color: "#b71c1c",
         iconColor: "#b71c1c"
     }
