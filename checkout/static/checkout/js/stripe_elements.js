@@ -23,8 +23,18 @@ var style = {
 var card = elements.create('card', {style: style});
 card.mount('#card-element');
 
+// Handle realtime validation errors on the card element
 card.on("change", function (event) {
-    // Disable the Pay button if there are no card details in the Element
-    document.querySelector("button").disabled = event.empty;
-    document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
+    var errorDiv = document.getElementById('card-errors');
+    if (event.error) {
+        var html = `
+            <span class="icon" role="alert">
+                <i class="fas fa-times"></i>
+            </span>
+            <span>${event.error.message}</span>
+        `;
+        $(errorDiv).html(html);
+    } else {
+        errorDiv.textContent = '';
+    }
 });
