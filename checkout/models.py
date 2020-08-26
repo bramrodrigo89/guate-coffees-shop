@@ -10,7 +10,7 @@ from django_countries.fields import CountryField
 
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
-    username = models.CharField(max_length=30, blank=True, null='False')
+    username = models.CharField(max_length=30, blank=True, null=True)
     # models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
     #                                 null=True, blank=True, related_name='orders')
     first_name = models.CharField(max_length=30, blank=False, null=False)
@@ -72,7 +72,7 @@ class OrderLineItem(models.Model):
         """
         Override the original save method to calculate line item total
         """
-        self.lineitem_total = self.product.price * self.quantity
+        self.lineitem_total = self.product.retail_price * self.quantity
         super().save(*args, **kwargs)
 
     def __str__(self):

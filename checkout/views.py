@@ -34,13 +34,14 @@ def checkout(request):
         }
         # create new instance of OrderForm
         order_form = OrderForm(form_data)
+        print(order_form)
 
         if order_form.is_valid():
             order = order_form.save()
             for item_id, item_data in cart.items():
                 try:
                     product = Product.objects.get(id=item_id)
-                    for grind, quantity in item_data['items_by_grind'].items():
+                    for grind, quantity in item_data['product_by_grind'].items():
                         order_line_item = OrderLineItem(
                             order=order,
                             product=product,
@@ -51,16 +52,18 @@ def checkout(request):
                 except Product.DoesNotExist:
                     messages.error(request, "One of the products in your bag no longer exists in our store. Please call us for assistance!")
                     order.delete()
-                    return redirect(reverse('view_bag'))
+                    return redirect(reverse('view_cart'))
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, 'Something went wrong with the information you provided. Please try again!')
+            return redirect(reverse('checkout'))
     else:
         # Everything else
         if not stripe_public_key:
             messages.warning(request, 'Public Key is missing in environment! Please add Stripe Public Key')
+            return redirect(reverse('checkout_success', args=[order.order_number]))
 
         cart = request.session.get('cart', {})
         if not cart:
@@ -77,7 +80,6 @@ def checkout(request):
         )
 
         order_form = OrderForm()
-
 
         template = 'checkout/checkout.html'
         context = {

@@ -28,12 +28,12 @@
         <div class="row">
             <div class="col s12 m8">
                 <p>Thank you for chosing Guatemalan Coffees for your next quality coffee experience!</p>
-                <p>We have sent you an order confirmation to your email address: {{ email_address }}</p>
+                <p>We have sent an order confirmation to your email address: {{ email_address }}</p>
                 <h5 class="header cyan-text text-darken-3 mt-20">Your Order Info</h5>
                 <div class="card horizontal mt-20">
                     <div class="card-stacked">
                         <div class="card-content">
-                            Order Number: {{ order.number }}
+                            Order Number: {{ order_number }}
                             <p>Something else here</p>
                         </div>
                     </div>
@@ -65,36 +65,23 @@
                         <div class="collection-wrapper">
                             <ul class="collection">
                                 {% for item in cart_items %}
-                                <li class="collection-item avatar collection-cart-summary">
-                                    {% if item.product.main_image %}
-                                    <a href="{% url 'product_detail' item.product.id %}">
-                                        <img class="circle" src="{{ item.product.main_image.url }}" alt="Product small image">
-                                    </a>
-                                    {% else %}
-                                    <a href="{% url 'product_detail' item.product.id %}">
-                                        <img class="circle" src="{{ MEDIA_URL }}no_image_available.png" alt="Product small image">
-                                    </a>
-                                    {% endif %}
-                                    <span class="title">{{ item.product.name|truncatechars:10 }}</span>
-                                    <h6>{{ item.grind|title }} ({{ item.quantity }} Units)<h6>
-                                    <a href="#!" class="secondary-content">$ {{ item.product.retail_price | calc_subtotal:item.quantity }}</a>
-                                </li>
+                                
                                 {% endfor %}
                             </ul>
                         </div>
                         <div class="card-content right-align">
-                            <h6 class="mt-20"><strong>Cart Items Total: ${{ total|floatformat:2 }}</strong></h6>
+                            <h6 class="mt-20"><strong>Cart Items Total: $</strong></h6>
                             <h6>Delivery Fee: ${{ delivery|floatformat:2 }}</h6>
-                            <h5><strong>Grand Total: <span class="teal-text text-darken-3">${{ grand_total|floatformat:2 }}</span></strong></h5>
+                            <h5><strong>Grand Total: <span class="teal-text text-darken-3">$</span></strong></h5>
                             {% if free_delivery_delta > 0 %}
                                 <p class="yellow-text text-darken-4">
-                                    You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more!
+                                    You could get free delivery by spending just <strong>$</strong> more!
                                 </p>
                             {% endif %}
                         </div>
                     </div>
                 {% else %}
-                <img src="{{ MEDIA_URL }}empty_cups.jpg" alt="Empty Cups image" class="div-cover-image">
+                <img src="{{ MEDIA_URL }}full_cups.jpg" alt="Full Coffee Cups image" class="div-cover-image">
                 {% endif %}
             </div>
         </div>
