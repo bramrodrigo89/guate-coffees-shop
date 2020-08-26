@@ -33,22 +33,73 @@
                 <div class="card horizontal mt-20">
                     <div class="card-stacked">
                         <div class="card-content">
-                            Order Number: {{ order_number }}
-                            <p>Something else here</p>
+                            <p>Order Number: {{ order_number }}</p>
+                            <p>Date: {{ order.date }}</p>
                         </div>
                     </div>
                 </div>
-                <h5 class="header cyan-text text-darken-3 mt-20">Delivery Info</h5>
+                <h5 class="header cyan-text text-darken-3 mt-20">Order Info</h5>
                 <div class="card horizontal mt-20">
                     <div class="card-stacked">
                         <div class="card-content">
-                            Something here
+                            <table class="striped cart-table">
+                                <thead>
+                                    <tr>
+                                        <th class="cart-table-product-col-name">Product name</th>
+                                        <th class="cart-table-product-col-img"></th>
+                                        <th class="center-align update-quantity-col">Number</th>
+                                        <th class="center-align price-update-col">Price</th>
+                                        <th class="center-align price-update-col">Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in order.lineitems.all %}
+                                    <tr>
+                                        <td class="cart-table-product-col-name">
+                                            {{ item.product.name|truncatechars:30 }}
+                                            <p class="brown-text text-darken-1"></p>
+                                            <div class="chip">
+                                                <img src="{{ MEDIA_URL }}coffee_bean_icon.png" alt="Coffee Bean Icon">
+                                                <strong></strong>{{ item.grind|title }}
+                                            </div>
+                                        </td>
+                                        <td class="cart-table-product-col-img center-align">
+                                            {% if item.product.main_image %}
+                                            <a href="{% url 'product_detail' item.product.id %}">
+                                                <img class="circle quote-img" src="{{ item.product.main_image.url }}" alt="Product small image">
+                                            </a>
+                                            {% else %}
+                                            <a href="{% url 'product_detail' item.product.id %}">
+                                                <img class="circle quote-img" src="{{ MEDIA_URL }}no_image_available.png" alt="Product small image">
+                                            </a>
+                                            {% endif %}
+                                        </td>
+                                        <td class="center-align update-quantity-col">
+                                            {{ item.quantity }}
+                                        <td class="center-align price-update-col">
+                                            $ {{ item.product.retail_price }}
+                                        </td>
+                                        <td class="center-align price-update-col">
+                                            $ {{ item.product.retail_price | calc_subtotal:item.quantity }}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                         <div class="card-action">
                             Something here
                         </div>
                     </div>
-                </div>	
+                </div>
+
+
+                
+
+
+
+
+
             </div>
             <div class="col s12 m4 center-align">
                 {% if cart_items %} 
