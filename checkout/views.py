@@ -101,11 +101,13 @@ def checkout_success(request, order_number):
     if 'cart' in request.session:
         del request.session['cart']
 
+    new_products = Product.objects.filter(new_product=True)
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
         'order_number': order_number,
-        'email_adddress': order.email,
+        'email_address': order.email,
+        'new_products': new_products,
     }
 
     return render(request, template, context)

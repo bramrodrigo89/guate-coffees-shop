@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load cart_tools %}
 {% load materializecss %}
 
 {% block page_header %}
@@ -10,39 +11,89 @@
 {% endblock %}
 
 {% block content %}
-<!-- Floating Fixed button: Actions -->
-<div class="fixed-action-btn">
-    <span class="mr-20">Keep Shopping</span>
-    <a id="add-to-cart-floating-btn" href="{% url 'products' %}" class="btn-floating btn-large modal-trigger waves-effect waves-light cyan darken-2">
-        <i class="large material-icons">keyboard_arrow_left</i>
-    </a>
-</div>
 <!-- Cart Items Section -->
 <div class="container">
     <div class="section">
         <div class="row">
             <div class="col s12">
-                <h4 class="center-text header">Your Order Is Complete!</h4>
+                <h4 class="header">Your Order Is Complete!</h4>
             </div>
         </div>
         <div class="row">
             <div class="col s12 m8">
+                <p>We have sent an order confirmation to your email address: <span class="cyan-text">{{ email_address }}</span></p>
                 <p>Thank you for chosing Guatemalan Coffees for your next quality coffee experience!</p>
-                <p>We have sent an order confirmation to your email address: {{ email_address }}</p>
                 <h5 class="header cyan-text text-darken-3 mt-20">Your Order Info</h5>
                 <div class="card horizontal mt-20">
                     <div class="card-stacked">
                         <div class="card-content">
-                            <p>Order Number: {{ order_number }}</p>
-                            <p>Date: {{ order.date }}</p>
+                            <p>Order Number: <small>{{ order_number }}</small></p>
+                            <p>Processed Date: <small>{{ order.date }}</small></p>
+                        </div>
+                        <div class="card-action left-align">
+                            <h6 class="">Number Items: {{ order.lineitems.all |length }} Products</h6>
+                            <h6>Delivery Fee: ${{ order.delivery_cost|floatformat:2 }}</h6>
+                            <h5><strong>Order Total: <span class="teal-text text-darken-3">${{ order.grand_total|floatformat:2 }}</span></strong></h5>
                         </div>
                     </div>
                 </div>
-                <h5 class="header cyan-text text-darken-3 mt-20">Order Info</h5>
+                <h5 class="header cyan-text text-darken-3 mt-20">Delivery Information</h5>
                 <div class="card horizontal mt-20">
                     <div class="card-stacked">
                         <div class="card-content">
-                            <table class="striped cart-table">
+                            <div class="row">
+                                <div class="col s12">
+                                    <table class="striped product-detail-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Full Name</th>
+                                                <td>{{ order.first_name|title }} {{ order.last_name|title }}</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>Phone Number</th>
+                                                <td>{{ order.phone_number|title }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Address</th>
+                                                <td>{{ order.street_address_1|title }}</td>
+                                            </tr>
+                                            {% if order.street_address_2 %}
+                                            <tr>
+                                                <th>Address Line 2</th>
+                                                <td>{{ order.street_address_2|title }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            <tr>
+                                                <th>City or Town</th>
+                                                <td>{{ order.town_or_city|title }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>State</th>
+                                                <td>{{ order.state|title }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Zip Code</th>
+                                                <td>{{ order.postcode|title }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Country</th>
+                                                <td>{{ order.country|upper }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <h5 class="header cyan-text text-darken-3 mt-20">Order Details</h5>
+                <div class="card horizontal mt-20">
+                    <div class="card-stacked table-cart-container">
+                        <div class="card-content">
+                            <table class="striped">
                                 <thead>
                                     <tr>
                                         <th class="cart-table-product-col-name">Product name</th>
@@ -60,7 +111,7 @@
                                             <p class="brown-text text-darken-1"></p>
                                             <div class="chip">
                                                 <img src="{{ MEDIA_URL }}coffee_bean_icon.png" alt="Coffee Bean Icon">
-                                                <strong></strong>{{ item.grind|title }}
+                                                <strong></strong>{{ item.product_grind|title }}
                                             </div>
                                         </td>
                                         <td class="cart-table-product-col-img center-align">
@@ -87,53 +138,51 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-action">
-                            Something here
+                        <div class="card-action left-align">
+                            <h6 class=""><strong>Items Total: ${{ order.order_total|floatformat:2 }}</strong></h6>
+                            <h6>Delivery Fee: ${{ order.delivery_cost|floatformat:2 }}</h6>
+                            <h5><strong>Order Total: <span class="teal-text text-darken-3">${{ order.grand_total|floatformat:2 }}</span></strong></h5>
                         </div>
                     </div>
                 </div>
-
-
-                
-
-
-
-
-
             </div>
+
             <div class="col s12 m4 center-align">
-                {% if cart_items %} 
-                    <h5 class="mt-20">Forgot something?</h5>
-                    <div class="card checkout-card">
-                        <div class="card-image">
-                            <img src="{{ MEDIA_URL }}full_cups.jpg">
-                            <a href="{% url 'view_cart' %}"> <span class="card-title light-shadow">Back To Cart <i class="material-icons">shopping_cart</i></span></a>
-                            <a href="{% url 'view_cart' %}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">chevron_left</i></a>
-                        </div>
-                        <div class="card-content">
-                            <h5>Order Summary</h5>
-                        </div>
-                        <div class="collection-wrapper">
-                            <ul class="collection">
-                                {% for item in cart_items %}
-                                
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <div class="card-content right-align">
-                            <h6 class="mt-20"><strong>Cart Items Total: $</strong></h6>
-                            <h6>Delivery Fee: ${{ delivery|floatformat:2 }}</h6>
-                            <h5><strong>Grand Total: <span class="teal-text text-darken-3">$</span></strong></h5>
-                            {% if free_delivery_delta > 0 %}
-                                <p class="yellow-text text-darken-4">
-                                    You could get free delivery by spending just <strong>$</strong> more!
-                                </p>
-                            {% endif %}
-                        </div>
+                
+                <h5 class="mt-20">Forgot something?</h5>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ MEDIA_URL }}coffee_full_cups.jpg" alt="Full Coffee Cups image" class="div-cover-image">
+                        <a href="{% url 'products' %}"> <span class="card-title light-shadow">Keep Shopping <i class="material-icons">shopping_cart</i></span></a>
+                        <a href="{% url 'products' %}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">chevron_left</i></a>
                     </div>
-                {% else %}
-                <img src="{{ MEDIA_URL }}full_cups.jpg" alt="Full Coffee Cups image" class="div-cover-image">
-                {% endif %}
+                    <div class="card-content">
+                        <h5>Check Out Our New Products!</h5>
+                        <h6 class="mt-20 green-text text-darken-4"><strong>Available now in stock</strong></h6>
+                    </div>
+                    <div class="collection-wrapper">
+                        <ul class="collection">
+                            {% for product in new_products %}
+                                <li class="collection-item avatar collection-cart-summary">
+                                    <a href="{% url 'product_detail' product.pk %}">
+                                        {% if product.main_image %}
+                                        <img class="circle" src="{{ product.main_image.url }}" alt="Product small image">
+                                        {% else %}
+                                        <img class="circle" src="{{ MEDIA_URL }}no_image_available.png" alt="Product small image">
+                                        {% endif %}
+                                        <h5 class="title mt-50 black-text">{{ product.name|truncatechars:20 }}</h5>
+                                        <h6 class="brown-text text-darken-3">{{ product.region.friendly_name|title }}</h6>
+                                        <div class="chip mt-20">
+                                            <img src="{{ MEDIA_URL }}coffee_bean_icon.png" alt="Coffee Bean Icon">
+                                            {{ product.roast_level|capfirst }} Roast
+                                        </div>
+                                        <a href="#!" class="secondary-content">$ {{ product.retail_price }}</a>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -171,30 +220,62 @@
         </li>
     </ul>
 </div>
-<a id="buy-home-btn" href="{% url 'products' %}" class="btn-floating btn waves-effect waves-light deep-purple darken-3">Buy Now</a>
-<!-- About Us Section -->
-<div class="parallax-container valign-wrapper about-parallax-container">
+<a id="buy-home-btn" href="!#" style="width:300px;" class="btn-floating btn waves-effect waves-light deep-purple darken-3">Join Our Coffee Club</a>
+<!-- Reviews Section -->
+<div class="container">
     <div class="section">
-        <div class="about-wrapper">
-            <div class="row center">
-                <div class="container">
-                    <h3 class="brown-text"><i class=""></i>About Us</h3>
-                    <h5 class="header col s12 brown-text">A modern responsive front-end framework based on Material Design</h5>
-                    <p class="col s12 left-align black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non
-                        consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo,
-                        ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium
-                        eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis
-                        nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed
-                        ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat.
-                        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-                        Curae;
-                    </p>
+        <div class="row about-wrapper">
+            <div class="col s12 center">
+                <h4 class="brown-text">Tell Us What You Think!</h4>
+                <div class="row">
+                    <div class="col s12 m6">
+                        <ul class="collection quote-collection">
+                            <li class="collection-item avatar">
+                                <img src="{{ MEDIA_URL }}alex.jpg" alt="Guy smiling image" class="circle quote-img">
+                                <blockquote>
+                                    <h5 class="">The Perfect Flavor Balance!</h5>
+                                    <span class="material-icons">format_quote</span>
+                                    I never thought coffee could have a perfect balance of sweet notes and acidity with a full body. <br> I can't have another coffee!
+                                    <span class="material-icons">format_quote</span>
+                                    <br><br>- Josh Stevens, CA
+                                </blockquote>
+                                <span href="#!" class="secondary-content">
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    5/5
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col s12 m6">
+                        <ul class="collection quote-collection">
+                            <li class="collection-item avatar">
+                                <img src="{{ MEDIA_URL }}michelle.jpg" alt="Girl smiling image" class="circle quote-img">
+                                <blockquote>
+                                    <h5 class="">My Stomach Is Happy Now</h5>
+                                    <span class="material-icons">format_quote</span>
+                                    Because of some stomach issues I could not tolerate coffee before. <br>But now I do since I drink Guatemalan coffees!
+                                    <span class="material-icons">format_quote</span>
+                                    <br><br>- Erica McCartney, NY
+                                </blockquote>
+                                <span href="#!" class="secondary-content">
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">grade</i>
+                                    5/5
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>                
+            </div>
         </div>
     </div>
-    <div class="parallax"><img src="{{ MEDIA_URL }}background4.jpg" alt="Coffee Plant Fruits Image"></div>
 </div>
 {% endblock %}
 
@@ -207,5 +288,4 @@
         $('ul.tabs').tabs('select_tab', 'tab_id');
     });
 </script>
-<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
