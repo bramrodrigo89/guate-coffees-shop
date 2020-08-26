@@ -1,7 +1,9 @@
 <script>
 function createSuccessToast(message){
-    var toastHTML = 
-        `<strong>Warning! </strong>
+    var toastHTML = `
+        <div class="yellow-text text-darken-2">
+            <i class="material-icons left">warning</i>
+        </div>
         <div> {{message}} </div>
         <button class="btn-flat toast-action" onClick="dismissToast()">Ok</button>`;
     Materialize.toast(toastHTML,10000);

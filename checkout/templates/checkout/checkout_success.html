@@ -158,7 +158,7 @@
                     </div>
                     <div class="card-content">
                         <h5>Check Out Our New Products!</h5>
-                        <h6 class="mt-20 green-text text-darken-4"><strong>Available now in stock</strong></h6>
+                        <h5 class="mt-20 green-text text-darken-4">Available now in stock</h5>
                     </div>
                     <div class="collection-wrapper">
                         <ul class="collection">
@@ -166,15 +166,17 @@
                                 <li class="collection-item avatar collection-cart-summary">
                                     <a href="{% url 'product_detail' product.pk %}">
                                         {% if product.main_image %}
-                                        <img class="circle" src="{{ product.main_image.url }}" alt="Product small image">
+                                        <img class="circle quote-img" src="{{ product.main_image.url }}" alt="Product small image">
                                         {% else %}
-                                        <img class="circle" src="{{ MEDIA_URL }}no_image_available.png" alt="Product small image">
+                                        <img class="circle quote-img" src="{{ MEDIA_URL }}no_image_available.png" alt="Product small image">
                                         {% endif %}
-                                        <h5 class="title mt-50 black-text">{{ product.name|truncatechars:20 }}</h5>
+                                        <div class="right-align">
+                                            <h5 class="title mt-50 black-text">{{ product.name|truncatechars:10 }}</h5>
                                         <h6 class="brown-text text-darken-3">{{ product.region.friendly_name|title }}</h6>
                                         <div class="chip mt-20">
                                             <img src="{{ MEDIA_URL }}coffee_bean_icon.png" alt="Coffee Bean Icon">
                                             {{ product.roast_level|capfirst }} Roast
+                                        </div>
                                         </div>
                                         <a href="#!" class="secondary-content">$ {{ product.retail_price }}</a>
                                     </a>
