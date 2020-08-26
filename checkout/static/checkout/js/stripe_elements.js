@@ -64,7 +64,7 @@ form.addEventListener('submit', function (ev) {
             $(errorDiv).html(html);
             // Enable form submit button for customer to correct mistakes
             card.update({ 'disabled': false });
-            $('#submit-button').attr('disabled', false);
+            $('#checkout-button').attr('disabled', false);
         } else {
             // The payment has been processed!
             if (result.paymentIntent.status === 'succeeded') {
