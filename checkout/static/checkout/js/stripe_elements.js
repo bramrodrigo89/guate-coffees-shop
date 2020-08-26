@@ -42,42 +42,85 @@ card.on("change", function (event) {
     }
 });
 
-// Stripe Javascript to confirm credit card payment on form submit
-
 var form = document.getElementById('payment-form');
 
+// Stripe Javascript to confirm credit card payment on form submit
 form.addEventListener('submit', function (ev) {
     ev.preventDefault();
-    // First disable card and submit button to avoid multiple form submits
+    // First disable card and submit button to avoid multiple form submits and activate the loading overlay
     card.update({ 'disabled': true });
     $('#checkout-button').attr('disabled', true);
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
-    stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-            card: card,
-        }
-    }).then(function (result) {
-        if (result.error) {
-            // Show error to your customer (e.g., insufficient funds)
-            var errorDiv = document.getElementById('card-errors');
-            var html = `
-                <span role="alert">
-                    <i class="material-icons left">error</i>
-                </span>
-                <span>${result.error.message}</span>
-            `;
-            $(errorDiv).html(html);
-            // Enable form submit button for customer to correct mistakes
-            card.update({ 'disabled': false });
-            $('#payment-form').fadeToggle(100);
-            $('#loading-overlay').fadeToggle(100);
-            $('#checkout-button').attr('disabled', false);
-        } else {
-            // The payment has been processed!
-            if (result.paymentIntent.status === 'succeeded') {
-                form.submit();
+
+    // Cache data first that can't be saved in payment intent, and then confirm card payment
+    var saveInfo = Boolean($('#id-save-info').attr('checked'));
+    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    // Object with necessary data to post in URL
+    var postData = {
+        'csrfmiddlewaretoken': csrfToken,
+        'client_secret': clientSecret,
+        'save_info': saveInfo,
+    };
+    var url = '/checkout/cache_checkout_data/';
+
+    // Post data in url and then confirm card payment when Http response is 200 from server side
+    $.post(url, postData).done(function() {
+        stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    first_name: $.trim(form.first_name.value),
+                    last_name: $.trim(form.last_name.value),
+                    phone_number: $.trim(form.phone_number.value),
+                    email: $.trim(form.email.value),
+                    address:{
+                        line_1: $.trim(form.street_address_1.value),
+                        line_2: $.trim(form.street_address_2.value),
+                        city: $.trim(form.town_or_city.value),
+                        country: $.trim(form.country.value),
+                        state: $.trim(form.state.value),
+                    }
+                }
+            },
+            shipping: {
+                first_name: $.trim(form.first_name.value),
+                last_name: $.trim(form.last_name.value),
+                phone_number: $.trim(form.phone_number.value),
+                address: {
+                    line_1: $.trim(form.street_address_1.value),
+                    line_2: $.trim(form.street_address_2.value),
+                    city: $.trim(form.town_or_city.value),
+                    country: $.trim(form.country.value),
+                    postcode: $.trim(form.postcode.value),
+                    state: $.trim(form.state.value),
+                }
+            },
+        }).then(function (result) {
+            if (result.error) {
+                // Show error to your customer (e.g., insufficient funds)
+                var errorDiv = document.getElementById('card-errors');
+                var html = `
+                    <span role="alert">
+                        <i class="material-icons left">error</i>
+                    </span>
+                    <span>${result.error.message}</span>
+                `;
+                $(errorDiv).html(html);
+                // Enable form submit button for customer to correct mistakes
+                card.update({ 'disabled': false });
+                $('#payment-form').fadeToggle(100);
+                $('#loading-overlay').fadeToggle(100);
+                $('#checkout-button').attr('disabled', false);
+            } else {
+                // The payment has been processed!
+                if (result.paymentIntent.status === 'succeeded') {
+                    form.submit();
+                }
             }
-        }
+        });
+    }).fail(function () {
+        // just reload the page in case there is not a 200 Http response from server when posting data to URL
+        location.reload();
     });
 });
