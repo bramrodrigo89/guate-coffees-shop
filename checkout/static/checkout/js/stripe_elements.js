@@ -1,3 +1,6 @@
+// Set default value in country selector
+$('option[value=US]').attr('selected',true);
+
 // STRIPE - Accept one-time payments
 
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
@@ -23,6 +26,7 @@ var card = elements.create('card', {style: style});
 card.mount('#card-element');
 
 // Handle realtime validation errors on the card element
+
 card.on("change", function (event) {
     var errorDiv = document.getElementById('card-errors');
     if (event.error) {

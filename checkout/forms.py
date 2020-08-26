@@ -19,7 +19,7 @@ class OrderForm(forms.ModelForm):
             'first_name': 'Example: John',
             'last_name': 'Example: Smith',
             'email': 'your_email@mail.com',
-            'phone_number': '(123) 456 - 7890',
+            'phone_number': '+1 (123) 456 - 7890',
             'postcode': 'ZIP',
             'town_or_city': 'Town or City',
             'street_address_1': 'Number, Street Name',
