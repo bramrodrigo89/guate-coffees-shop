@@ -11,13 +11,6 @@
 {% endblock %}
 
 {% block content %}
-<!-- Floating Fixed button: Actions -->
-<div class="fixed-action-btn">
-    <span class="mr-20">Keep Shopping</span>
-    <a id="add-to-cart-floating-btn" href="{% url 'products' %}" class="btn-floating btn-large modal-trigger waves-effect waves-light cyan darken-2">
-        <i class="large material-icons">keyboard_arrow_left</i>
-    </a>
-</div>
 <!-- Cart Items Section -->
 <div class="container">
     <div class="section">
@@ -232,7 +225,7 @@
 </div>
 <!-- Loading Overlay -->
 <div id="loading-overlay">
-	<div class="preloader-wrapper giant center-spinner active">
+	<div class="preloader-wrapper giant active loader">
 		<div class="spinner-layer spinner-blue">
 			<div class="circle-clipper left">
 				<div class="circle"></div>
