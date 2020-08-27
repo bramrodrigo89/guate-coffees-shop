@@ -9,6 +9,10 @@
     padding-left: 35px !important;
 }
 
+.form-check-label a {
+    font-size: 14px;
+}
+
 #save-info-box + label:after {
     border: 2px solid #00695c;
     background-color: #00695c;

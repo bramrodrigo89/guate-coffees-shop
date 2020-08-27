@@ -54,7 +54,7 @@ form.addEventListener('submit', function (ev) {
     $('#loading-overlay').fadeToggle(100);
 
     // Cache data first that can't be saved in payment intent, and then confirm card payment
-    var saveInfo = Boolean($('#id-save-info').attr('checked'));
+    var saveInfo = Boolean($('#save-info-box').attr('checked'));
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     // Object with necessary data to post in URL
     var postData = {
@@ -70,13 +70,12 @@ form.addEventListener('submit', function (ev) {
             payment_method: {
                 card: card,
                 billing_details: {
-                    first_name: $.trim(form.first_name.value),
-                    last_name: $.trim(form.last_name.value),
-                    phone_number: $.trim(form.phone_number.value),
+                    name: $.trim(form.last_name.value) + ', ' + $.trim(form.first_name.value),
+                    phone: $.trim(form.phone_number.value),
                     email: $.trim(form.email.value),
                     address:{
-                        line_1: $.trim(form.street_address_1.value),
-                        line_2: $.trim(form.street_address_2.value),
+                        line1: $.trim(form.street_address_1.value),
+                        line2: $.trim(form.street_address_2.value),
                         city: $.trim(form.town_or_city.value),
                         country: $.trim(form.country.value),
                         state: $.trim(form.state.value),
@@ -84,15 +83,14 @@ form.addEventListener('submit', function (ev) {
                 }
             },
             shipping: {
-                first_name: $.trim(form.first_name.value),
-                last_name: $.trim(form.last_name.value),
-                phone_number: $.trim(form.phone_number.value),
+                name: $.trim(form.last_name.value) + ', ' + $.trim(form.first_name.value),
+                phone: $.trim(form.phone_number.value),
                 address: {
-                    line_1: $.trim(form.street_address_1.value),
-                    line_2: $.trim(form.street_address_2.value),
+                    line1: $.trim(form.street_address_1.value),
+                    line2: $.trim(form.street_address_2.value),
                     city: $.trim(form.town_or_city.value),
                     country: $.trim(form.country.value),
-                    postcode: $.trim(form.postcode.value),
+                    postal_code: $.trim(form.postcode.value),
                     state: $.trim(form.state.value),
                 }
             },
