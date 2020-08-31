@@ -41,7 +41,7 @@ def checkout(request):
     if request.method == 'POST':
         cart = request.session.get('cart', {})
         form_data = {
-            'username': request.POST['username'],
+            'username': request.POST.get('username', 'Anonymous User'),
             'first_name': request.POST['first_name'],
             'last_name': request.POST['last_name'],
             'email': request.POST['email'],

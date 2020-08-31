@@ -28,7 +28,9 @@
 					<div class="card horizontal mt-20">
 						<div class="card-stacked">
                             <div class="card-content">
-                            {{ order_form.username | materializecss:'icon=fas fa-user' }}
+                            {% if user.is_authenticated %}
+                                {{ order_form.username | materializecss:'icon=fas fa-user' }}
+                            {% endif %}
                             {{ order_form.email | materializecss:'icon=far fa-envelope' }}
                             {{ order_form.first_name | materializecss:'custom_size=s12 m6' }}
                             {{ order_form.last_name | materializecss:'custom_size=s12 m6' }}

@@ -71,9 +71,8 @@ class StripeWH_Handler:
                     street_address_1__iexact=shipping_details.address.line1,
                     street_address_2__iexact=shipping_details.address.line2,
                     state__iexact=shipping_details.address.state,
-                    grand_total__iexact=grand_total,
-                    original_cart__iexact=cart,
-                    stripe_pid__iexact=pid,
+                    original_cart=cart,
+                    stripe_pid=pid,
                 )
                 order_exists = True
                 break
@@ -82,7 +81,7 @@ class StripeWH_Handler:
                 time.sleep(1)
         if order_exists:
             # self._send_confirmation_email(order)
-            return HttpResponse(content=f'Webhook received: {event["type"]} | SUCCESS: Order already saved in database', status=200)
+            return HttpResponse(content=f'Webhook received: {event["type"]} | SUCCESS: Order saved in database already before webhook', status=200)
         else:
             order = None
             try:
