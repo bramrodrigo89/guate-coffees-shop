@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load materializecss %}
+
+{% block page_header %}
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- User Profile Section -->
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12">
+                <h4 class="center-text header">My Profile</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8">
+                <p>This is your profile information</p>
+            </div>
+            <div class="col s12 m4 center-align">
+                <h5 class="mt-20">My Order History</h5>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ MEDIA_URL }}full_cups.jpg">
+                        <a href="{% url 'view_cart' %}"> <span class="card-title light-shadow">Back To Cart <i class="material-icons">shopping_cart</i></span></a>
+                        <a href="{% url 'view_cart' %}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">chevron_left</i></a>
+                    </div>
+                    <div class="card-content">
+                        <h6>Past Orders</h6>
+                    </div>
+                    <div class="collection-wrapper">
+                        <ul class="collection">
+                            <li class="collection-item avatar collection-cart-summary">
+                                <a href="#">
+                                    <img class="circle" src="" alt="">
+                                </a>
+                                <span class="title">Title</span>
+                                <h6>Description<h6>
+                                <a href="#!" class="secondary-content">$ XX.xx</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-content right-align">
+                        <h6 class="mt-20"><strong>Some text</strong></h6>
+                        <h6>Some text</h6>
+                        <h5><strong>Grand Total: <span class="teal-text text-darken-3">$XX.xx</span></strong></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Enjoyed Our Coffe? Section -->
+<div id="index-banner" class="parallax-container question-parallax">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <br><br>
+            <h1 class="header center cyan-text text-lighten-2 light-shadow">Enjoyed Our Coffee?</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">Do you have a favorite coffee from our store?</h5>
+                <h5>Let us know leaving a review of our products!</h5>
+            </div>
+            <div class="row center">
+                <a href="{% url 'products' %}" id="download-button" class="btn-large waves-effect waves-light deep-purple darken-3">Get Started</a>
+            </div>
+            <br><br>
+        </div>
+    </div>
+    <div class="parallax"><img src="{{ MEDIA_URL }}background7.jpg" alt="Guatemalan Antigua Town Background Image"></div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.slider').slider();
+        $('select').material_select();
+        $('ul.tabs').tabs('select_tab', 'tab_id');
+    });
+</script>
+{% endblock %}
