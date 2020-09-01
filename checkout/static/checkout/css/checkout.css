@@ -18,6 +18,20 @@
     background-color: #00695c;
 }
 
+/* #delivery-info-form .select-wrapper select.option:not([value="Country *"]) {
+    color: inherit !important;
+    font: inherit !important;
+    border-bottom: 1px solid #4CAF50;
+    -webkit-box-shadow: 0 1px 0 0 #4CAF50;
+    box-shadow: 0 1px 0 0 #4CAF50;
+}
+
+#delivery-info-form .select-wrapper input.select-dropdown[value="Country *"] {
+    color: #d9d9d9 !important;
+    font-size: 1rem;
+    border-bottom: 1px solid #9e9e9e;
+} */
+
 .StripeElement {
     background-color: transparent;
     border: none;

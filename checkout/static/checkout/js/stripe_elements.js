@@ -1,6 +1,8 @@
-// Set default value in country selector
-$('option[value=US]').attr('selected',true);
+// HOw to Set value in country selector always selected
+// $('option[value=US]').attr('selected',true);
 
+// Make the county select required for checkout form
+$('select[name="country"]').attr('required',true);
 // STRIPE - Accept one-time payments
 
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
