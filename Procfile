@@ -1,0 +1,1 @@
+web: gunicorn guate_coffee_shop.wsgi:application
