@@ -1,4 +1,5 @@
 {% load account %}
+{% load socialaccount %}
 {% load i18n %}
-{% user_display user.name as name %}
-{% blocktrans %}Successfully signed in as {{name}}.{% endblocktrans %}
+{% user_display user as name %}
+{% blocktrans %}Successfully signed in as {{user_short_name}}.{% endblocktrans %}
