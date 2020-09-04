@@ -1,58 +1,84 @@
 {% extends "account/base.html" %}
 
 {% load i18n %}
+{% load materializecss %}
 
 {% block head_title %}{% trans "E-mail Addresses" %}{% endblock %}
 
-{% block content %}
-    <h1>{% trans "E-mail Addresses" %}</h1>
-{% if user.emailaddress_set.all %}
-<p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
+{% block inner_content %}
+<div class="row">
+	<div class="col s12">
+		<h2 class="brown-text text-darken-3">{% trans "E-mail Addresses" %}</h2>
 
-<form action="{% url 'account_email' %}" class="email_list" method="post">
-{% csrf_token %}
-<fieldset class="blockLabels">
+		{% if user.emailaddress_set.all %}
+		<p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
 
-  {% for emailaddress in user.emailaddress_set.all %}
-<div class="ctrlHolder">
-      <label for="email_radio_{{forloop.counter}}" class="{% if emailaddress.primary %}primary_email{%endif%}">
+		
+        <div class="col s12 mt-20">
+            <div class="card teal darken-1">
+                <form action="{% url 'account_email' %}" class="email_list" method="post">
+                    {% csrf_token %}
+                    <div class="card-content white-text">
+                        {% for emailaddress in user.emailaddress_set.all %}
+                    
+                        <label for="email_radio_{{forloop.counter}}" class="card-title cyan-text text-lighten-4 {% if emailaddress.primary %}primary_email{%endif%}">{{ emailaddress.email }}</label>
+                        <input id="email_radio_{{forloop.counter}}" class="with-gap" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}"/>
+                        
+                            {% if emailaddress.verified %}
+                            <div class="verified center-align">
+                                <i class="material-icons green-text text-darken-1 mr-20">check_circle</i>
+                                {% trans "Verified" %}
+                            </div>
+                            {% else %}
+                            <div class="unverified">{% trans "Unverified" %}
+                                <i class="material-icons red-text text-darken-1mr-20 ">error</i>
+                            </div>
+                            {% endif %}
 
-      <input id="email_radio_{{forloop.counter}}" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}"/>
+                            {% if emailaddress.primary %}
+                                <div class="primary">
+                                <i class="material-icons green-text text-darken-1 mr-20">check_circle</i>
+                                <span class="primary">{% trans "Primary" %}</span>
+                                </div>
+                            {% endif %}
+                        
+                        {% endfor %}
+                    </div>
+                    <div class="card-action">
+                        <div>
+                            <a class="" type="submit" name="action_primary" >{% trans 'Make Primary' %}</a>
+                        </div>
+                        <div>
+                            <a class="" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</a>
+                        </div>
+                        <div>
+                            <a class="" type="submit" name="action_remove" >{% trans 'Remove' %}</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+		
+		{% else %}
+		<p><strong>{% trans 'Warning:'%}</strong>
+			{% trans "You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc." %}
+		</p>
 
-{{ emailaddress.email }}
-    {% if emailaddress.verified %}
-    <span class="verified">{% trans "Verified" %}</span>
-    {% else %}
-    <span class="unverified">{% trans "Unverified" %}</span>
-    {% endif %}
-      {% if emailaddress.primary %}<span class="primary">{% trans "Primary" %}</span>{% endif %}
-</label>
+		{% endif %}
+        <div class="col s12 mt-20">
+
+            <h2 class="brown-text text-darken-3">{% trans "Add E-mail Address" %}</h2>
+
+            <form method="post" action="{% url 'account_email' %}" class="add_email">
+                {% csrf_token %}
+                {{ form | materializecss }}
+                <div class="input-field col s12 mt-20">
+                    <button class="btn waves-effect waves-light deep-purple darken-3" name="action_add" type="submit">{% trans "Add E-mail" %}</button>
+                </div>
+            </form>
+        </div>
+	</div>
 </div>
-  {% endfor %}
-
-<div class="buttonHolder">
-      <button class="secondaryAction" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
-      <button class="secondaryAction" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
-      <button class="primaryAction" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
-</div>
-
-</fieldset>
-</form>
-
-{% else %}
-<p><strong>{% trans 'Warning:'%}</strong> {% trans "You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc." %}</p>
-
-{% endif %}
-
-
-    <h2>{% trans "Add E-mail Address" %}</h2>
-
-    <form method="post" action="{% url 'account_email' %}" class="add_email">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button name="action_add" type="submit">{% trans "Add E-mail" %}</button>
-    </form>
-
 {% endblock %}
 
 
