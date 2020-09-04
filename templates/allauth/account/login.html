@@ -35,7 +35,7 @@
             {% endif %}
         
 
-            <form class="login" method="POST" action="{% url 'account_login' %}">
+            <form class="login mt-20" method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
             {{ form.login | materializecss }}
             {{ form.password | materializecss }}

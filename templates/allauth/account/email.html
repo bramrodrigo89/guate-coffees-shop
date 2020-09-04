@@ -16,7 +16,7 @@
 		
         <div class="col s12 mt-20">
             <div class="card teal darken-1">
-                <form action="{% url 'account_email' %}" class="email_list" method="post">
+                <form action="{% url 'account_email' %}" class="email_list mt-20" method="post">
                     {% csrf_token %}
                     <div class="card-content white-text">
                         {% for emailaddress in user.emailaddress_set.all %}
