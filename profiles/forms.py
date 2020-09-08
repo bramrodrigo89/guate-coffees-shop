@@ -4,7 +4,7 @@ from .models import UserProfile
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        exclude = ('username',)
+        exclude = ('user',)
 
     def __init__(self, *args, **kwargs):
         """
@@ -20,9 +20,20 @@ class UserProfileForm(forms.ModelForm):
             'default_state': 'Example: CA',
             'default_postcode': 'ZIP',            
         }
+        labels = {
+            'default_phone_number': 'Phone Number',
+            'default_street_address_1': 'Address Line 1',
+            'default_street_address_2': 'Address Line 2',
+            'default_town_or_city': 'Town or City',
+            'default_state': 'State',
+            'default_country': 'Country',
+            'default_postcode': 'Postal Code',            
+        }
 
         self.fields['default_phone_number'].widget.attrs['autofocus'] = True
         for field in self.fields:
+            label = labels[field]
+            self.fields[field].label = label
             if field != 'default_country':
                 if self.fields[field].required:
                     placeholder = f'{placeholders[field]} *'

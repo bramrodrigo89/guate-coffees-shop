@@ -10,10 +10,11 @@ from checkout.models import Order
 def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
-    orders = profile.orders.all()
-
+    
     # Populate form with user's profile information 
-    form = UserProfileForm(instance=profile)
+    form = UserProfileForm()
+
+    orders = profile.orders.all()
 
     template = 'profiles/profile.html'
     context = {
