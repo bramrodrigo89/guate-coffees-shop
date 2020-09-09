@@ -12,6 +12,14 @@ def profile(request):
     user = request.user
     user_info = get_object_or_404(UserInfo, user=user)
     delivery_info = get_object_or_404(UserDeliveryInfo, user=user)
+
+    if request.method == 'POST':
+        user_info_form = UserInfoForm(request.POST, instance=user_info)
+        delivery_info_form = UserDeliveryInfoForm(request.POST, instance=delivery_info)
+        if user_info_form.is_valid() and delivery_info_form.is_valid():
+            user_info_form.save()
+            delivery_info_form.save()
+            messages.success(request, 'Profile updated successfully')
     
     # Populate forms with user's information
     user_info_form = UserInfoForm(instance=user_info)
@@ -27,7 +35,6 @@ def profile(request):
         'delivery_info_form': delivery_info_form,
         'profile': profile,
         'orders': orders,
-        'on_profile_page': True,
     }
 
     return render(request, template, context)
