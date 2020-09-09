@@ -1,15 +1,48 @@
 from django import forms
-from .models import UserProfile
+from .models import UserInfo, UserDeliveryInfo
 
-class UserProfileForm(forms.ModelForm):
+
+class UserInfoForm(forms.ModelForm):
     class Meta:
-        model = UserProfile
+        model = UserInfo
         exclude = ('user',)
 
     def __init__(self, *args, **kwargs):
         """
-        Add placeholders and classes, remove auto-generated
-        labels and set autofocus on first field
+        Add placeholders, add custom labels and set autofocus on first field
+        """
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'first_name': 'Example: John',
+            'last_name': 'Example: Smith',
+            'email': 'youremail@email.com',         
+        }
+        labels = {
+            'first_name': 'First Name, Middle Name',
+            'last_name': 'Last Name',
+            'email': 'Email Address',           
+        }
+        self.fields['first_name'].widget.attrs['autofocus'] = True
+        for field in self.fields:
+            label = labels[field]
+            self.fields[field].label = label
+            if field != 'default_country':
+                if self.fields[field].required:
+                    placeholder = f'{placeholders[field]} *'
+                else:
+                    placeholder = placeholders[field]
+                self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields[field].widget.attrs['class'] = 'profile-info-input'
+
+
+class UserDeliveryInfoForm(forms.ModelForm):
+    class Meta:
+        model = UserDeliveryInfo
+        exclude = ('user',)
+
+    def __init__(self, *args, **kwargs):
+        """
+        Add placeholders, add custom labels and set autofocus on first field
         """
         super().__init__(*args, **kwargs)
         placeholders = {
@@ -41,3 +74,7 @@ class UserProfileForm(forms.ModelForm):
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'profile-form-input'
+
+
+
+

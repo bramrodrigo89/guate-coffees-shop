@@ -20,15 +20,13 @@
         </div>
         <div class="row">
             <div class="col s12 m8">
-                <p>This is your profile information</p>
-
 				<form action="{% url 'profile' %}" method="POST" id="profile-update-form">
 					{% csrf_token %} 
                     <h5 class="header cyan-text text-darken-3 mt-20">User Info</h5>
 					<div class="card horizontal mt-20">
 						<div class="card-stacked">
                             <div class="card-content">
-                            
+                                {{ user_info_form | materializecss }}
                             </div>
 						</div>
 					</div>
@@ -36,7 +34,7 @@
 					<div class="card horizontal mt-20" id="updadate-delivery-info-form">
 						<div class="card-stacked">
                             <div class="card-content">
-                            {{ form | materializecss }}
+                            {{ delivery_info_form | materializecss }}
                             </div>
                             <div class="card-action">
                                 <a class="cyan-text mx-20" type="submit">Update Information</a>
@@ -63,7 +61,8 @@
                                     <img class="circle" src="" alt="">
                                 </a>
                                 <span class="title">Title</span>
-                                <h6>Description<h6>
+                                <h6>{{Description}}<h6>
+                                {{ orders }}
                                 <a href="#!" class="secondary-content">$ XX.xx</a>
                             </li>
                         </ul>
