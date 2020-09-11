@@ -37,15 +37,15 @@
                             {{ delivery_info_form | materializecss }}
                             </div>
                             <div class="card-action">
-                                <button class="btn-flat cyan-text mx-20" type="submit">Update Information</button>
+                                <button class="btn-flat cyan-text" type="submit">Update Information</button>
                             </div>
 						</div>
 					</div>
 				</form>
             </div>
             <div class="col s12 m4 center-align">
-                <h5 class="mt-20">My Order History</h5>
-                <div class="card">
+                <h5 class="header cyan-text text-darken-3 mt-20">My Order History</h5>
+                <div class="card mt-20 order-history">
                     <div class="card-image">
                         <img src="{{ MEDIA_URL }}full_cups.jpg">
                         <a href="{% url 'view_cart' %}"> <span class="card-title light-shadow">Back To Cart <i class="material-icons">shopping_cart</i></span></a>
@@ -69,7 +69,7 @@
                             <li>
                                 <div class="collapsible-header grey lighten-2 order-line">
                                     <div class="col s3 center-align">
-                                        <a href="#" class="black-text" title="{{ order.order_number }}">{{ order.order_number|truncatechars:4 }}</a>
+                                        <a href="{% url 'order_history' order.order_number %}" class="cyan-text text-darken-2" title="{{ order.order_number }}">{{ order.order_number|truncatechars:4 }}</a>
                                     </div>
                                     <div class="col s3 center-align">
                                         {{ order.date |date:'M-d' }}
@@ -107,7 +107,10 @@
                                         </a>
                                         {% endfor %}
                                         <div class="row mb-0 teal-text collection-header">
-                                            <div class="col s6 offset-s6 center-align">
+                                            <div class="col s6 center-align">
+                                                <a class="btn-flat cyan-text" href="{% url 'order_history' order.order_number %}">Review</a>
+                                            </div>
+                                            <div class="col s6 center-align">
                                                 <div>Delivery Cost: ${{ order.delivery_cost }}</div>
                                                 <div>Order Total: ${{ order.grand_total }}</div>
                                             </div>

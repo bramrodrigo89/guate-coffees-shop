@@ -64,6 +64,10 @@ p {
     cursor: pointer;
 }
 
+.pad-0 {
+    padding: 0;
+}
+
 .pad-10pe {
     padding: 10%;
 }
