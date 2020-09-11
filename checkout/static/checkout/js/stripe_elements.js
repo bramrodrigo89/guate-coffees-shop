@@ -116,7 +116,6 @@ form.addEventListener('submit', function (ev) {
                 // The payment has been processed!
                 if (result.paymentIntent.status === 'succeeded') {
                     form.submit();
-                    console.log('form was submitted');
                 }
             }
         });

@@ -7,6 +7,10 @@ from .forms import OrderForm
 from .models import OrderLineItem, Order
 from products.models import Product
 from cart.contexts import cart_items
+from profiles.models import UserInfo
+from profiles.models import UserDeliveryInfo
+from profiles.forms import UserInfoForm
+from profiles.forms import UserDeliveryInfoForm
 
 import stripe
 import json
@@ -120,6 +124,28 @@ def checkout_success(request, order_number):
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
+
+    if request.user.is_authenticated:
+        user_info = UserInfo.objects.get(user=request.user)
+        # Attach the user's profile to the order
+        order.username = user_info
+        order.save()
+
+        # Save the user's info
+        if save_info:
+            profile_data = {
+                'default_phone_number': order.phone_number,
+                'default_country': order.country,
+                'default_postcode': order.postcode,
+                'default_town_or_city': order.town_or_city,
+                'default_street_address1': order.street_address_1,
+                'default_street_address2': order.street_address_2,
+                'default_state': order.state,
+            }
+            user_delivery_info_form = UserDeliveryInfoForm(profile_data, instance=profile)
+            if user_delivery_info_form.is_valid():
+                user_delivery_info_form.save()
+
     messages.success(request, 'Order successfully processed!')
 
     if 'cart' in request.session:
