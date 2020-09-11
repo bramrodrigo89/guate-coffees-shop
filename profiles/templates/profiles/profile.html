@@ -55,39 +55,68 @@
                         <h5>Past Orders: {{ orders |length }}</h5>
                     </div>
                     {% if orders %}
-                    <div class="order-table-summary">
-                        {% for order in orders %}
-                        <table class="striped">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <a href="#" title="{{ order.order_number }}">Order: {{ order.order_number|truncatechars:6 }}</a>
-                                    </th>
-                                    <th>{{ order.date |date:'M-d-Y' }}</th>
-                                    <th>{{ order.lineitems.all | length }} Items</th>
-                                </tr>
+                    <div class="order-summary-wrapper">
+                        <table>
+                            <thead class="order-summary-header order-line">
+                                <th class="center-align">Order<br>#</th>
+                                <th class="center-align">Date</th>
+                                <th class="center-align">Total<br>Items</th>
+                                <th class="center-align">Order<br>Total</th>
                             </thead>
-                            <tbody>
-                                {% for item in order.lineitems.all %}
-                                <tr>
-                                    <td class="center-align">{{ item.product_grind|title }}</td>
-                                    <td class="center-align">
-                                        <a title="{{ item.product.name }}" href="{% url 'product_detail' item.product.id %}">
-                                            {{ item.product.name |truncatechars:12  }}
-                                        </a>
-                                    </td>
-                                    <td class="center-align">{{ item.quantity }}</td>
-                                </tr>
-                                {% endfor %}
-                                <tr>
-                                    <td class="center-align">Total: ${{ order.grand_total }}</td>
-                                    <td>Delivery: ${{ order.delivery_cost }}</td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
                         </table>
-                        <hr>
-                        {% endfor %}
+                        <ul class="collapsible" data-collapsible="accordion">
+                            {% for order in orders %}
+                            <li>
+                                <div class="collapsible-header grey lighten-2 order-line">
+                                    <div class="col s3 center-align">
+                                        <a href="#" class="black-text" title="{{ order.order_number }}">{{ order.order_number|truncatechars:4 }}</a>
+                                    </div>
+                                    <div class="col s3 center-align">
+                                        {{ order.date |date:'M-d' }}
+                                    </div>
+                                    <div class="col s3 center-align">
+                                        {{ order.lineitems.all | length }}
+                                    </div>
+                                    <div class="col s3 center-align">
+                                        ${{ order.grand_total }}
+                                    </div>
+                                </div>
+                                <div class="collapsible-body">
+                                    <div class="collection">
+                                        <div class="row mb-0 teal-text collection-header">
+                                            <div class="col s6 center-align">Product Name</div>
+                                            <div class="col s2 center-align">Qty</div>
+                                            <div class="col s4 center-align">Grind</div>
+                                        </div>
+                                        {% for item in order.lineitems.all %}
+                                        <a href="{% url 'product_detail' item.product.id %}" title="{{ item.product.name }}" class="collection-item">
+                                            <div class="row mb-0">
+                                                <div class="col s3 center-align">
+                                                    <span class="btn-floating no-cursor"><i class="material-icons" aria-hidden="true">free_breakfast</i></span>
+                                                </div>
+                                                <div class="col s3 center-align">
+                                                    {{ item.product.name |truncatechars:13  }}
+                                                </div>
+                                                <div class="col s2 center-align">
+                                                    {{ item.quantity }}
+                                                </div>
+                                                <div class="col s4 center-align">
+                                                    {{ item.product_grind|title }}
+                                                </div>
+                                            </div>
+                                        </a>
+                                        {% endfor %}
+                                        <div class="row mb-0 teal-text collection-header">
+                                            <div class="col s6 offset-s6 center-align">
+                                                <div>Delivery Cost: ${{ order.delivery_cost }}</div>
+                                                <div>Order Total: ${{ order.grand_total }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                     {% else %}
                     <div class="container">
@@ -96,15 +125,13 @@
                     <div class="col s12 center-align mt-20">
                         <a class="btn" href="{% url 'products' %}" >Our Products</a>
                     </div>
-
-
                     {% endif %}
 
 
-                    <div class="card-content right-align mt-50">
+                    <div class="card-content right-align">
                         <h6 class="mt-20"><strong>Some text</strong></h6>
                         <h6>Some text</h6>
-                        <h5><strong>Grand Total: <span class="teal-text text-darken-3">$XX.xx</span></strong></h5>
+                        <h5><strong>Text <span class="teal-text text-darken-3">Text</span></strong></h5>
                     </div>
                     
                 </div>
