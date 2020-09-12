@@ -26,7 +26,9 @@
 					<div class="card horizontal mt-20">
 						<div class="card-stacked">
                             <div class="card-content">
-                                {{ user_info_form | materializecss }}
+                                {{ user_info_form.default_email | materializecss:'icon=far fa-envelope' }}
+                                {{ user_info_form.first_name | materializecss:'custom_size=s12 m6' }}
+                                {{ user_info_form.last_name | materializecss:'custom_size=s12 m6' }}
                             </div>
 						</div>
 					</div>
@@ -34,7 +36,13 @@
 					<div class="card horizontal mt-20" id="update-delivery-info-form">
 						<div class="card-stacked">
                             <div class="card-content">
-                            {{ delivery_info_form | materializecss }}
+                            {{ user_info_form.default_phone_number | materializecss:'icon=fas fa-phone' }}
+                            {{ user_info_form.default_street_address_1 | materializecss:'custom_size=s12 m6, icon=fas fa-house-user' }}
+                            {{ user_info_form.default_street_address_2 | materializecss:'custom_size=s12 m6' }}
+                            {{ user_info_form.default_town_or_city | materializecss:'custom_size=s12 m4' }}
+                            {{ user_info_form.default_state | materializecss:'custom_size=s12 m4' }}
+                            {{ user_info_form.default_postcode | materializecss:'custom_size=s12 m4' }}
+                            {{ user_info_form.default_country | materializecss:'custom_size=s12 m6' }}
                             </div>
                             <div class="card-action">
                                 <button class="btn-flat cyan-text" type="submit">Update Information</button>

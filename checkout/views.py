@@ -8,9 +8,7 @@ from .models import OrderLineItem, Order
 from products.models import Product
 from cart.contexts import cart_items
 from profiles.models import UserInfo
-from profiles.models import UserDeliveryInfo
 from profiles.forms import UserInfoForm
-from profiles.forms import UserDeliveryInfoForm
 
 import stripe
 import json
@@ -45,17 +43,16 @@ def checkout(request):
     if request.method == 'POST':
         cart = request.session.get('cart', {})
         form_data = {
-            'username': request.POST.get('username', 'Anonymous User'),
             'first_name': request.POST['first_name'],
             'last_name': request.POST['last_name'],
             'email': request.POST['email'],
             'phone_number': request.POST['phone_number'],
-            'country': request.POST['country'],
-            'postcode': request.POST['postcode'],
             'town_or_city': request.POST['town_or_city'],
             'street_address_1': request.POST['street_address_1'],
             'street_address_2': request.POST['street_address_2'],
             'state': request.POST['state'],
+            'postcode': request.POST['postcode'],
+            'country': request.POST['country'],
         }
         # create new instance of OrderForm
         order_form = OrderForm(form_data)
@@ -133,7 +130,10 @@ def checkout_success(request, order_number):
 
         # Save the user's info
         if save_info:
-            profile_data = {
+            user_data = {
+                'first_name': order.first_name,
+                'last_name': order.last_name,
+                'default_email': order.email,
                 'default_phone_number': order.phone_number,
                 'default_country': order.country,
                 'default_postcode': order.postcode,
@@ -142,9 +142,10 @@ def checkout_success(request, order_number):
                 'default_street_address2': order.street_address_2,
                 'default_state': order.state,
             }
-            user_delivery_info_form = UserDeliveryInfoForm(profile_data, instance=profile)
-            if user_delivery_info_form.is_valid():
-                user_delivery_info_form.save()
+            user_info_form = UserInfoForm(user_data, instance=user_info)
+            
+            if user_info_form.is_valid():
+                user_info_form.save()
 
     messages.success(request, 'Order successfully processed!')
 

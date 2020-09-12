@@ -8,19 +8,23 @@ from .models import UserInfo
 class ProfileAdmin(admin.ModelAdmin):
 
     fields = (
-        'user',
-        'email',
+        'default_email',
         'first_name',
         'last_name',
+        'default_phone_number',
+        'default_street_address_1',
+        'default_street_address_2',
+        'default_town_or_city',
+        'default_state',
+        'default_postcode',
     )
     
     list_display = (
-        'user',
-        'email',
         'first_name',
         'last_name',
+        'default_email',
     )
 
-    ordering = ('user',)
+    ordering = ('last_name',)
 
 admin.site.register(UserInfo, ProfileAdmin)
