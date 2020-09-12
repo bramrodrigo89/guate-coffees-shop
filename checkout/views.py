@@ -79,7 +79,7 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('view_cart'))
 
-            request.session['save_info'] = 'save-info' in request.POST
+            request.session['save_info'] = request.POST.get('save_info')
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, 'Something went wrong with the information you provided. Please try again!')
@@ -138,8 +138,8 @@ def checkout_success(request, order_number):
                 'default_country': order.country,
                 'default_postcode': order.postcode,
                 'default_town_or_city': order.town_or_city,
-                'default_street_address1': order.street_address_1,
-                'default_street_address2': order.street_address_2,
+                'default_street_address_1': order.street_address_1,
+                'default_street_address_2': order.street_address_2,
                 'default_state': order.state,
             }
             user_info_form = UserInfoForm(user_data, instance=user_info)

@@ -20,8 +20,8 @@ class ProfileAdmin(admin.ModelAdmin):
     )
     
     list_display = (
-        'first_name',
         'last_name',
+        'first_name',
         'default_email',
     )
 
