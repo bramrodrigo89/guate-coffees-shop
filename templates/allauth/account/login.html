@@ -34,18 +34,31 @@
             {% csrf_token %}
             {{ form.login | materializecss }}
             {{ form.password | materializecss }}
-            <div class="col s12 mt-20">
-                <input name="remember" id="id_remember" type="checkbox" class="filled-in" checked="checked" />
-                <label for="id_remember">Remember me?</label>
+            <!-- Error list -->
+            <div class="row">
+                <div class="col s12 red-text text-darken-3">
+                    <ul class="errorlist">
+                    {% for key, value in form.errors.items %}
+                        <li>{% if key != '__all__' %}{{ key }} {% endif %}<i class="material-icons left">error</i> {{ value }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
             </div>
-            {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-            {% endif %}
-            <div class="input-field col s12 mt-20">
-                <a class="header cyan-text text-darken-3" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-            </div>
-            <div class="input-field col s12 mt-50">
-                <button class="btn waves-effect waves-light deep-purple darken-3" type="submit">{% trans "Sign In" %}</button>
+
+            <div class="row">
+                <div class="col s12">
+                    <input name="remember" id="id_remember" type="checkbox" class="filled-in" checked="checked" />
+                    <label for="id_remember">Remember me?</label>
+                </div>
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <div class="input-field col s12 mt-20">
+                    <a class="header cyan-text text-darken-3" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                </div>
+                <div class="input-field col s12 mt-50">
+                    <button class="btn waves-effect waves-light deep-purple darken-3" type="submit">{% trans "Sign In" %}</button>
+                </div>
             </div>
         </form>
     </div>
