@@ -3,12 +3,12 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 
+from .models import Order, OrderLineItem
 from .forms import OrderForm
-from .models import OrderLineItem, Order
 from products.models import Product
-from cart.contexts import cart_items
 from profiles.models import UserInfo
 from profiles.forms import UserInfoForm
+from cart.contexts import cart_items
 
 import stripe
 import json
@@ -108,7 +108,7 @@ def checkout(request):
         if request.user.is_authenticated:
             try:
                 user_info = UserInfo.objects.get(user=request.user)
-                order_data = OrderForm(initial={
+                order_form = OrderForm(initial={
                     'first_name': user_info.first_name,
                     'last_name': user_info.last_name,
                     'email': user_info.default_email,
