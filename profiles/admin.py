@@ -8,9 +8,9 @@ from .models import UserInfo
 class ProfileAdmin(admin.ModelAdmin):
 
     fields = (
-        'default_email',
         'first_name',
         'last_name',
+        'default_email',
         'default_phone_number',
         'default_street_address_1',
         'default_street_address_2',

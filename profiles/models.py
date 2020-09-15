@@ -32,5 +32,3 @@ def create_or_update_user_info(sender, instance, created, **kwargs):
         UserInfo.objects.create(user=instance)
     # For existing users: just save the profile
     instance.userinfo.save()
-
-

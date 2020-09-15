@@ -46,8 +46,4 @@ class UserInfoForm(forms.ModelForm):
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'profile-info-input'
-
-
-
-
-
+    

@@ -1,4 +1,3 @@
-
 $( document ).ready(function() {
 
     // Country Preselection when page loads
