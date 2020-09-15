@@ -104,7 +104,26 @@ def checkout(request):
             currency = settings.STRIPE_CURRENCY
         )
 
-        order_form = OrderForm()
+        # If user is logged in, profile information can be retrieved when checkint out
+        if request.user.is_authenticated:
+            try:
+                user_info = UserInfo.objects.get(user=request.user)
+                order_data = OrderForm(initial={
+                    'first_name': user_info.first_name,
+                    'last_name': user_info.last_name,
+                    'email': user_info.default_email,
+                    'phone_number': user_info.default_phone_number,
+                    'country': user_info.default_country,
+                    'postcode': user_info.default_postcode,
+                    'town_or_city': user_info.default_town_or_city,
+                    'street_address_1': user_info.default_street_address_1,
+                    'street_address_2': user_info.default_street_address_2,
+                    'state': user_info.default_state,
+                })
+            except UserInfo.DoesNotExist:
+                order_form = OrderForm()
+        else:
+            order_form = OrderForm()
 
         template = 'checkout/checkout.html'
         context = {
