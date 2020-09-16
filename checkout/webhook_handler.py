@@ -47,6 +47,9 @@ class StripeWH_Handler:
         if username != 'AnonymousUser':
             user_info = UserInfo.objects.get(user__username=username)
             if save_info:
+                user_info.first_name = shipping_details.name.split(", ")[1]
+                user_info.last_name = shipping_details.name.split(", ")[0]
+                user_info.default_email = billing_details.email
                 user_info.default_phone_number = shipping_details.phone
                 user_info.default_postcode = shipping_details.address.postal_code
                 user_info.default_town_or_city = shipping_details.address.city
