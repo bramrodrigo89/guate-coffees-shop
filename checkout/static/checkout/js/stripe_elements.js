@@ -56,7 +56,7 @@ form.addEventListener('submit', function (ev) {
     $('#loading-overlay').fadeToggle(100);
 
     // Cache data first that can't be saved in payment intent, and then confirm card payment
-    var saveInfo = Boolean($('#save-info-box').attr('checked'));
+    var saveInfo = Boolean($('#save-info-box').attr('data-id'));
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     // Object with necessary data to post in URL
     var postData = {

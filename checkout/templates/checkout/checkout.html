@@ -284,6 +284,15 @@
         $('.slider').slider();
         $('select').material_select();
         $('ul.tabs').tabs('select_tab', 'tab_id');
+        $('#save-info-box').attr("data-id", 'true');
+        $('#save-info-box').click(function(){
+            isChecked = $(this).attr("data-id");
+            if (isChecked === 'true') {
+                $(this).removeAttr("data-id");
+            } else {
+                $(this).attr("data-id", 'true');
+            }
+        });
     });
 </script>
 {{ stripe_public_key|json_script:"id_stripe_public_key" }}
