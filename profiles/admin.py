@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
 from .models import UserInfo
 
 
@@ -18,7 +17,7 @@ class ProfileAdmin(admin.ModelAdmin):
         'default_state',
         'default_postcode',
     )
-    
+
     list_display = (
         'last_name',
         'first_name',
@@ -26,5 +25,6 @@ class ProfileAdmin(admin.ModelAdmin):
     )
 
     ordering = ('last_name',)
+
 
 admin.site.register(UserInfo, ProfileAdmin)

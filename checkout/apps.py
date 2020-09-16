@@ -6,6 +6,7 @@ class CheckoutConfig(AppConfig):
 
     def ready(self):
         """
-        Override ready method to import signals module: every time a line item is saved/deleted, order toal will be updated
+        Override ready method to import signals module: every time
+        a line item is saved/deleted, order toal will be updated
         """
         import checkout.signals

@@ -1,4 +1,6 @@
-from django.shortcuts import render, reverse, redirect, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render, reverse, redirect, get_object_or_404, HttpResponse
+)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -12,6 +14,7 @@ from cart.contexts import cart_items
 
 import stripe
 import json
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -28,13 +31,15 @@ def cache_checkout_data(request):
         })
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(request, 'Sorry, your payment cannot be processed right now. Please try again later.')
+        messages.error(request, 'Sorry, your payment cannot be processed \
+            right now. Please try again later.')
         return HttpResponse(content=e, status=400)
 
 
 def checkout(request):
     """
-    Create Payment Intent session at the beginning and rendering the checkout template with information needed for stripe payments
+    Create Payment Intent session at the beginning and rendering the checkout
+    template with information needed for stripe payments
     """
 
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -66,45 +71,53 @@ def checkout(request):
             for item_id, item_data in cart.items():
                 try:
                     product = Product.objects.get(id=item_id)
-                    for grind, quantity in item_data['product_by_grind'].items():
+                    for grind, qty in item_data['product_by_grind'].items():
                         order_line_item = OrderLineItem(
                             order=order,
                             product=product,
-                            quantity=quantity,
+                            quantity=qty,
                             product_grind=grind,
                         )
                         order_line_item.save()
                 except Product.DoesNotExist:
-                    messages.error(request, "One of the products in your bag no longer exists in our store. Please call us for assistance!")
+                    messages.error(request, "One of the products in your bag \
+                        no longer exists in our store. \
+                        Please call us for assistance!")
                     order.delete()
                     return redirect(reverse('view_cart'))
 
             request.session['save_info'] = request.POST.get('save_info')
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse(
+                'checkout_success', args=[order.order_number]))
         else:
-            messages.error(request, 'Something went wrong with the information you provided. Please try again!')
+            messages.error(request, 'Something went wrong with the \
+                information you provided. Please try again!')
             return redirect(reverse('checkout'))
     else:
         # Everything else
         if not stripe_public_key:
-            messages.warning(request, 'Public Key is missing in environment! Please add Stripe Public Key')
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            messages.warning(request, 'Public Key is missing in environment! \
+                Please add Stripe Public Key')
+            return redirect(reverse(
+                'checkout_success', args=[order.order_number]))
 
         cart = request.session.get('cart', {})
         if not cart:
-            messages.error(request, 'There is nothing in your cart at this time')
+            messages.error(request, 'There is nothing in your cart \
+                at this time')
             return redirect(reverse('products'))
-        
+
         current_cart = cart_items(request)
         total = current_cart['grand_total']
         stripe_total = round(total*100)
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
-            amount = stripe_total,
-            currency = settings.STRIPE_CURRENCY
+            amount=stripe_total,
+            currency=settings.STRIPE_CURRENCY
         )
 
-        # If user is logged in, profile information can be retrieved when checkint out
+        # If user is logged in, profile information can be
+        # retrieved when checkint out
         if request.user.is_authenticated:
             try:
                 user_info = UserInfo.objects.get(user=request.user)
@@ -134,6 +147,7 @@ def checkout(request):
 
         return render(request, template, context)
 
+
 def checkout_success(request, order_number):
     """
     Handle successful checkouts
@@ -162,7 +176,7 @@ def checkout_success(request, order_number):
                 'default_state': order.state,
             }
             user_info_form = UserInfoForm(user_data, instance=user_info)
-            
+
             if user_info_form.is_valid():
                 user_info_form.save()
 

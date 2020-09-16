@@ -11,12 +11,12 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderLineItemAdminInline,)
 
     readonly_fields = (
-        'order_number', 
+        'order_number',
         'username',
         'date',
-        'delivery_cost', 
+        'delivery_cost',
         'order_total',
-        'grand_total', 
+        'grand_total',
         'original_cart',
         'stripe_pid',
         )
@@ -53,5 +53,6 @@ class OrderAdmin(admin.ModelAdmin):
         )
 
     ordering = ('-date',)
+
 
 admin.site.register(Order, OrderAdmin)
