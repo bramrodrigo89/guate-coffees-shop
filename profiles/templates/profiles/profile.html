@@ -66,21 +66,21 @@
                     <div class="order-summary-wrapper">
                         <table>
                             <thead class="order-summary-header order-line">
-                                <th class="center-align">Order<br>#</th>
+                                <th class="center-align">Order</th>
                                 <th class="center-align">Date</th>
                                 <th class="center-align">Total<br>Items</th>
                                 <th class="center-align">Order<br>Total</th>
                             </thead>
                         </table>
                         <ul class="collapsible" data-collapsible="accordion">
-                            {% for order in orders %}
+                            {% for order in orders reversed %}
                             <li>
-                                <div class="collapsible-header grey lighten-2 order-line">
+                                <div class="collapsible-header grey {% if forloop.counter|divisibleby:2 %} lighten-4 {% else %} lighten-2 {% endif %} order-line">
                                     <div class="col s3 center-align">
-                                        <a href="{% url 'order_history' order.order_number %}" class="cyan-text text-darken-2" title="{{ order.order_number }}">{{ order.order_number|truncatechars:4 }}</a>
+                                        <i class="material-icons">keyboard_arrow_down</i>
                                     </div>
                                     <div class="col s3 center-align">
-                                        {{ order.date |date:'M-d' }}
+                                        <a href="{% url 'order_history' order.order_number %}" class="cyan-text text-darken-2" title="Order # {{ order.order_number }}">{{ order.date |date:'M-d' }}</a>
                                     </div>
                                     <div class="col s3 center-align">
                                         {{ order.lineitems.all | length }}
