@@ -23,7 +23,7 @@ class ProductAdmin(admin.ModelAdmin):
         'main_image',
         'rating',
     )
-    inlines = [ProductImagesAdmin,]
+    inlines = [ProductImagesAdmin, ]
     ordering = ('pk',)
 
 

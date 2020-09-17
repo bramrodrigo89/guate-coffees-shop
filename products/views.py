@@ -8,6 +8,7 @@ from .forms import ProductForm
 
 # Create your views here.
 
+
 def all_products(request):
     """ A main view to see all available products and filter options """
 
@@ -31,7 +32,7 @@ def all_products(request):
                 direction = request.GET['direction']
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
-            
+
             if sortkey == 'new_product':
                 products = products.filter(new_product=True)
                 sort = 'new'
@@ -48,10 +49,15 @@ def all_products(request):
         if 'search-query' in request.GET:
             query = request.GET['search-query']
             if not query:
-                messages.error(request, 'You did not entery any search critereia' )
+                messages.error(
+                    request, 'You did not entery any search critereia')
                 return redirect(reverse('products'))
-            
-            search_queries = Q(name__icontains=query) | Q(description__icontains=query) | Q(description_2__icontains=query) | Q(roast_level__icontains=query) | Q(region__friendly_name__in=query)
+
+            search_queries = Q(name__icontains=query) | Q(
+                description__icontains=query) | Q(
+                    description_2__icontains=query) | Q(
+                        roast_level__icontains=query) | Q(
+                            region__friendly_name__in=query)
             products = products.filter(search_queries)
 
     current_sorting = f'{sort}_{direction}'
@@ -60,11 +66,11 @@ def all_products(request):
         'products': products,
         'regions': regions,
         'search_query': query,
-        'region_query':region_query,
+        'region_query': region_query,
         'region_query_name': region_query_name,
         'current_sorting': current_sorting,
     }
-    return render (request, 'products/products.html', context)
+    return render(request, 'products/products.html', context)
 
 
 def product_detail(request, product_id):
@@ -95,10 +101,12 @@ def add_product(request):
             messages.success(request, 'Successfully added product!')
             # return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+            messages.error(
+                request, 'Failed to add product. \
+                Please ensure the form is valid.')
     else:
         form = ProductForm()
-        
+
     template = 'products/add_product.html'
     context = {
         'form': form,
