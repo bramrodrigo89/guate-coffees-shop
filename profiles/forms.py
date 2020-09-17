@@ -21,7 +21,7 @@ class UserInfoForm(forms.ModelForm):
             'default_street_address_2': 'Apartment Number, PO BOx',
             'default_town_or_city': 'Town or City',
             'default_state': 'Example: CA',
-            'default_postcode': 'ZIP',       
+            'default_postcode': 'ZIP',
         }
         labels = {
             'first_name': 'First Name, Middle Name',
@@ -33,7 +33,7 @@ class UserInfoForm(forms.ModelForm):
             'default_town_or_city': 'Town or City',
             'default_state': 'State',
             'default_country': 'Country',
-            'default_postcode': 'Postal Code',      
+            'default_postcode': 'Postal Code',
         }
         self.fields['first_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
@@ -46,4 +46,3 @@ class UserInfoForm(forms.ModelForm):
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'profile-info-input'
-    

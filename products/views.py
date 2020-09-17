@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
-from .models import Product, Region, ProductImage
+from .models import Product, Region
 from .forms import ProductForm
 
 # Create your views here.

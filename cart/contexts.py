@@ -10,7 +10,7 @@ def cart_items(request):
     total = 0
     product_count = 0
     cart = request.session.get('cart', {})
-    
+
     for item_id, item_dict in cart.items():
         product = get_object_or_404(Product, pk=item_id)
         for grind, quantity in item_dict['product_by_grind'].items():
@@ -29,9 +29,9 @@ def cart_items(request):
     else:
         delivery = 0
         free_delivery_delta = 0
-    
+
     grand_total = delivery + total
-    
+
     context = {
         'cart_items': cart_items,
         'total': total,

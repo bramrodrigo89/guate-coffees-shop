@@ -1,4 +1,4 @@
-import os
+
 """
 Django settings for guate_coffee_shop project.
 
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    
+
     # Custom Apps
     'home',
     'products',
@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'checkout',
     'profiles',
 
-    #Other Apps
+    # Other Apps
     'star_ratings',
     'materializecssform',
     'django_countries',
@@ -96,10 +96,12 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by allauth
+                # Request Required by Allauth
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                # Custom Context Processors
                 'cart.contexts.cart_items',
             ],
         },
@@ -198,7 +200,7 @@ if 'USE_AWS' in os.environ:
         'CacheControl': 'max-age=94608000',
     }
 
-    #Bucket config
+    # Bucket config
     AWS_STORAGE_BUCKET_NAME = 'guate-coffees-shop'
     AWS_S3_REGION_NAME = 'us-east-1'
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -211,11 +213,12 @@ if 'USE_AWS' in os.environ:
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
     MEDIAFILES_LOCATION = 'media'
 
-    # Override static and media URLs in production using custom domain and declared locations
+    # Override static and media URLs in production
+    # using custom domain and declared locations
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
-RATINGS_VOTES_PER_IP = 3 # or whatever
+RATINGS_VOTES_PER_IP = 3  # or whatever
 
 # Stripe
 FREE_DELIVERY_THRESHOLD = 40
