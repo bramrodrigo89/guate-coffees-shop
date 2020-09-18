@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
 
 from .models import Product, Region
 from .forms import ProductForm
@@ -94,7 +95,15 @@ def add_product(request):
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.FILES['widget_file']:
+
+        newfile = request.FILES['widget_file']
+        fs = FileSystemStorage()
+        # saves the file to `media` folder
+        filename = fs.save(newfile.name, newfile)
+        # gets the url
+        uploaded_file_url = fs.url(filename)
+        
         product_data = {
             'name': request.POST['name'],
             'region': request.POST['region'],
@@ -105,7 +114,7 @@ def add_product(request):
             'cupping_notes': request.POST['cupping_notes'],
             'retail_price': request.POST['retail_price'],
             'rating': request.POST['rating'],
-            'main_image': request.FILES['main_image'],
+            'main_image': request.POST['widget_image'],
             'new_product': request.POST['new_product'],
         }
         product_form = ProductForm(product_data)

@@ -33,6 +33,7 @@
                                 {{ form.cupping_notes | materializecss }}
                                 {{ form.description_2 | materializecss }}
                                 {{ form.retail_price | materializecss }}
+                                {{ form.rating | materializecss }}
                             </div>
                             <div class="card-action">
                                 <input type="checkbox" name="new_product" class="filled-in teal darken-3" id="new-product-checkbox" checked="checked" />
@@ -46,8 +47,7 @@
                     <div class="card horizontal mt-20" id="main-image-form">
                         <div class="card-stacked">
                             <div class="card-content">
-                                {{ form.rating | materializecss }}
-                                {{ form.main_image | materializecss }}
+                                {{ form.widget_image }}
                             </div>
                             <div class="card-action">
                                 <a class="cyan-text text-darken-2">Clear Image</a>

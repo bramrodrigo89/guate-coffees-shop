@@ -1,0 +1,25 @@
+{% if widget.is_initial %}
+    <p>{{ widget.initial_text }}: </p>
+    <a href="{{ widget.value.url }}">
+        <img width="96" height="96" class="rounded shadow-sm" src="{{ widget.value.url }}">
+    </a>
+    {% if not widget.required %}
+    <div class="card-action custom-checkbox mt-20">
+        <p>
+            <input type="checkbox" class="filled-in" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}>
+            <label class="red-text text-darken-3" for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
+        </p>
+    </div>
+    {% endif %}
+    <p>{{ widget.input_text }}: </p>
+{% endif %}
+
+<div class="file-field input-field">
+	<div class="btn">
+        <span>Image</span>
+        <input id="new-image" type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+    </div>
+    <div class="file-path-wrapper">
+        <input placeholder="Upload an image file" class="file-path validate" type="text">
+    </div>
+</div>
