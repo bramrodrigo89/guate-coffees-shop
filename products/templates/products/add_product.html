@@ -14,63 +14,78 @@
         <div class="row">
             <div class="col s12">
                 <h4 class="center-text header">Product Management</h4>
+                <p>Please complete the following information to add a new prouct.</p>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12 m8">
-                <p>Please complete the following information to add a new prouct.</p>
-				<form action="{% url 'add_product' %}" method="POST" id="add-product-form" enctype="multipart/form-data">
-					{% csrf_token %}
+        <form action="{% url 'add_product' %}" method="POST" id="add-product-form" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col s12 m6">
                     <h5 class="header cyan-text text-darken-3 mt-20">Product Info</h5>
-					<div class="card horizontal mt-20">
-						<div class="card-stacked">
+                    <div class="card horizontal mt-20">
+                        <div class="card-stacked">
                             <div class="card-content">
                                 {{ form.name | materializecss }}
                                 {{ form.region | materializecss }}
-                                {{ form.finca | materializecss }}
                                 {{ form.description | materializecss }}
+                                {{ form.finca | materializecss }}
                                 {{ form.roast_level | materializecss }}
                                 {{ form.cupping_notes | materializecss }}
                                 {{ form.description_2 | materializecss }}
                                 {{ form.retail_price | materializecss }}
                             </div>
                             <div class="card-action">
-                                <input type="checkbox" name="save_info" class="filled-in teal darken-3" id="save-info-box" checked="checked" />
-                                <label for="save-info-box">Checkbox</label>
-                                <button class="btn-flat cyan-text" type="submit">Link</button>
+                                <input type="checkbox" name="new_product" class="filled-in teal darken-3" id="new-product-checkbox" checked="checked" />
+                                <label for="new-product-checkbox">Feature product in New Products</label>
                             </div>
-						</div>
-					</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6">
                     <h5 class="header cyan-text text-darken-3 mt-20">Product Image</h5>
-					<div class="card horizontal mt-20" id="delivery-info-form">
-						<div class="card-stacked">
+                    <div class="card horizontal mt-20" id="main-image-form">
+                        <div class="card-stacked">
                             <div class="card-content">
                                 {{ form.rating | materializecss }}
                                 {{ form.main_image | materializecss }}
                             </div>
                             <div class="card-action">
-                                <input type="checkbox" name="save_info" class="filled-in teal darken-3" id="save-info-box" checked="checked" />
-                                <label for="save-info-box">Checkbox</label>
+                                <a class="cyan-text text-darken-2">Clear Image</a>
                             </div>
-						</div>
-					</div>
-					
-                    <div class="submit-button mt-50 right-align">
-                        <a href="{% url 'products' %}"class="btn-flat cyan-text">Cancel</a>
-                        <button id="checkout-button" class="btn waves-effect waves-light deep-purple darken-3">
-                            <span class="">Done</span>
-                            <span class="icon">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                        </button>
+                        </div>
                     </div>
-				</form>
+                    <h5 class="header cyan-text text-darken-3 mt-20">Additional Images</h5>
+                    <div class="card horizontal mt-20" id="additional-images-form">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>Images</span>
+                                        <input type="file" id="images" name="images" accept="image/*" multiple>
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" placeholder="Upload one or more images">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <a class="cyan-text text-darken-2">Clear Images</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 submit-button mt-50 center-align">
+                    <button href="{% url 'products' %}"class="btn-flat cyan-text text-darken-2">
+                        <i class="material-icons left">cancel</i>
+                        Cancel
+                    </button>
+                    <button id="checkout-button" class="btn waves-effect waves-light deep-purple darken-3">
+                        <i class="material-icons left">done</i>
+                        <span class="">Save</span>
+                    </button>
+                </div>
             </div>
-            <div class="col s12 m4 center-align">
-                <h5 class="mt-20">You're Now Adding A New Product</h5>
-                <img src="{{ MEDIA_URL }}full_cups.jpg" alt="Empty Cups image" class="div-cover-image">
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 

@@ -95,9 +95,23 @@ def add_product(request):
         return redirect(reverse('home'))
 
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            product = form.save()
+        product_data = {
+            'name': request.POST['name'],
+            'region': request.POST['region'],
+            'description': request.POST['description'],
+            'description_2': request.POST['description_2'],
+            'finca': request.POST['finca'],
+            'roast_level': request.POST['roast_level'],
+            'cupping_notes': request.POST['cupping_notes'],
+            'retail_price': request.POST['retail_price'],
+            'rating': request.POST['rating'],
+            'main_image': request.FILES['main_image'],
+            'new_product': request.POST['new_product'],
+        }
+        product_form = ProductForm(product_data)
+        
+        if product_form.is_valid():
+            new_product = product_form.save()
             messages.success(request, 'Successfully added product!')
             # return redirect(reverse('product_detail', args=[product.id]))
         else:
@@ -105,11 +119,11 @@ def add_product(request):
                 request, 'Failed to add product. \
                 Please ensure the form is valid.')
     else:
-        form = ProductForm()
+        product_form = ProductForm()
 
     template = 'products/add_product.html'
     context = {
-        'form': form,
+        'form': product_form,
     }
 
     return render(request, template, context)

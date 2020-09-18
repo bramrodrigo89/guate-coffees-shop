@@ -24,14 +24,13 @@ class Product(models.Model):
     region = models.ForeignKey(
         'Region', on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(max_length=254)
-    description = models.TextField(default='Enter general description')
-    description_2 = models.TextField(
-        default='Add product origin description, history, other details...')
+    description = models.TextField(default='', null=False, blank=False)
+    description_2 = models.TextField(default='', null=False, blank=False)
     finca = models.CharField(max_length=30, null=True, blank=True)
-    roast_level = models.CharField(max_length=30, default='e.g. dark')
+    roast_level = models.CharField(max_length=30, default='')
     cupping_notes = models.CharField(max_length=100, null=True, blank=True)
     retail_price = models.DecimalField(
-        max_digits=5, decimal_places=2, default=1.00)
+        max_digits=5, decimal_places=2, default=15.00)
     new_product = models.BooleanField(default=False)
     rating = models.DecimalField(
         max_digits=3, decimal_places=2, default=5.00, null=True, blank=True)
