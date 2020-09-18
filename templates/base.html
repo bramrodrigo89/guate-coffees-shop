@@ -91,7 +91,7 @@
                     <ul id='dropdown_account' class='dropdown-content'>
                         {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                                <li><a href="{% url 'products' %}" class="dropdown-item">Product Management</a></li>
+                                <li><a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a></li>
                                 <li class="divider" tabindex="-1"></li>
                             {% endif %}
                             <li><a href="{% url 'profile' %}" class="dropdown-item">My Profile</a></li>
