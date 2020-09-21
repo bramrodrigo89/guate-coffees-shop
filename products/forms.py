@@ -9,7 +9,7 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = '__all__'
 
-    widget_image = forms.ImageField(
+    main_image = forms.ImageField(
             label='Main Image', required=False, widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
@@ -28,8 +28,7 @@ class ProductForm(forms.ModelForm):
             'cupping_notes': 'chocolate, cherry, nuts...',
             'retail_price':'Price in US$',
             'rating':'Rating from 1 to 5',
-            'widget_image': 'Showin in search results',
-            'main_image': '',
+            'main_image': 'Shown in in search results',
             'new_product': 'Is this product new?',
         }
         labels = {
@@ -42,8 +41,7 @@ class ProductForm(forms.ModelForm):
             'cupping_notes': 'Cupping Notes',
             'retail_price':'Price In US$',
             'rating':'Customer Rating (1 to 5)',
-            'main_image': '',
-            'widget_image': 'Main Image',
+            'main_image': 'Main Image',
             'new_product': 'Feature As New Product',
         }
         

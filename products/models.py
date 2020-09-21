@@ -47,7 +47,7 @@ class ProductImage(models.Model):
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
-        return f'Additional image for product: {self.product.name}'
+        return f'Image for product: {self.product.name}'
 
 
 class ProductReview(models.Model):

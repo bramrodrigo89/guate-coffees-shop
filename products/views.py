@@ -3,12 +3,10 @@ from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
-from django.core.files import File
-import urllib
-import os
+
 
 from .models import Product, Region
-from .forms import ProductForm
+from .forms import ProductForm, AdditionalImage
 
 # Create your views here.
 
@@ -99,13 +97,6 @@ def add_product(request):
         return redirect(reverse('home'))
 
     if request.method == 'POST':
-
-        new_main_image = request.FILES['widget_image'] if 'widget_image' in request.FILES else None
-        fs = FileSystemStorage()
-        filename = fs.save(new_main_image.name, new_main_image)
-        new_main_image_url = fs.url(filename)
-        img_file = urllib.request.urlretrieve(new_main_image_url)
-        
         product_data = {
             'name': request.POST['name'],
             'region': request.POST['region'],
@@ -118,27 +109,24 @@ def add_product(request):
             'rating': request.POST['rating'],
             'new_product': request.POST['new_product'],
         }
-        product_form = ProductForm(product_data)
+        product_form = ProductForm(request.POST, request.FILES)
         
         if product_form.is_valid():
-            new_product = product_form.save(commit=False)
-            new_product.main_image.save(
-                os.path.basename(new_main_image_url),
-                File(open(img_file[0], 'rb'))
-            )
-            new_product.save()
+            new_product = product_form.save()
             messages.success(request, 'Successfully added product!')
-            # return redirect(reverse('product_detail', args=[product.id]))
+            return redirect(reverse('product_detail', args=[new_product.id]))
         else:
             messages.error(
                 request, 'Failed to add product. \
                 Please ensure the form is valid.')
     else:
         product_form = ProductForm()
+        image_form = AdditionalImage()
 
     template = 'products/add_product.html'
     context = {
         'form': product_form,
+        'add_image': image_form,
     }
 
     return render(request, template, context)
