@@ -47,6 +47,10 @@ p {
     margin-bottom: 0px;
 }
 
+.mb-20 {
+    margin-bottom: 25px;
+}
+
 .mx-20 {
     margin-right: 20px;
     margin-left: 20px;

@@ -103,6 +103,12 @@
                                     </div>
                                 </div>
                             </div>
+                            {% if request.user.is_superuser %}
+                            <div class="product-management-links-container mb-20 center-align">
+                                <a class="mx-20 teal-text text-darken-2" href="{% url 'edit_product' product.id %}"><i class="material-icons">create</i>Edit</a>
+                                <a class="mx-20 red-text text-darken-2" href="{% url 'delete_product' product.id %}"><i class="material-icons">delete</i>Delete</a>
+                            </div>
+                            {% endif %}
                         </div>
                         {% endfor %}
                     </div>
