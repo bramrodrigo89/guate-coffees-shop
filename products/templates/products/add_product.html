@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col s12">
                 <h4 class="center-text header">Product Management</h4>
-                <p>After editing the product's information, make sure to Save your changes</p>
+                <p>Please complete the following information to add a new prouct.</p>
             </div>
         </div>
         <form action="{% url 'add_product' %}" method="POST" id="add-product-form" enctype="multipart/form-data">
@@ -73,7 +73,7 @@
                     </button>
                     <button id="checkout-button" class="btn waves-effect waves-light deep-purple darken-3">
                         <i class="material-icons left">done</i>
-                        <span class="">Save Changes</span>
+                        <span class="">Save</span>
                     </button>
                 </div>
             </div>
@@ -88,8 +88,13 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('select').material_select();
-        $('ul.tabs').tabs('select_tab', 'tab_id');
     });
+</script>
+<script type="text/javascript">
+	$('#new-image').change(function() {
+            var file = $('#new-image')[0].files[0];
+            $('#filename').text(`Main image will be set to: ${file.name}`);
+        });
 </script>
 
 {% endblock %}

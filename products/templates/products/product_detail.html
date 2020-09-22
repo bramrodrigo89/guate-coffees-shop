@@ -57,6 +57,12 @@
                         <h4 class="detail-price-label cyan-text text-darken-3">$ {{ product.retail_price }}</h4>
                         {% ratings product %}
                     </div>
+                    {% if request.user.is_superuser %}
+                    <div class="product-management-links-container mb-20 center-align">
+                        <a class="mx-20 teal-text text-darken-2" href="{% url 'edit_product' product.id %}"><i class="material-icons">create</i>Edit</a>
+                        <a class="mx-20 red-text text-darken-2" href="{% url 'delete_product' product.id %}"><i class="material-icons">delete</i>Delete</a>
+                    </div>
+                    {% endif %}
                     <div class="col s12 small-text">
                         <h5 class="cyan-text text-darken-3">About This Product:</h5>
                         <p id="truncated-product-description" class="small-text">{{ product.description|truncatewords:"30" }}</p>
