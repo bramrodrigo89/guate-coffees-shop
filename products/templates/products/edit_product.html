@@ -88,8 +88,13 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('select').material_select();
-        $('ul.tabs').tabs('select_tab', 'tab_id');
     });
+</script>
+<script type="text/javascript">
+	$('#new-image').change(function() {
+            var file = $('#new-image')[0].files[0];
+            $('#filename').text(`Main image will be set to: ${file.name}`);
+        });
 </script>
 
 {% endblock %}
