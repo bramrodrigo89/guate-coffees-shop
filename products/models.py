@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.contenttypes.fields import GenericRelation
-# from profiles.models import UserProfile
+from django.contrib.auth.models import User
 from star_ratings.models import Rating
 
 
@@ -53,13 +53,13 @@ class ProductImage(models.Model):
 class ProductReview(models.Model):
     product = models.ForeignKey(
         'Product', related_name='reviews', on_delete=models.CASCADE)
-    # user = user_profile = models.ForeignKey(
-    #   UserProfile, on_delete=models.SET_NULL, null=True,
-    #   blank=True, related_name='reviews')
-    ratings = GenericRelation(Rating, related_query_name='prodct_review')
+    user = models.ForeignKey(
+      User, on_delete=models.SET_NULL, null=True,
+      blank=True, related_name='reviews')
+    ratings = GenericRelation(Rating, related_query_name='product_review')
     description = models.TextField(
         default='Tell us your comments about this product')
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'Review from user for product: {self.product.name}'
+        return f'Review from {self.user} for product: {self.product.name}'
