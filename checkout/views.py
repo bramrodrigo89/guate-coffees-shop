@@ -48,17 +48,16 @@ def checkout(request):
     if request.method == 'POST':
         cart = request.session.get('cart', {})
         form_data = {
-            'name': request.POST['name'],
-            'region': request.POST['region'],
-            'description': request.POST['description'],
-            'description_2': request.POST['description_2'],
-            'finca': request.POST['finca'],
-            'roast_level': request.POST['roast_level'],
-            'cupping_notes': request.POST['cupping_notes'],
-            'retail_price': request.POST['retail_price'],
-            'rating': request.POST['rating'],
-            'main_image': request.POST['main_image'],
-            'new_product': request.POST['new_product'],
+            'first_name': request.POST['first_name'],
+            'last_name': request.POST['last_name'],
+            'email': request.POST['email'],
+            'phone_number': request.POST['phone_number'],
+            'town_or_city': request.POST['town_or_city'],
+            'street_address_1': request.POST['street_address_1'],
+            'street_address_2': request.POST['street_address_2'],
+            'state': request.POST['state'],
+            'postcode': request.POST['postcode'],
+            'country': request.POST['country'],
         }
         # create new instance of OrderForm
         order_form = OrderForm(form_data)
