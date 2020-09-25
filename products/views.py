@@ -81,13 +81,24 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     image_list = product.other_images.all()
     user = request.user
+    review_exists = False
     if request.user.is_authenticated:
-        review_form = ProductReviewForm(initial={
-            'user': user,
-            'product': product,
-        })
+        try:
+            review = ProductReview.objects.get(
+                    user=user,
+                    product=product,
+            )
+            review_exists = True
+        except ProductReview.DoesNotExist:
+            review_form = ProductReviewForm(initial={
+                'user': user,
+                'product': product,
+            })
+    if review_exists:
+        review = ProductReview.objects.get(user=user, product=product)
+        review_form = ProductReviewForm(instance=review)
     else:
-        review_form = None
+        review_form = ProductReviewForm()
 
     context = {
         'product': product,

@@ -63,15 +63,14 @@ class ProductReview(models.Model):
     user_rating = models.IntegerField(
         default=1,
         validators=[MaxValueValidator(5), MinValueValidator(1)]
-     )
-    #star_ratings = GenericRelation(UserRating, related_query_name='ratings')
+    )
     star_percentage = models.FloatField(
         validators=[MinValueValidator(0.0), MaxValueValidator(100)],
         default=20.0
     )
     description = models.TextField(
         default='', blank=True, null=True)
-    #date = models.DateTimeField(auto_now_add=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

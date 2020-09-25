@@ -1,6 +1,6 @@
 {% load i18n %}
 {% block rating_container %}
-<div id="{{ id }}" class="star-ratings" data-max-rating="{{ star_count }}" data-avg-rating="{{ rating.average }}">
+<div id="{{ id }}" class="star-ratings" data-max-rating="{{ star_count }}" data-avg-rating="{{ user_rating.score }}">
     {% block rating_detail %}
         {% block rating_user %}
             <div class="star-ratings-rating-user">
@@ -11,9 +11,6 @@
                     You have not rated this product yet!
                 {% endif %}
             </div>
-            {% if not user.is_authenticated and not anonymous_ratings and not read_only %}
-                <p>{% trans 'Please log in to rate.' %}</p>
-            {% endif %}
         {% endblock rating_user %}
         <div class="star-ratings-errors"></div>
     {% endblock rating_detail %}
