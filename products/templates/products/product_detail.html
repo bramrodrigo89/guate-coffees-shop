@@ -2,6 +2,7 @@
 {% load static %}
 {% load socialaccount %}
 {% load ratings %}
+{% load materializecss %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
@@ -55,7 +56,7 @@
                             {{ product.roast_level|capfirst }} Roast
                         </div>
                         <h4 class="detail-price-label cyan-text text-darken-3">$ {{ product.retail_price }}</h4>
-                        {% ratings product %}
+                        {% ratings product read_only="True" %}
                     </div>
                     {% if request.user.is_superuser %}
                     <div class="product-management-links-container mb-20 center-align">
@@ -218,12 +219,46 @@
                         </div>
                     </div>
                 </div>
-                <div id="product-reviews-tab" class="col s12">
-                    <p>User Review</p>
-                        {{ review_form }}
+                <div id="product-reviews-tab" class="col s12 mt-50">
+                    <div class="row">
+                        <div class="col s12 m6 center-align">
+                            <h5 class="cyan-text text-darken-3">Average Rating</h5>
+                            <div class="mt-20">
+                                {% ratings product read_only="True" template_name="star_ratings/only_stars_widget.html"%}
+                            </div>
+                            <div class="mt-20">
+                                {% ratings product read_only="True" template_name="star_ratings/only_stats.html"%}
+                            </div>
+                            <div class="mt-20">
 
-                    <p> Other User's Reviews</p>
-                    {% ratings product template_name="star_ratings/only_stars_widget.html"%}
+                            </div>
+                        </div>
+                        <div class="col s12 m6">
+                            <h5 class="center-align  cyan-text text-darken-3">Your Review {{ user_rating.score }}</h5>
+                            {% if request.user.is_authenticated %}
+                                <p>Tell us what you think about {{ product.name |title }}</p>
+                                <form action="#" method="POST" id="add-update-review-form">
+                                    {% csrf_token %}
+                                    <div class="mt-20">
+                                        {% ratings product template_name="star_ratings/only_stars_widget.html"%}
+                                    </div>
+                                    <div>
+                                        {% ratings product read_only="True" template_name="star_ratings/user_stats.html"%}
+                                    </div>
+                                    
+                                
+                                    {{ review_form.description | materializecss }}
+                                    <button type="submit"> Save</button>
+
+                                </form>
+                            {% else %}
+                                Please <a href="{% url 'account_login' %}" class="cyan-text text-darken-1">log in</a> to your account or <a class="cyan-text text-darken-1" href="{% url 'account_signup' %}">sign up</a> to start rating our products
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="other-users-reviews">
+                        <h5 class="center-align cyan-text text-darken-3">What Others Think</h5>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,9 @@
+{% load i18n %}
+
+{% block rating_container %}
+<div id="{{ id }}" data-max-rating="{{ star_count }}" data-avg-rating="{{ rating.average }}">
+    {% block rating_detail %}
+        <p>Average score {{ rating.average|floatformat:"-2" }} from {{ rating.count }} reviews</p>
+    {% endblock rating_detail %}
+</div>
+{% endblock rating_container %}

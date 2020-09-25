@@ -86,6 +86,8 @@ def product_detail(request, product_id):
             'user': user,
             'product': product,
         })
+    else:
+        review_form = None
 
     context = {
         'product': product,
