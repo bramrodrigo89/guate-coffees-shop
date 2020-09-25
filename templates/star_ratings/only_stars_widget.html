@@ -62,6 +62,27 @@
     {% endblock rating_stars %}
     {% block rating_detail %}
     <!-- Custom Content goes here -->
+    <div id="user-rating-div" class="star-ratings" data-max-rating="{{ star_count }}" data-avg-rating="{{ user_rating.score }}">
+        <div class="star-ratings-rating-stars-container">
+            <ul class="star-ratings-rating-background">
+                {% for star in stars %}
+                    <li>
+                        <span class="star-ratings-rating-empty"></span>
+                    </li>
+                {% endfor %}
+            </ul>
+            <ul class="star-ratings-rating-foreground" style="width: {{ userPercentage|floatformat }}%">
+                {% for star in stars %}
+                    <li>
+                        <span class="star-ratings-rating-full"></span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    
+    {{ user_rating.score }}
         
 
 

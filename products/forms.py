@@ -1,6 +1,6 @@
 from django import forms
 from .widgets import CustomClearableFileInput
-from .models import Product, Region, ProductImage
+from .models import Product, Region, ProductImage, ProductReview
 
 
 class ProductForm(forms.ModelForm):
@@ -67,3 +67,8 @@ class AdditionalImage(forms.ModelForm):
     class Meta:
         model = ProductImage
         fields = '__all__'
+
+class ProductReviewForm(forms.ModelForm):
+    class Meta:
+        model = ProductReview
+        exclude = ['user']

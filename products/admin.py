@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Region, ProductImage
+from .models import Product, Region, ProductImage, ProductReview
 
 # Register your models here.
 
@@ -40,5 +40,20 @@ class RegionAdmin(admin.ModelAdmin):
     ordering = ('name',)
 
 
+class ProductReviewAdmin(admin.ModelAdmin):
+    list_display = (
+        'product',
+        'user',
+        'description',
+        'user_rating',
+        'star_percentage',
+        'created_at',
+        'updated_at',
+    )
+    readonly_fields = ('star_percentage',)
+    ordering = ('product',)
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Region, RegionAdmin)
+admin.site.register(ProductReview, ProductReviewAdmin)

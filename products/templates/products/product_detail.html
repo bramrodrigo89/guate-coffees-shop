@@ -219,7 +219,10 @@
                     </div>
                 </div>
                 <div id="product-reviews-tab" class="col s12">
-                    <p>Reviews go here</p>
+                    <p>User Review</p>
+                        {{ review_form }}
+
+                    <p> Other User's Reviews</p>
                     {% ratings product template_name="star_ratings/only_stars_widget.html"%}
                 </div>
             </div>

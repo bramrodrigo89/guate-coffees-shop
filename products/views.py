@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 
 
-from .models import Product, Region
-from .forms import ProductForm, AdditionalImage
+from .models import Product, Region, ProductReview
+from .forms import ProductForm, AdditionalImage, ProductReviewForm
 
 # Create your views here.
 
@@ -52,7 +52,7 @@ def all_products(request):
             query = request.GET['search-query']
             if not query:
                 messages.error(
-                    request, 'You did not entery any search critereia')
+                    request, 'You did not entery any search criteria')
                 return redirect(reverse('products'))
 
             search_queries = Q(name__icontains=query) | Q(
@@ -80,10 +80,17 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
     image_list = product.other_images.all()
+    user = request.user
+    if request.user.is_authenticated:
+        review_form = ProductReviewForm(initial={
+            'user': user,
+            'product': product,
+        })
 
     context = {
         'product': product,
         'image_list': image_list,
+        'review_form': review_form,
     }
 
     return render(request, 'products/product_detail.html', context)

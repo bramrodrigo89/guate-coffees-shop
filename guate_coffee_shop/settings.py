@@ -221,6 +221,7 @@ if 'USE_AWS' in os.environ:
 RATINGS_VOTES_PER_IP = 3  # or whatever
 
 # Star Rating Settings
+STAR_RATINGS_RANGE = 5
 STAR_RATINGS_STAR_HEIGHT = 32
 STAR_RATINGS_STAR_WIDTH = 32
 
