@@ -62,15 +62,15 @@ class ProductReview(models.Model):
       blank=True, related_name='reviews')
     user_rating = models.IntegerField(
         default=1,
-        validators=[MaxValueValidator(5), MinValueValidator(1)]
+        validators=[MaxValueValidator(5), MinValueValidator(1)],
+        null=False, blank=False
     )
     star_percentage = models.FloatField(
         validators=[MinValueValidator(0.0), MaxValueValidator(100)],
-        default=20.0
+        default=20.0, null=False, blank=False
     )
     description = models.TextField(
         default='', blank=True, null=True)
-
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

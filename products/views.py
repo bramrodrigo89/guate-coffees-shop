@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 
@@ -82,6 +83,7 @@ def product_detail(request, product_id):
     image_list = product.other_images.all()
     user = request.user
     review_exists = False
+    review = None
     if request.user.is_authenticated:
         try:
             review = ProductReview.objects.get(
@@ -98,15 +100,30 @@ def product_detail(request, product_id):
         review = ProductReview.objects.get(user=user, product=product)
         review_form = ProductReviewForm(instance=review)
     else:
+        
         review_form = ProductReviewForm()
 
     context = {
         'product': product,
         'image_list': image_list,
         'review_form': review_form,
+        'user_review': review,
     }
 
     return render(request, 'products/product_detail.html', context)
+
+
+@login_required
+def add_or_update_review(request, product_id, username):
+    """ A view to add or update product reviews """
+    if request.method == 'POST':
+        #review_form = 
+        product=get_object_or_404(Product, pk=product_id)
+        review = get_object_or_404(ProductReview, product, username)
+        review.save()
+        messages.success(request, 'Review updated')
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required
