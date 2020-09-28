@@ -71,4 +71,4 @@ class AdditionalImage(forms.ModelForm):
 class ProductReviewForm(forms.ModelForm):
     class Meta:
         model = ProductReview
-        exclude = ['user']
+        fields = '__all__'
