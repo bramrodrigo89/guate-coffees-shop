@@ -236,14 +236,14 @@
                         <div class="col s12 m6">
                             <h5 class="center-align cyan-text text-darken-3">Your Review</h5>
                             {% if request.user.is_authenticated %}
+                                <div class="mt-20 center-align">
+                                    {% ratings product template_name="star_ratings/user_only_stars_widget.html"%}
+                                </div>
+                                <div class="center-align">
+                                    {% ratings product read_only="True" template_name="star_ratings/user_stats.html"%}
+                                </div>
                                 <form action="{% url 'add_or_update_review' product.id request.user %}" method="POST" id="add-update-review-form">
                                     {% csrf_token %}
-                                    <div class="mt-20 center-align">
-                                        {% ratings product template_name="star_ratings/user_only_stars_widget.html"%}
-                                    </div>
-                                    <div class="center-align">
-                                        {% ratings product read_only="True" template_name="star_ratings/user_stats.html"%}
-                                    </div>
                                     <p>Tell us what you think about {{ product.name |title }}</p>
                                     {{ review_form.user_rating | materializecss }}
                                     {{ review_form.star_percentage | materializecss }}

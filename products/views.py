@@ -82,7 +82,6 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     image_list = product.other_images.all()
     user = request.user
-    review_exists = False
     review = None
     if request.user.is_authenticated:
         try:
@@ -92,17 +91,15 @@ def product_detail(request, product_id):
             )
             review_exists = True
         except ProductReview.DoesNotExist:
-            review_form = ProductReviewForm(initial={
-                'user': user,
-                'product': product,
-            })
+            review_exists = False
     if review_exists:
         review = ProductReview.objects.get(user=user, product=product)
         review_form = ProductReviewForm(instance=review)
     else:
-        
-        review_form = ProductReviewForm()
-
+        review_form = ProductReviewForm(initial={
+                'user': user,
+                'product': product,
+            })
     context = {
         'product': product,
         'image_list': image_list,
@@ -116,14 +113,47 @@ def product_detail(request, product_id):
 @login_required
 def add_or_update_review(request, product_id, username):
     """ A view to add or update product reviews """
-    if request.method == 'POST':
-        #review_form = 
-        product=get_object_or_404(Product, pk=product_id)
-        review = get_object_or_404(ProductReview, product, username)
-        review.save()
-        messages.success(request, 'Review updated')
+    user = request.user
+    product = get_object_or_404(Product, pk=product_id)
+    try:
+        review = ProductReview.objects.get(
+                user=user,
+                product=product,
+        )
+        review_exists = True
+    except ProductReview.DoesNotExist:
+        review_exists = False
 
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    if request.method == 'POST':
+        review_data = {
+            'user': user,
+            'product': product,
+            'description': request.POST['description'],
+            'user_rating': request.POST['user_rating'],
+            'star_percentage': request.POST['user_rating'],
+        }
+        if review_exists:
+            review = ProductReview.objects.get(
+                user=user,
+                product=product,
+            )
+            review_form = ProductReviewForm(review_data, instance=review)
+            if review_form.is_valid():
+                review_form.save()
+                messages.success(request, 'Review updated successfully')
+            else:
+                messages.error(request, 'Update failed, please ensure \
+                information entered is valid.')
+        else:
+            review_form = ProductReviewForm(review_data)
+            if review_form.is_valid():
+                review_form.save()
+                messages.success(request, 'Review updated successfully')
+            else:
+                messages.error(request, 'Update failed, please ensure \
+                information entered is valid.')
+
+    return redirect(reverse('product_detail', args=[product.id]))
 
 
 @login_required
