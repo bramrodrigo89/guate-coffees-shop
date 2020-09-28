@@ -1,12 +1,13 @@
 {% load i18n %}
 {% block rating_container %}
-<div id="{{ id }}" class="star-ratings" data-max-rating="{{ star_count }}" data-avg-rating="{{ user_rating.score }}">
+<div id="{{ id }}" class="user-star-ratings" data-max-rating="{{ star_count }}" data-avg-rating="{{ user_rating.score }}">
     {% block rating_detail %}
         {% block rating_user %}
-            <div class="star-ratings-rating-user">
+            <div id="interactive-ratings-user-score" class="star-ratings-rating-user">
                 {% if user_rating %}
                     You rated this product:
-                    <span id="star-ratings-user-rating" class='star-ratings-rating-value' data-when-null='Not rated'>{{ user_rating.score }}</span> / {{ star_count }} stars
+                    <span id="star-ratings-user-rating" style="visibility: hidden;" class='star-ratings-rating-value' data-when-null='Not rated'>{{ user_rating.score }}</span>
+                    <span id="star-ratings-user-rating-span"></span> / {{ star_count }} stars
                 {% else %}
                     You have not rated this product yet!
                 {% endif %}

@@ -239,7 +239,7 @@
                                 <div class="mt-20 center-align">
                                     {% ratings product template_name="star_ratings/user_only_stars_widget.html"%}
                                 </div>
-                                <div class="center-align">
+                                <div class="mt-20 center-align">
                                     {% ratings product read_only="True" template_name="star_ratings/user_stats.html"%}
                                 </div>
                                 <form action="{% url 'add_or_update_review' product.id request.user %}" method="POST" id="add-update-review-form">
@@ -247,8 +247,10 @@
                                     <p>Tell us what you think about {{ product.name |title }}</p>
                                     {{ review_form.user_rating | materializecss }}
                                     {{ review_form.star_percentage | materializecss }}
-                                    {{ review_form.description | materializecss }}
-                                    <button type="submit">Save</button>
+                                    {{ review_form.description | materializecss:'custom_size=s12, icon=fas fa-comment-dots' }}
+                                    <div class="center-align">
+                                        <button class="btn waves-effect waves-light deep-purple darken-3" type="submit">Save</button>
+                                    </div>
                                 </form>
                             {% else %}
                                 Please <a href="{% url 'account_login' %}" class="cyan-text text-darken-1">log in</a> to your account or <a class="cyan-text text-darken-1" href="{% url 'account_signup' %}">sign up</a> to start rating our products
@@ -342,14 +344,41 @@
         $('select').material_select();
         $('ul.tabs').tabs('select_tab', 'tab_id');
         autoplay();
-        $('#custom-user-star-rating-foreground').css("width", "{{ user_review.star_percentage }}%")
+    });
+    // Auto fill Star Rating Widget from user stats:
+    // Adjust width of star rating foreground and prefill custom review form
+
+    var starUserRating = parseInt($('#star-ratings-user-rating').html());
+    var maxRating = parseInt($('.custom-user-star-ratings-widget').attr('data-max-rating'));
+    var userRatingPercentage = starUserRating/maxRating*100;
+    
+    if (!isNaN(starUserRating)){
+        $('#custom-user-star-rating-foreground').css("width", userRatingPercentage+"%");
+        $('#star-ratings-user-rating-span').eq(0).html(starUserRating);
+        console.log(starUserRating);
+        $('#id_user_rating').val(parseFloat(starUserRating));
+        $('#id_star_percentage').val(userRatingPercentage);
+    }
+
+    // Callback function called when user submits the star rating
+    // form using the custom widget
+
+    $('.star-ratings-rate-action').submit(function() {
+        var selectedScore = $(this).find('input[name ="score"]').val();
+        var newRatingPercentage = selectedScore/maxRating*100;
+        console.log(selectedScore);
+        $('#star-ratings-user-rating-span').html(selectedScore);
+        $('#id_user_rating').val(selectedScore);
+        $('#id_star_percentage').val(newRatingPercentage);
+        setTimeout(function(){
+            $('#custom-user-star-rating-foreground').css("width", newRatingPercentage+"%");
+        }, 500);
+        
+        //alert( "You selected: " + score );
     });
 </script>
 <script type="text/javascript">
-        $('.star-ratings-rate-action').submit(function() {
-            alert( "Handler for .submit() called." );
-            $('#filename').text(`Image will be set to:`);
-        });
+        
     </script>
 {% include 'products/includes/product_detail_script.html' %}
 {% endblock %}

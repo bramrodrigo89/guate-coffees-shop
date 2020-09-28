@@ -10,7 +10,7 @@ class ProductForm(forms.ModelForm):
         fields = '__all__'
 
     main_image = forms.ImageField(
-            label='Main Image', required=False, widget=CustomClearableFileInput)
+        label='Main Image', required=False, widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         
@@ -44,7 +44,6 @@ class ProductForm(forms.ModelForm):
             'main_image': 'Main Image',
             'new_product': 'Feature As New Product',
         }
-        
 
         regions = Region.objects.all()
         #   creates a list of touples of friendly names with their IDs
@@ -63,12 +62,42 @@ class ProductForm(forms.ModelForm):
             self.fields[field].widget.attrs['placeholder'] = placeholder
             
 
-class AdditionalImage(forms.ModelForm):
-    class Meta:
-        model = ProductImage
-        fields = '__all__'
-
 class ProductReviewForm(forms.ModelForm):
     class Meta:
         model = ProductReview
+        fields = '__all__'
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'user': 'Your username',
+            'product':'Product to be reviewed',
+            'user_rating': 'From 1 to 5',
+            'star_percentage': 'This is calculated automatically',
+            'description': 'How was your experience with this product?',
+            'created_at': '', 'updated_at':
+            ''
+        }
+        labels = {
+            'user': '',
+            'product':'Product Name',
+            'user_rating': '',
+            'star_percentage': '',
+            'description': 'Your comments about this product:',
+            'created_at': 'Created',
+            'updated_at': 'Last Update'
+        }
+
+        for field in self.fields:
+            label = labels[field]
+            placeholder = placeholders[field]
+            self.fields[field].label = label
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+        self.fields['star_percentage'].widget = forms.HiddenInput()
+        self.fields['user_rating'].widget = forms.HiddenInput()
+
+
+class AdditionalImage(forms.ModelForm):
+    class Meta:
+        model = ProductImage
         fields = '__all__'
