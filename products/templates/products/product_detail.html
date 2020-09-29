@@ -264,13 +264,14 @@
                             <ul class="collection left-align">
                                 {% for review in all_reviews %}
                                 <li class="collection-item avatar">
-                                    <blockquote>
-                                        <span class="btn-floating no-cursor mr-20"><img class="img-icon" src="{{ MEDIA_URL }}coffee_bean_icon.png" alt="Coffee Bean Icon"></span>
-                                        
-                                        <span class="title">User: <span class="cyan-text text-darken-2">{{ review.user }}</span><i class="fas fa-comment-dots mx-20" aria-hidden="true"></i></span>
-                                        <p>{{ review.description }}<i class="material-icons medium">format_quote</i></p>
+                                    <div class="review-primary-content">
+                                        <span class="btn-floating no-cursor mr-20"><i class="material-icons" aria-hidden="true">free_breakfast</i></span>
+                                        <span class="title">User: <span class="cyan-text text-darken-2 mr-20">{{ review.user }}</span><i class="fas fa-comment-dots hide-on-small-only" aria-hidden="true"></i></span>
+                                    </div>
+                                    <blockquote class="mt-50">
+                                        <p><i class="material-icons small">format_quote</i>{{ review.description }}<i class="material-icons medium">format_quote</i></p>
                                     </blockquote>
-                                    <a href="#!" class="secondary-content ">{{ review.user_rating }} / 5 <i class="material-icons">grade</i></a>
+                                    <span href="#!" class="secondary-content ">{{ review.user_rating }} / 5 <i class="material-icons yellow-text text-darken-3">grade</i></span>
                                 </li>
                                 {% endfor %}
                             </ul>

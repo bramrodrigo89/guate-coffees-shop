@@ -233,6 +233,12 @@ header nav {
     right: 10px !important;
 }
 
+.review-primary-content {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
 .quote-collection .avatar {
     padding-left: 20px !important;
 }
