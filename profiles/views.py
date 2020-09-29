@@ -11,6 +11,7 @@ def profile(request):
     """ Display the user's profile. """
     user = request.user
     user_info = get_object_or_404(UserInfo, user=user)
+    reviews = user.reviews.all()
 
     if request.method == 'POST':
         user_info_form = UserInfoForm(request.POST, instance=user_info)
@@ -34,6 +35,7 @@ def profile(request):
         'user_info_form': user_info_form,
         'profile': profile,
         'orders': orders,
+        'reviews': reviews,
     }
 
     return render(request, template, context)

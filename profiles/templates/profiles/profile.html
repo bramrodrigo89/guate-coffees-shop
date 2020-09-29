@@ -131,20 +131,18 @@
                     </div>
                     {% else %}
                     <div class="container">
-                        <h6>You have not past orders yet!<br>Check our products and start ordering</h6>
+                        <h6>You have no orders yet!<br>Check our products and start ordering</h6>
                     </div>
                     <div class="col s12 center-align mt-20">
                         <a class="btn" href="{% url 'products' %}" >Our Products</a>
                     </div>
                     {% endif %}
-
-
-                    <div class="card-content right-align">
-                        <h6 class="mt-20"><strong>Some text</strong></h6>
-                        <h6>Some text</h6>
-                        <h5><strong>Text <span class="teal-text text-darken-3">Text</span></strong></h5>
+                    <div class="card-content center-align mt-50">
+                        <h5>Product Reviews</h5>
+                        <h6 class="mt-20"><strong>You have reviewed:</strong></h6>
+                        <h5><span class="teal-text text-darken-3">{{ reviews |length }}</span> Products</h5>
+                        <h6>Thank you! Our products' reviews help us bring the best products to you and improve our store.</h6>
                     </div>
-                    
                 </div>
             </div>
         </div>
