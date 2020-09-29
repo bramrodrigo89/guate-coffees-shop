@@ -82,6 +82,7 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     image_list = product.other_images.all()
     user = request.user
+    review_exists = False
     review = None
     if request.user.is_authenticated:
         try:
