@@ -264,10 +264,13 @@
                             <ul class="collection left-align">
                                 {% for review in all_reviews %}
                                 <li class="collection-item avatar">
-                                    <img src="images/yuna.jpg" alt="" class="circle">
-                                    <span class="title">{{ review.user }}</span>
-                                    <p>{{ review.description }}</p>
-                                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                                    <blockquote>
+                                        <span class="btn-floating no-cursor mr-20"><img class="img-icon" src="{{ MEDIA_URL }}coffee_bean_icon.png" alt="Coffee Bean Icon"></span>
+                                        
+                                        <span class="title">User: <span class="cyan-text text-darken-2">{{ review.user }}</span><i class="fas fa-comment-dots mx-20" aria-hidden="true"></i></span>
+                                        <p>{{ review.description }}<i class="material-icons medium">format_quote</i></p>
+                                    </blockquote>
+                                    <a href="#!" class="secondary-content ">{{ review.user_rating }} / 5 <i class="material-icons">grade</i></a>
                                 </li>
                                 {% endfor %}
                             </ul>
@@ -275,7 +278,6 @@
                             <p>Nobody has commented about this product yet!</p>
                             {% endif %}
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -362,9 +364,9 @@
         $('ul.tabs').tabs('select_tab', 'tab_id');
         autoplay();
     });
+
     // Auto fill Star Rating Widget from user stats:
     // Adjust width of star rating foreground and prefill custom review form
-
     var starUserRating = parseInt($('#star-ratings-user-rating').html());
     var maxRating = parseInt($('.custom-user-star-ratings-widget').attr('data-max-rating'));
     var userRatingPercentage = starUserRating/maxRating*100;
@@ -379,7 +381,6 @@
 
     // Callback function called when user submits the star rating
     // form using the custom widget
-
     $('.star-ratings-rate-action').submit(function() {
         var selectedScore = $(this).find('input[name ="score"]').val();
         var newRatingPercentage = selectedScore/maxRating*100;
@@ -391,7 +392,6 @@
             $('#custom-user-star-rating-foreground').css("width", newRatingPercentage+"%");
         }, 500);
         
-        //alert( "You selected: " + score );
     });
 </script>
 <script type="text/javascript">
