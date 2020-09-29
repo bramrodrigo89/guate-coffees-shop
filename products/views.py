@@ -84,7 +84,9 @@ def product_detail(request, product_id):
     user = request.user
     review_exists = False
     review = None
+    all_reviews = product.reviews.all()
     if request.user.is_authenticated:
+        all_reviews = product.reviews.exclude(user=user)
         try:
             review = ProductReview.objects.get(
                     user=user,
@@ -106,6 +108,7 @@ def product_detail(request, product_id):
         'image_list': image_list,
         'review_form': review_form,
         'user_review': review,
+        'all_reviews': all_reviews,
     }
 
     return render(request, 'products/product_detail.html', context)
@@ -149,10 +152,10 @@ def add_or_update_review(request, product_id, username):
             review_form = ProductReviewForm(review_data)
             if review_form.is_valid():
                 review_form.save()
-                messages.success(request, 'Review updated successfully')
+                messages.success(request, 'Review added successfully')
             else:
-                messages.error(request, 'Update failed, please ensure \
-                information entered is valid.')
+                messages.error(request, 'Review was not added, please \
+                    ensure information entered is valid.')
 
     return redirect(reverse('product_detail', args=[product.id]))
 

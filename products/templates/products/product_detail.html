@@ -257,8 +257,25 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="other-users-reviews">
+                    <div class="other-users-reviews mt-50">
                         <h5 class="center-align cyan-text text-darken-3">What Others Think</h5>
+                        <div class="other-users-container center-align mt-50">
+                            {% if all_reviews %}
+                            <ul class="collection left-align">
+                                {% for review in all_reviews %}
+                                <li class="collection-item avatar">
+                                    <img src="images/yuna.jpg" alt="" class="circle">
+                                    <span class="title">{{ review.user }}</span>
+                                    <p>{{ review.description }}</p>
+                                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                            <p>Nobody has commented about this product yet!</p>
+                            {% endif %}
+                        </div>
+
                     </div>
                 </div>
             </div>

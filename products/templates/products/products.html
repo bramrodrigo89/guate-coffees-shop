@@ -95,7 +95,7 @@
                                     <hr>
                                     <p id="card-price-text">${{ product.retail_price }}</p>
                                     <div class="rating-stars-container">
-                                        {% ratings product %}
+                                        {% ratings product read_only="True" %}
                                     </div>
                                     <div class="chip center-align">
                                         <img src="{{ MEDIA_URL }}explore_icon.png" alt="Explore Icon">
