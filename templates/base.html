@@ -200,7 +200,9 @@
 {% endif %}
 
 {% block postloadjs %}
-<script type="text/javascript">    
+<script type="text/javascript">
+    var content_navbar = document.getElementById("content-navbar");
+    var sticky = content_navbar.offsetTop
     $(document).ready(function(){
         $('.button-collapse').sideNav();
         $('.parallax').parallax();

@@ -1,15 +1,22 @@
 
     
 // Add sticky function to navbar of base.html
+// Source: https://www.w3schools.com/howto/howto_js_sticky_header.asp
 
 function stickyContentNavbar() {
-    var content_navbar = document.getElementById("content-navbar");
-    var sticky = content_navbar.offsetTop;
     if (window.pageYOffset > sticky) {
         content_navbar.classList.add("stuck");
     } else {
         content_navbar.classList.remove("stuck");
     }
+}
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
 }
 
 // Dismiss a toast programatically
