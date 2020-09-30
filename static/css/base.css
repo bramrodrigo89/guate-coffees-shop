@@ -89,6 +89,10 @@ p {
         background-size: cover;
 }
 
+nav .brand-logo {
+    font-size: 1.4rem;
+}
+
 header nav {
     height: 200px;
     padding-top: 10px;
@@ -175,6 +179,19 @@ header nav {
     border-radius: 0;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
+}
+
+/* Action Buttons Desktop  */
+
+.btn-floating-label {
+	position: fixed;
+	right: 85px;
+	padding:0px 0.5rem;
+    width:80px;
+	text-align: center;
+	background-color: rgba(50, 50, 50, 0.8);
+	color: #FFF;
+    border-radius: 2px;
 }
 
 /* --------- Parallax ----------- */
@@ -496,7 +513,8 @@ footer.page-footer {
         left: 55%;
         -webkit-transform: translateX(-50%);
         transform: translateX(-50%);
-        width: 80%
+        width: 80%;
+        font-size: 2.0rem;
     }
     #mobile-button-collapse {
         color: #444; 
@@ -543,9 +561,7 @@ footer.page-footer {
         line-height: 70px; 
     }
     nav .brand-logo {
-        font-size: 3.0rem;
         width: 250px;
-        color: #444;
         left: 0%;
         -webkit-transform: translateX(0%);
         transform: translateX(0%);

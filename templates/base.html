@@ -59,7 +59,7 @@
             <nav role="navigation">
                 <div class="nav-wrapper container">
                     <div class="navbar-links-container row">
-                        <a id="logo-link" href="{% url 'home' %}" class="brand-logo">Logo Name</a>
+                        <a id="logo-link" href="{% url 'home' %}" class="brand-logo">Guate Coffees Shop</a>
                         <!-- Desktop Top Header Bar -->
                         <ul class="right hide-on-med-and-down">
                             <li><a class="waves-effect modal-trigger header-link" href="#search-bar-modal"><i class="material-icons left">search</i>Search</a></li>
@@ -127,6 +127,28 @@
     {% block content %}
     {% endblock %}
 
+    <!-- Fixed Action Buttons for Desktop View -->
+	<div class="fixed-action-btn hide-on-med-and-down">
+		<a class="btn-floating btn-large waves-effect waves-light red">
+			<i class="large material-icons">apps</i>
+		</a>
+		<ul>
+			<li>
+				<a class="btn-floating orange accent-2 waves-effect modal-trigger" href="#search-bar-modal"><i class="material-icons">search</i></a>
+				<a class="btn-floating btn-floating-label modal-trigger" href="#search-bar-modal">Search</a>
+			</li>
+			<li>
+				<a href="#" class="btn-floating blue waves-effect dropdown-button" data-beloworigin="true" data-stoppropagation="true" data-hover="true" data-activates="dropdown_account"><i class="material-icons">local_cafe</i></a>
+				<a href="#" class="btn-floating btn-floating-label">Account</a>
+			</li>
+			<li>
+				<a href="{% url 'view_cart' %}" class="btn-floating waves-effect deep-purple darken-3"><i class="material-icons">shopping_cart</i></a>
+				<a href="{% url 'view_cart' %}" class="btn-floating btn-floating-label">Cart</a>
+			</li>
+		</ul>
+	</div>
+
+    <!-- Footer  -->
     <footer class="page-footer teal">
         <div class="container">
             <div class="row">
@@ -212,7 +234,5 @@
 </script>
 {% endblock %}
 
-
 </body>
-
 </html>
