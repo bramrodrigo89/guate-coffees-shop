@@ -102,6 +102,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 # Custom Context Processors
+                'home.contexts.customer_inquiry_form',
                 'cart.contexts.cart_items',
             ],
         },

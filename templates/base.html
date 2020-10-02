@@ -211,31 +211,28 @@
                 <div class="col s12">
                     <form class="form" action="{% url 'send_inquiry' %}" method="POST">
                         {% csrf_token %}
-                        <div class="row mt-20">
-                            <div class="modal-input-field col s12">
-                                <select name="category_selector" class="icons validate mt-20">
+                        <div class="mt-20">
+                            <div class="modal-input-field">
+                                <h6>Select Topic For Inquiry</h6>
+                                <select id="category_selector" name="category_selector" class="icons validate mt-20">
                                     <option value="" selected>Choose Option *</option>
                                     <option value="Question" data-icon="{{ MEDIA_URL }}coffee_bean_icon.png">General Questions</option>
                                     <option value="Suggestion" data-icon="{{ MEDIA_URL }}coffee_coarse_grind_icon.png">Suggestions, Comments</option>
                                     <option value="Claim" data-icon="{{ MEDIA_URL }}coffee_medium_grind_icon.png">Product/Order Claim</option>
                                     <option value="Other" data-icon="{{ MEDIA_URL }}coffee_fine_grind_icon.png">Other Topics</option>
                                 </select>
-                                <label class="option-label">Select Topic For Inquiry</label>
                             </div>
-                            <div class="modal-input-field col s12">
-                                <p class="">Please enter your contact information</p>
+                            <div class="modal-input-field">
+                                <h6>Please enter your contact information</h6>
                             </div>
-                            <div class="modal-input-field col s12">
-                                <div class="row">
-                                    <div class="col s12 right-align">
-                                        <p>Something else...</p>
-                                    </div>
-                                </div>
-                                <div class="center-align col s12">
-                                    <button type="submit" class="waves-effect waves-light btn mt-20"><i class="material-icons left">send</i>Send Request</button>
-                                </div>
+                            <div class="modal-input-field right-align">
+                                {{ inquiry_form.first_name | materializecss }}
+                                {{ inquiry_form.last_name | materializecss }}
                             </div>
-                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            <div class="center-align col s12">
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                <button type="submit" class="waves-effect waves-light btn mt-20"><i class="material-icons left">send</i>Send Request</button>
+                            </div>
                         </div>
                     </form>
                 </div>

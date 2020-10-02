@@ -14,6 +14,7 @@ class CustomerInquiryForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
+            'category': '',
             'first_name': 'Example: John',
             'last_name': 'Example: Smith',
             'email': 'your_email@mail.com',
@@ -23,6 +24,7 @@ class CustomerInquiryForm(forms.ModelForm):
             'created_at': 'Date of creation',
         }
         labels = {
+            'category': '',
             'first_name': 'First Name',
             'last_name': 'Last Name',
             'email': 'Email Address',
