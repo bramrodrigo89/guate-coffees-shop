@@ -290,6 +290,12 @@ header nav {
     margin: 0;
 }
 
+/* Contact Us Modal */
+
+.modal-input-field .prefix {
+    width: auto !important;
+}
+
 /* All Products Page */
 
 .filter-products-collection {

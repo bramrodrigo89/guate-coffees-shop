@@ -1,0 +1,15 @@
+
+Hello, {{ form.first_name }}!
+
+
+We have succesfully received your message at Guatemalan Coffees Shop. Thank you for taking the time to contact us.
+
+Please allow 2 to 3 business days to expect a reply from our service center. A follow up email will be sent to {{ form.email }} which will include there answers for all your questions or issues. 
+If you have any questions, feel free to contact us at {{ contact_email }}.
+
+Thank you again for chosing us!
+
+
+Sincerely,
+
+The Guatemalan Coffees Shop Team

@@ -1,6 +1,9 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
 
 # Create your models here.
 
@@ -20,3 +23,20 @@ class CustomerInquiry(models.Model):
 
     def __str__(self):
         return f'{self.category} sent by {self.user}'
+    
+    def _send_confirmation_email(self, form):
+        """Send an order confirmation email"""
+        customer_email = form.email
+        subject = render_to_string(
+            'home/confirmation_emails/confirmation_email_subject.txt',
+            {'form': form})
+        body = render_to_string(
+            'home/confirmation_emails/confirmation_email_body.txt',
+            {'form': form, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            [customer_email]
+        )

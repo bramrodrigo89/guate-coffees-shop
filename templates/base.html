@@ -232,7 +232,7 @@
                                 {{ inquiry_form.last_name | materializecss:'custom_size=s12 m6' }}
                                 {{ inquiry_form.email | materializecss:'icon=far fa-envelope, custom_size=s12 m6' }}
                                 {{ inquiry_form.phone_number | materializecss:'icon=fas fa-phone, custom_size=s12 m6' }}
-                                {{ inquiry_form.description | materializecss }}
+                                {{ inquiry_form.description | materializecss:'custom_size=s12, icon=fas fa-comment' }}
                             </div>
                             <div class="center-align col s12">
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
