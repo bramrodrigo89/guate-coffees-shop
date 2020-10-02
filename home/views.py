@@ -16,11 +16,19 @@ def send_inquiry(request):
     """ A view to send an inquiry using the contact modal """
     if request.method == 'POST':
         user = request.user
-        inquiry_form = CustomerInquiryForm(request.POST)
+        redirect_url = request.POST.get('redirect_url')
+        inquiry_data = {
+            'category': request.POST.get('category_selector'),
+            'user': user,
+            'first_name': request.POST['first_name'],
+            'last_name': request.POST['last_name'],
+            'email': request.POST['email'],
+            'phone_number': request.POST['phone_number'],
+            'description': request.POST['description'],
+        }
+        inquiry_form = CustomerInquiryForm(inquiry_data)
         if inquiry_form.is_valid():
-            inquiry = inquiry_form.save(commit=False)
-            inquiry.user = user
-            inquiry.save()
+            inquiry = inquiry_form.save()
             messages.success(
                 request, 'Thank you! Your inquiry was sent successfully!'
             )
@@ -29,5 +37,5 @@ def send_inquiry(request):
                 request, 'Sorry! Please ensure the form is valid.'
             )
     
-    return render(request, 'home/index.html')
+    return redirect(redirect_url)
 

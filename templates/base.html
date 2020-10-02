@@ -214,20 +214,25 @@
                         <div class="mt-20">
                             <div class="modal-input-field">
                                 <h6>Select Topic For Inquiry</h6>
-                                <select id="category_selector" name="category_selector" class="icons validate mt-20">
-                                    <option value="" selected>Choose Option *</option>
-                                    <option value="Question" data-icon="{{ MEDIA_URL }}coffee_bean_icon.png">General Questions</option>
-                                    <option value="Suggestion" data-icon="{{ MEDIA_URL }}coffee_coarse_grind_icon.png">Suggestions, Comments</option>
-                                    <option value="Claim" data-icon="{{ MEDIA_URL }}coffee_medium_grind_icon.png">Product/Order Claim</option>
-                                    <option value="Other" data-icon="{{ MEDIA_URL }}coffee_fine_grind_icon.png">Other Topics</option>
-                                </select>
+                                <div class="select-wrapper icons category-option-selector validate">
+                                    <select id="category_selector" name="category_selector" class="icons validate mt-20">
+                                        <option value="" selected>Choose Option *</option>
+                                        <option value="Question" data-icon="{{ MEDIA_URL }}coffee_bean_icon.png">General Questions</option>
+                                        <option value="Suggestion" data-icon="{{ MEDIA_URL }}coffee_coarse_grind_icon.png">Suggestions, Comments</option>
+                                        <option value="Claim" data-icon="{{ MEDIA_URL }}coffee_medium_grind_icon.png">Product/Order Claim</option>
+                                        <option value="Other" data-icon="{{ MEDIA_URL }}coffee_fine_grind_icon.png">Other Topics</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="modal-input-field">
+                            <div class="modal-input-field mt-20">
                                 <h6>Please enter your contact information</h6>
                             </div>
-                            <div class="modal-input-field right-align">
-                                {{ inquiry_form.first_name | materializecss }}
-                                {{ inquiry_form.last_name | materializecss }}
+                            <div class="modal-input-field right-align mt-20">
+                                {{ inquiry_form.first_name | materializecss:'custom_size=s12 m6, icon=fas fa-user' }}
+                                {{ inquiry_form.last_name | materializecss:'custom_size=s12 m6' }}
+                                {{ inquiry_form.email | materializecss:'icon=far fa-envelope, custom_size=s12 m6' }}
+                                {{ inquiry_form.phone_number | materializecss:'icon=fas fa-phone, custom_size=s12 m6' }}
+                                {{ inquiry_form.description | materializecss }}
                             </div>
                             <div class="center-align col s12">
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">

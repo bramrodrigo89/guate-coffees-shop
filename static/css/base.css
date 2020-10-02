@@ -353,7 +353,7 @@ header nav {
     margin-bottom: 10px;
 }
 
-.grind-option-selector input.select-dropdown {
+.select-wrapper input.select-dropdown {
     color: #26a69a;
     font-size: 1.2rem;
 }
