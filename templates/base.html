@@ -83,7 +83,7 @@
                             <li><a href="{% url 'home' %}" class="waves-effect waves-light orange accent-2 black-text btn">Home</a></li>
                             <li><a href="{% url 'products' %}" class="waves-effect waves-light black-text btn">Products</a></li>
                             <li><a href="#" class="waves-effect waves-light deep-purple darken-3 btn">Coffee Club</a></li>
-                            <li><a href="#" class="waves-effect waves-light orange accent-2 black-text btn">About</a></li>
+                            <li><a onclick="scrollToAnchor('about-us-anchor')" class="waves-effect waves-light orange accent-2 black-text btn">About</a></li>
                             <li><a href="#contact-us-modal" class="waves-effect waves-light red btn modal-trigger">Contact</a></li>
                         </ul>
                     </div>
@@ -159,29 +159,29 @@
 					country with your name on it. Guatemalan coffees roasted to order and shipped direct to you.</p>
 				</div>
                 <div class="col l3 s12">
-                    <h5 class="white-text">Settings</h5>
+                    <h5 class="white-text">Internal Links</h5>
                     <ul>
-                        <li><a class="white-text" href="#!">Link 1</a></li>
-                        <li><a class="white-text" href="#!">Link 2</a></li>
-                        <li><a class="white-text" href="#!">Link 3</a></li>
-                        <li><a class="white-text" href="#!">Link 4</a></li>
+                        <li><a class="white-text" href="{% url 'home' %}">Home</a></li>
+                        <li><a class="white-text" href="{% url 'products' %}">Products</a></li>
+                        <li><a class="white-text" href="#!">Coffee Clubs</a></li>
+                        <li><a class="white-text modal-trigger" href="#contact-us-modal">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col l3 s12">
-                    <h5 class="white-text">Connect</h5>
+                    <h5 class="white-text">External Links</h5>
                     <ul>
-                        <li><a class="white-text" href="#!">Link 1</a></li>
-                        <li><a class="white-text" href="#!">Link 2</a></li>
-                        <li><a class="white-text" href="#!">Link 3</a></li>
-                        <li><a class="white-text" href="#!">Link 4</a></li>
+                        <li><a target="_blank" class="white-text" href="https://www.homegrounds.co/guatemalan-coffee/">A Guide To Guatemalan Coffee</a></li>
+                        <li><a target="_blank" class="white-text" href="http://www.guatemalancoffees.com/">Guatemalan Coffees</a></li>
+                        <li><a target="_blank" class="white-text" href="https://www.visitguatemala.com/?lang=en">Visit Guatemala</a></li>
+                        <li><a target="_blank" class="white-text" href="https://www.anacafe.org/">Anacafe</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Made by <a class="brown-text text-lighten-3"
-                    href="http://materializecss.com">Materialize</a>
+                © 2020 Copyright <a target="_blank" href="https://github.com/bramrodrigo89" class="cyan-text text-lighten-3">Rodrigo Alvarez Monterroso</a>
+				<a class="cyan-text text-lighten-4 right" target="_blank" ><i class="material-icons left">code</i>My GitHub</a>
             </div>
         </div>
     </footer>
@@ -268,6 +268,10 @@
 
     {% block postloadjs %}
     <script type="text/javascript">
+        function scrollToAnchor(anchor){
+            var aTag = $("a[name='"+ anchor +"']");
+            $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+        }
         var content_navbar = document.getElementById("content-navbar");
         var sticky = content_navbar.offsetTop
         $(document).ready(function(){
@@ -275,9 +279,14 @@
             $('.parallax').parallax();
             $('.modal').modal();
             $('select').material_select();
+            
             window.onscroll = function() {stickyContentNavbar()};
         });
     </script>
+
+    $(document).ready(function(){
+    
+    });
     {% endblock %}
     </body>
 </html>
