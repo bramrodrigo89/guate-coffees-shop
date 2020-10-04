@@ -29,7 +29,7 @@ def send_inquiry(request):
         inquiry_form = CustomerInquiryForm(inquiry_data)
         if inquiry_form.is_valid():
             inquiry = inquiry_form.save()
-            inquiry._send_confirmation_email(inquiry_form)
+            inquiry._send_confirmation_email(inquiry)
             messages.success(
                 request, 'Thank you! Your inquiry was sent successfully!'
             )
