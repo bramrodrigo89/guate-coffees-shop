@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load socialaccount %}
+{% load cart_tools %}
+
+{% block page_header %}
+{% endblock %}
+
+{% block content %}
+<!-- Cart Items Section -->
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12">
+                <h4 class="center-text header">Sorry!</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8">
+                <h5>The page you are trying to reach does not exist.</h5>
+                <p>Please check the URL address in your browser and try again.</p>
+            </div>
+            <div class="col s12 m4 center-align">
+                <img src="{{ MEDIA_URL }}empty_cups.jpg" alt="Empty Cups image" class="div-cover-image">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Back to Products Button -->
+<div class="container">
+    <div class="row">
+        <div class="col s12 center-align">
+            <a href="{% url 'products' %}" class="btn waves-effect waves-light deep-purple darken-3"><i class="material-icons left">chevron_left</i>Back To Products</a>
+        </div>
+    </div>
+    <hr class="mt-50">
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% endblock %}
