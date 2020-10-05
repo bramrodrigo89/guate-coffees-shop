@@ -83,7 +83,7 @@
                             <li><a href="{% url 'home' %}" class="waves-effect waves-light orange accent-2 black-text btn">Home</a></li>
                             <li><a href="{% url 'products' %}" class="waves-effect waves-light black-text btn">Products</a></li>
                             <li><a href="#" class="waves-effect waves-light deep-purple darken-3 btn">Coffee Club</a></li>
-                            <li><a onclick="scrollToAnchor('about-us-anchor')" class="waves-effect waves-light orange accent-2 black-text btn">About</a></li>
+                            <li><a href="{% url 'home' %}#about-us-anchor" class="waves-effect waves-light orange accent-2 black-text btn">About</a></li>
                             <li><a href="#contact-us-modal" class="waves-effect waves-light red btn modal-trigger">Contact</a></li>
                         </ul>
                     </div>
@@ -116,7 +116,7 @@
                     <a href="{% url 'home' %}"class="waves-effect waves-light orange accent-2 black-text btn">Home</a>
                     <a href="{% url 'products' %}" class="waves-effect waves-light black-text btn">Products</a>
                     <a href="#" class="waves-effect waves-light deep-purple darken-3 btn">Coffee Club</a>
-                    <a href="#" class="waves-effect waves-light orange accent-2 black-text btn">About</a>
+                    <a href="{% url 'home' %}#about-us-anchor" class="waves-effect waves-light orange accent-2 black-text btn">About</a>
                     <a href="#contact-us-modal" class="waves-effect waves-light red btn modal-trigger">Contact</a>
                 </div>
                 {% include 'includes/mobile_top_header.html' %}
@@ -139,7 +139,7 @@
 				<a class="btn-floating btn-floating-label modal-trigger" href="#search-bar-modal">Search</a>
 			</li>
 			<li>
-				<a href="#" class="btn-floating blue waves-effect dropdown-button" data-beloworigin="true" data-stoppropagation="true" data-hover="true" data-activates="dropdown_account"><i class="material-icons">local_cafe</i></a>
+				<a href="#" class="btn-floating blue waves-effect"><i class="material-icons">local_cafe</i></a>
 				<a href="#" class="btn-floating btn-floating-label">Account</a>
 			</li>
 			<li>
@@ -279,14 +279,9 @@
             $('.parallax').parallax();
             $('.modal').modal();
             $('select').material_select();
-            
             window.onscroll = function() {stickyContentNavbar()};
         });
     </script>
-
-    $(document).ready(function(){
-    
-    });
     {% endblock %}
     </body>
 </html>
