@@ -13,7 +13,7 @@ $( document ).ready(function() {
         countryInput.css('color', 'black');
     } else {
         countryInput.css('color', '#d9d9d9');
-    };
+    }
 
     // Color changes triggered when one option is selected from countries list 
     $(allCountryOptions).on('click', function(){

@@ -8,8 +8,8 @@
 }
 
 .green-bottom-triggered {
-    border-bottom: 1px solid #4CAF50 !important;
-    -webkit-box-shadow: 0 1px 0 0 #4CAF50 !important;
+    border-bottom: 1px solid #4CAF50;
+    -webkit-box-shadow: 0 1px 0 0 #4CAF50;
     box-shadow: 0 1px 0 0 #4CAF50 !important;
 }
 
@@ -49,7 +49,7 @@ li.selected span{
     border: 0;
     margin: 0;
     -webkit-box-shadow: none !important;
-    box-shadow: none !important;
+    box-shadow: none;
 }
 
 .order-summary-wrapper .collapsible-body,

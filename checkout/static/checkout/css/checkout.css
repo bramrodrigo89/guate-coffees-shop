@@ -54,7 +54,7 @@
 }
 
 .StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;
+  background-color: #fefde5;
 }
 
 /* Preloader Cirlce */
@@ -89,7 +89,7 @@
 /* Small */
 @media only screen and (max-width : 768px) {
     .submit-button {
-        text-align: center !important;
+        text-align: center;
     }
     
 }
