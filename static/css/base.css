@@ -1,15 +1,15 @@
 /* Custom Stylesheet */
 
 html {
-    height: 100%;
-    scroll-behavior: smooth;
+        height: 100%;
+        scroll-behavior: smooth;
 }
 
 body {
-    /* height: calc(100vh - 164px); */
-    background-size: cover;
-    font-family: 'Ubuntu Condensed', sans-serif;
-    font-size: 20px;
+        /* height: calc(100vh - 164px); */
+        background-size: cover;
+        font-family: 'Ubuntu Condensed', sans-serif;
+        font-size: 20px;
 }
 
 /* ---------- Text, Margin, Paddings ---- */
@@ -196,10 +196,9 @@ header nav {
 /* --------- Parallax ----------- */
 
 .parallax-container {
-  min-height: 600px;
-  line-height: 0;
-  height: auto;
-  color: rgba(255,255,255,.9);
+    min-height: 600px;
+    line-height: 0;height: auto;
+    color: rgba(255,255,255,.9);
 }
 
 .parallax-container .section {
@@ -261,10 +260,10 @@ header nav {
 /* --------- Section ------------- */
 
 .icon-block {
-  padding: 0 15px;
+    padding: 0 15px;
 }
 .icon-block .material-icons {
-  font-size: inherit;
+    font-size: inherit;
 }
 .slider h3, .slider h5, .light-shadow {
     text-shadow: 2px 2px 5px #000000;
@@ -485,7 +484,7 @@ header nav {
 /* ---------- Footer ------------ */
 
 footer.page-footer {
-  margin: 0;
+    margin: 0;
 }
 
 /* -------------------------------------Media Querries --------------- */
@@ -493,9 +492,9 @@ footer.page-footer {
 /* Small */
 @media only screen and (max-width : 768px) {
     table.responsive-table th, table.responsive-table td {
-    margin: 0;
-    vertical-align: middle;
-    height: 180px;
+        margin: 0;
+        vertical-align: middle;
+        height: 180px;
     }
 }
 
