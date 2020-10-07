@@ -13,7 +13,6 @@ class ProductForm(forms.ModelForm):
         label='Main Image', required=False, widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
-        
         """
         Add placeholders, add custom labels and set autofocus on first field
         """

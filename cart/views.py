@@ -7,14 +7,16 @@ from products.models import Product
 
 
 def view_cart(request):
-    """ A view that renders all cart items """
-
+    """
+    A view that renders all cart items 
+    """
     return render(request, 'cart/cart.html')
 
 
 def add_to_cart(request, item_id):
-    """ Add a quantity of the specified product to the shopping cart """
-
+    """
+    Add a quantity of the specified product to the shopping cart
+    """
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     grind = request.POST.get('grind')
@@ -45,8 +47,9 @@ def add_to_cart(request, item_id):
 
 
 def update_cart(request, item_id):
-    """ Update item quantities in cart and delete them if requested """
-
+    """
+    Update item quantities in cart and delete them if requested
+    """
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     grind = request.POST.get('grind')
@@ -68,8 +71,9 @@ def update_cart(request, item_id):
 
 
 def remove_from_cart(request, item_id):
-    """ Remove items from cart when requested """
-
+    """
+    Remove items from cart when requested
+    """
     product = get_object_or_404(Product, pk=item_id)
     try:
         grind = request.POST.get('grind')

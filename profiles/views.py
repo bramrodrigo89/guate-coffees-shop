@@ -8,7 +8,9 @@ from checkout.models import Order
 
 @login_required
 def profile(request):
-    """ Display the user's profile. """
+    """
+    Display the user's profile.
+    """
     user = request.user
     user_info = get_object_or_404(UserInfo, user=user)
     reviews = user.reviews.all()
@@ -30,7 +32,6 @@ def profile(request):
 
     template = 'profiles/profile.html'
     context = {
-
         'user': user,
         'user_info_form': user_info_form,
         'profile': profile,
@@ -43,6 +44,9 @@ def profile(request):
 
 @login_required
 def order_history(request, order_number):
+    """
+    Display the user's order history.
+    """
     order = get_object_or_404(Order, order_number=order_number)
 
     messages.info(request, (

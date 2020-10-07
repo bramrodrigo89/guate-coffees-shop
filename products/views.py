@@ -3,8 +3,6 @@ from django.contrib import messages
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.core.files.storage import FileSystemStorage
-
 
 from .models import Product, Region, ProductReview
 from .forms import ProductForm, AdditionalImage, ProductReviewForm
@@ -13,8 +11,9 @@ from .forms import ProductForm, AdditionalImage, ProductReviewForm
 
 
 def all_products(request):
-    """ A main view to see all available products and filter options """
-
+    """
+    A main view to see all available products and filter options
+    """
     products = Product.objects.all()
     regions = Region.objects.all()
     query = None
@@ -77,8 +76,9 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """ A view to show an individual product's page """
-
+    """
+    A view to show an individual product's page
+    """
     product = get_object_or_404(Product, pk=product_id)
     image_list = product.other_images.all()
     user = request.user
@@ -116,7 +116,9 @@ def product_detail(request, product_id):
 
 @login_required
 def add_or_update_review(request, product_id, username):
-    """ A view to add or update product reviews """
+    """
+    A view to add or update product reviews
+    """
     user = request.user
     product = get_object_or_404(Product, pk=product_id)
     try:
@@ -162,24 +164,15 @@ def add_or_update_review(request, product_id, username):
 
 @login_required
 def add_product(request):
-    """ Add a product to the store """
+    """
+    Add a product to the store
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
     if request.method == 'POST':
-        product_data = {
-            'name': request.POST['name'],
-            'region': request.POST['region'],
-            'description': request.POST['description'],
-            'description_2': request.POST['description_2'],
-            'finca': request.POST['finca'],
-            'roast_level': request.POST['roast_level'],
-            'cupping_notes': request.POST['cupping_notes'],
-            'retail_price': request.POST['retail_price'],
-            'rating': request.POST['rating'],
-            'new_product': request.POST['new_product'],
-        }
+        
         product_form = ProductForm(request.POST, request.FILES)
         
         if product_form.is_valid():
@@ -205,7 +198,9 @@ def add_product(request):
 
 @login_required
 def edit_product(request, product_id):
-    """ Edit a product in the store """
+    """
+    Edit a product in the store
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -234,7 +229,9 @@ def edit_product(request, product_id):
 
 @login_required
 def delete_product(request, product_id):
-    """ Delete a product from the store """
+    """
+    Delete a product from the store
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))

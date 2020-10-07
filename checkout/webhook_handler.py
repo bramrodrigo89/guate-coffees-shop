@@ -12,7 +12,9 @@ import time
 
 
 class StripeWH_Handler:
-    """Handle Stripe webhooks after payments are processed"""
+    """
+    Handle Stripe webhooks after payments are processed
+    """
 
     def __init__(self, request):
         self.request = request

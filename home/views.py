@@ -8,12 +8,15 @@ from .forms import CustomerInquiryForm
 
 
 def index(request):
-    """ A view to return the index page """
-
+    """
+    A view to return the index page
+    """
     return render(request, 'home/index.html')
 
 def send_inquiry(request):
-    """ A view to send an inquiry using the contact modal """
+    """
+    A view to send an inquiry using the contact modal
+    """
     if request.method == 'POST':
         user = request.user
         redirect_url = request.POST.get('redirect_url')
