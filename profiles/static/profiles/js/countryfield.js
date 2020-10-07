@@ -9,7 +9,7 @@ $( document ).ready(function() {
     var allCountryOptions = countryList.children();
 
     // Color change when value is already preselected when page is loaded
-    if(countryPreSelected != "Please select") {
+    if(countryPreSelected !== "Please select") {
         countryInput.css('color', 'black');
     } else {
         countryInput.css('color', '#d9d9d9');

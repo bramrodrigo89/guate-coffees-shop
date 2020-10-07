@@ -5,9 +5,9 @@
 
 function stickyContentNavbar() {
     if (window.pageYOffset > sticky) {
-        content_navbar.classList.add("stuck");
+        contentNavbar.classList.add("stuck");
     } else {
-        content_navbar.classList.remove("stuck");
+        contentNavbar.classList.remove("stuck");
     }
 }
 

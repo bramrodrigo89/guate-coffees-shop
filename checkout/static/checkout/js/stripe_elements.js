@@ -5,8 +5,8 @@
 $('select[name="country"]').attr('required',true);
 // STRIPE - Accept one-time payments
 
-var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
-var clientSecret = $('#id_client_secret').text().slice(1, -1);
+var stripePublicKey = $("#id_stripe_public_key").text().slice(1, -1);
+var clientSecret = $("#id_client_secret").text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
 var style = {
@@ -40,7 +40,7 @@ card.on("change", function (event) {
         `;
         $(errorDiv).html(html);
     } else {
-        errorDiv.textContent = '';
+        errorDiv.textContent = "";
     }
 });
 
@@ -51,9 +51,9 @@ form.addEventListener('submit', function (ev) {
     ev.preventDefault();
     // First disable card and submit button to avoid multiple form submits and activate the loading overlay
     card.update({ 'disabled': true });
-    $('#checkout-button').attr('disabled', true);
-    $('#payment-form').fadeToggle(100);
-    $('#loading-overlay').fadeToggle(100);
+    $("#checkout-button").attr('disabled', true);
+    $("#payment-form").fadeToggle(100);
+    $("#loading-overlay").fadeToggle(100);
 
     // Cache data first that can't be saved in payment intent, and then confirm card payment
     var saveInfo = Boolean($('#save-info-box').attr('data-id'));

@@ -1,5 +1,6 @@
 .order-history {
-    max-height: 700px; /* height of profile form */
+    /* height of profile form */
+    max-height: 700px; 
     overflow-y: auto;
 }
 
