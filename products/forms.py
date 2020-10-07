@@ -19,27 +19,27 @@ class ProductForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         placeholders = {
             'name': 'Product Name - Brand - Producer',
-            'region':'Region name',
+            'region': 'Region name',
             'description': 'Enter general description',
-            'description_2': 'Add product origin description, history, other details...',
+            'description_2': 'Describe product origin, history, etc',
             'finca': 'e.g. La Hermosa',
             'roast_level': 'e.g. dark, medium, light',
             'cupping_notes': 'chocolate, cherry, nuts...',
-            'retail_price':'Price in US$',
-            'rating':'Rating from 1 to 5',
+            'retail_price': 'Price in US$',
+            'rating': 'Rating from 1 to 5',
             'main_image': 'Shown in in search results',
             'new_product': 'Is this product new?',
         }
         labels = {
             'name': 'Product Name',
-            'region':'Origin Region',
+            'region': 'Origin Region',
             'description': 'Main Description',
             'description_2': 'Secondary Description',
             'finca': 'Finca Name',
             'roast_level': 'Roast Level',
             'cupping_notes': 'Cupping Notes',
-            'retail_price':'Price In US$',
-            'rating':'Customer Rating (1 to 5)',
+            'retail_price': 'Price In US$',
+            'rating': 'Customer Rating (1 to 5)',
             'main_image': 'Main Image',
             'new_product': 'Feature As New Product',
         }
@@ -53,24 +53,24 @@ class ProductForm(forms.ModelForm):
         for field in self.fields:
             label = labels[field]
             self.fields[field].label = label
-            
+
             if self.fields[field].required:
                 placeholder = f'{placeholders[field]} *'
             else:
                 placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            
+
 
 class ProductReviewForm(forms.ModelForm):
     class Meta:
         model = ProductReview
         fields = '__all__'
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         placeholders = {
             'user': 'Your username',
-            'product':'Product to be reviewed',
+            'product': 'Product to be reviewed',
             'user_rating': 'From 1 to 5',
             'star_percentage': 'This is calculated automatically',
             'description': 'How was your experience with this product?',
@@ -79,7 +79,7 @@ class ProductReviewForm(forms.ModelForm):
         }
         labels = {
             'user': '',
-            'product':'Product Name',
+            'product': 'Product Name',
             'user_rating': '',
             'star_percentage': '',
             'description': 'Your comments about this product:',

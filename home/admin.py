@@ -17,4 +17,5 @@ class CustomerInquiryAdmin(admin.ModelAdmin):
     )
     ordering = ('-created_at',)
 
+
 admin.site.register(CustomerInquiry, CustomerInquiryAdmin)

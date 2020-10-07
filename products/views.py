@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 from .models import Product, Region, ProductReview
@@ -172,9 +171,9 @@ def add_product(request):
         return redirect(reverse('home'))
 
     if request.method == 'POST':
-        
+
         product_form = ProductForm(request.POST, request.FILES)
-        
+
         if product_form.is_valid():
             new_product = product_form.save()
             messages.success(request, 'Successfully added product!')
@@ -207,13 +206,16 @@ def edit_product(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
-        product_form = ProductForm(request.POST, request.FILES, instance=product)
+        product_form = ProductForm(
+            request.POST, request.FILES, instance=product)
         if product_form.is_valid():
             product_form.save()
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+            messages.error(
+                request, 'Failed to update product. \
+                    Please ensure the form is valid.')
     else:
         product_form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')

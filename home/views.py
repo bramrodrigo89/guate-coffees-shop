@@ -1,6 +1,5 @@
 
 from django.shortcuts import render, redirect
-from .models import CustomerInquiry
 from django.contrib import messages
 from .forms import CustomerInquiryForm
 
@@ -12,6 +11,7 @@ def index(request):
     A view to return the index page
     """
     return render(request, 'home/index.html')
+
 
 def send_inquiry(request):
     """
@@ -40,6 +40,5 @@ def send_inquiry(request):
             messages.error(
                 request, 'Sorry! Please ensure the form is valid.'
             )
-    
-    return redirect(redirect_url)
 
+    return redirect(redirect_url)

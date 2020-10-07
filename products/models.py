@@ -2,10 +2,8 @@ from django.db import models
 from django.conf import settings
 from django.contrib.contenttypes.fields import GenericRelation
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.contrib.auth.models import User
-from star_ratings.models import Rating, UserRating
+from star_ratings.models import Rating
 
 
 class Region(models.Model):
@@ -87,19 +85,3 @@ class ProductReview(models.Model):
 
     def _calculate_percentage(self):
         return (self.user_rating / settings.STAR_RATINGS_RANGE) * 100
-
-
-# class CustomUserRating(UserRating):
-#     username = models.OneToOneField(User, on_delete=models.CASCADE)
-#     def userPercentage(self):
-#         return (self.rating / settings.STAR_RATINGS_RANGE) * 100
-
-#     @receiver(post_save, sender=User)
-#     def create_or_update_user_review(self, sender, instance, created, **kwargs):
-#         """
-#         Create or update the user product review
-#         """
-#         if created:
-#             CustomUserRating.objects.create(user=instance)
-#         # For existing users: just save the profile
-#         instance.customuserrating.save()
