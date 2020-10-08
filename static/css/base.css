@@ -1,135 +1,133 @@
 /* Custom Stylesheet */
 
 html {
-	height: 100%;
-	scroll-behavior: smooth;
+        height: 100%;
+	    scroll-behavior: smooth;
 }
 
 body {
-	/* height: calc(100vh - 164px); */
-	background-size: cover;
-	font-family: 'Ubuntu Condensed', sans-serif;
-	font-size: 20px;
+        /* height: calc(100vh - 164px); */
+        background-size: cover;
+        font-family: 'Ubuntu Condensed', sans-serif;
+        font-size: 20px;
 }
-
 
 /* ---------- Text, Margin, Paddings ---- */
 
 p {
-	line-height: 2rem;
+        line-height: 2rem;
 }
 
 .text-strong {
-	font-family: 'Ubuntu', sans-serif;
+	    font-family: 'Ubuntu', sans-serif;
 }
 
 .stuck {
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	z-index: 10;
+	    position: fixed;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    z-index: 10;
 }
 
 .small-text {
-	font-size: 1.1rem;
+	    font-size: 1.1rem;
 }
 
 .mt-20 {
-	margin-top: 25px;
+	    margin-top: 25px;
 }
 
 .mt-50 {
-	margin-top: 50px;
+	    margin-top: 50px;
 }
 
 .mb-0 {
-	margin-bottom: 0px;
+	    margin-bottom: 0;
 }
 
 .mb-20 {
-	margin-bottom: 25px;
+	    margin-bottom: 25px;
 }
 
 .mx-20 {
-	margin-right: 20px;
-	margin-left: 20px;
+	    margin-right: 20px;
+	    margin-left: 20px;
 }
 
 .mr-20 {
-	margin-right: 20px;
+	    margin-right: 20px;
 }
 
 .no-cursor {
-	cursor: auto;
+	    cursor: auto;
 }
 
 .pointer {
-	cursor: pointer;
+	    cursor: pointer;
 }
 
 .pad-0 {
-	padding: 0;
+	    padding: 0;
 }
 
 .pad-10pe {
-	padding: 10%;
+	    padding: 10%;
 }
 
 .allauth-container {
-	margin-top: 40px;
-	margin-bottom: 40px;
-	text-align: center;
+	    margin-top: 40px;
+	    margin-bottom: 40px;
+	    text-align: center;
 }
-
 
 /* ---------- Navbar ------------ */
 
 #navbar-background {
-	background: url('/media/nav_background.jpeg') no-repeat right fixed;
-	background-size: cover;
+    	background: url('/media/nav_background.jpeg') no-repeat right fixed;
+    	background-size: cover;
 }
 
 nav .brand-logo {
-	font-size: 1.4rem;
+    	font-size: 1.4rem;
 }
 
 header nav {
-	height: 200px;
-	padding-top: 10px;
-	background-color: rgba(0, 0, 0, 0.0)
+    	height: 200px;
+    	padding-top: 10px;
+    	background-color: rgba(0, 0, 0, 0);
 }
 
 #content-navbar,
 #content-nav-mobile {
-	padding: 20px 0px;
+	    padding: 20px 0px;
 }
 
 #content-navbar {
-	background-color: rgba(211, 18, 69, 0.7)
+	    background-color: rgba(211, 18, 69, 0.7)
 }
 
 #mobile-button-collapse {
-	font-size: 40px;
-	color: #fafafa;
+    	font-size: 40px;
+    	color: #fafafa;
 }
 
 .mobile-top-header a {
-	color: #fafafa;
-	padding: 5px 5px;
-	font-size: 1.5rem;
+    	color: #fafafa;
+    	padding: 5px 5px;
+    	font-size: 1.5rem;
 }
 
 .mobile-top-header a i {
-	margin: 0px 5px;
+	    margin: 0px 5px;
 }
 
 .nav-content .btn {
-	margin: 8px 8px;
-	width: 100px;
-	padding: 0;
-	height: 30px;
-	line-height: 30px;
+	    margin: 8px 8px;
+        width: 100px;
+	    padding: 0;
+	    height: 30px;
+	    line-height: 30px;
 }
 
 .side-nav li>a.btn {

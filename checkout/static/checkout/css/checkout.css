@@ -13,7 +13,7 @@
 	font-size: 14px;
 }
 
-#save-info-box+label:after {
+#save-info-box + label:after {
 	border: 2px solid #00695c;
 	background-color: #00695c;
 }
