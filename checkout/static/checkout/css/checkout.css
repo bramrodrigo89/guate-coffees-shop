@@ -13,7 +13,7 @@
 	font-size: 14px;
 }
 
-#save-info-box + label:after {
+#save-info-box + label::after {
 	border: 2px solid #00695c;
 	background-color: #00695c;
 }
@@ -48,15 +48,14 @@
 }
 
 .StripeElement--complete {
-	border-bottom: 1px solid #4CAF50;
-	-webkit-box-shadow: 0 1px 0 0 #4CAF50;
-	box-shadow: 0 1px 0 0 #4CAF50;
+	border-bottom: 1px solid #4caf50;
+	-webkit-box-shadow: 0 1px 0 0 #4caf50;
+	box-shadow: 0 1px 0 0 #4caf50;
 }
 
 .StripeElement--webkit-autofill {
 	background-color: #fefde5;
 }
-
 
 /* Preloader Cirlce */
 
@@ -85,9 +84,7 @@
 	margin: auto;
 }
 
-
 /* -------------------------------------Media Querries --------------- */
-
 
 /* Small */
 
@@ -96,7 +93,6 @@
 		text-align: center;
 	}
 }
-
 
 /* Tablet */
 
@@ -107,7 +103,6 @@
 		margin-right: 10%;
 	}
 }
-
 
 /* Large */
 

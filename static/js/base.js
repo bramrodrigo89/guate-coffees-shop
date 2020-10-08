@@ -22,7 +22,7 @@ function myFunction() {
 // Dismiss a toast programatically
 
 function dismissToast() {
-    var toastElement = $('.toast').first()[0];
+    var toastElement = $(".toast").first()[0];
     var toastInstance = toastElement.M_Toast;
     toastInstance.remove();
 }
@@ -30,6 +30,6 @@ function dismissToast() {
 // Start AutoPlay for Carousel items or Carousel Sliders
 
 function autoplay() {
-    $('.carousel').carousel('next');
+    $(".carousel").carousel("next");
     setTimeout(autoplay, 4500);
 }

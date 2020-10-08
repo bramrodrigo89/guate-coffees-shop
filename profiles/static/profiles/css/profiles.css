@@ -30,7 +30,7 @@
 .collection-header {
 	font-weight: bold;
 	padding: 10px 20px;
-	margin: 0rem !important;
+	margin: 0 !important;
 }
 
 .order-line {
@@ -54,5 +54,5 @@
 .order-summary-wrapper .collapsible-body,
 .order-summary-wrapper .collapsible-body .col,
 .order-summary-wrapper .collapsible-header .col {
-	padding: 0.5rem 0rem;
+	padding: 0.5rem 0;
 }
