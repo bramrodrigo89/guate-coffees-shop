@@ -162,7 +162,7 @@ header nav {
 }
 
 .dropdown-item {
-	color: #444 !important;
+	color: #444;
 }
 
 /* ---------- Home -------------- */
@@ -239,8 +239,8 @@ header nav {
 }
 
 .quote-img {
-	height: 100px !important;
-	width: 100px !important;
+	height: 100px;
+	width: 100px;
 }
 
 .quote-collection blockquote {
@@ -303,7 +303,7 @@ header nav {
 /* Contact Us Modal */
 
 .modal-input-field .prefix {
-	width: auto !important;
+	width: auto;
 }
 
 /* All Products Page */
@@ -323,7 +323,7 @@ header nav {
 }
 
 .product-card-container .card-title {
-	font-size: 23px !important;
+	font-size: 23px;
 	margin-top: 10px;
 	height: 35%;
 }
@@ -341,7 +341,7 @@ header nav {
 
 .product-card-container .card-content {
 	height: 250px;
-	padding: 15px !important;
+	padding: 15px;
 }
 
 .rating-stars-container {
@@ -426,7 +426,7 @@ header nav {
 }
 
 .option-label {
-	font-size: 1.4rem !important;
+	font-size: 1.4rem;
 	color: black;
 	display: block;
 }
@@ -456,7 +456,7 @@ header nav {
 .modal-decrement-qty,
 .modal-increment-qty {
 	width: 45px;
-	padding: 0 !important;
+	padding: 0;
 }
 
 .modal .modal-content {
@@ -474,7 +474,7 @@ header nav {
 .update-form {
 	width: 100%;
 	margin-left: auto;
-	margin-right: auto !important;
+	margin-right: auto;
 }
 
 .table-cart-container {

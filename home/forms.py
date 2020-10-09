@@ -5,6 +5,7 @@ from .models import CustomerInquiry
 class CustomerInquiryForm(forms.ModelForm):
 
     class Meta:
+
         """Set all fields for customer inquiry form."""
         model = CustomerInquiry
         fields = '__all__'

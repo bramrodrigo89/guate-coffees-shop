@@ -5,6 +5,7 @@ from .models import UserInfo
 class UserInfoForm(forms.ModelForm):
 
     class Meta:
+
         """Set all fields for user info form."""
         model = UserInfo
         exclude = ('user',)

@@ -6,6 +6,7 @@ from .models import Product, Region, ProductImage, ProductReview
 class ProductForm(forms.ModelForm):
 
     class Meta:
+
         """All fields for this form."""
         model = Product
         fields = '__all__'
@@ -63,16 +64,13 @@ class ProductForm(forms.ModelForm):
 class ProductReviewForm(forms.ModelForm):
 
     class Meta:
+
         """Set all fields for Product Review Form."""
         model = ProductReview
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
-        """
-
-        Add custom placeholders, custom labels and
-        make star_percentage and user_rating hidden fields.
-        """
+        """ Add custom placeholders, labels and hidden fields."""
         super().__init__(*args, **kwargs)
         placeholders = {
             'user': 'Your username',
@@ -103,6 +101,9 @@ class ProductReviewForm(forms.ModelForm):
 
 
 class AdditionalImage(forms.ModelForm):
+
     class Meta:
+
+        """All fields for additional image form."""
         model = ProductImage
         fields = '__all__'

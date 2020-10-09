@@ -11,7 +11,7 @@
 .green-bottom-triggered {
 	border-bottom: 1px solid #4caf50;
 	-webkit-box-shadow: 0 1px 0 0 #4caf50;
-	box-shadow: 0 1px 0 0 #4caf50 !important;
+	box-shadow: 0 1px 0 0 #4caf50;
 }
 
 #update-delivery-info-form input.select-dropdown[value="Please select"] {
@@ -30,7 +30,7 @@
 .collection-header {
 	font-weight: bold;
 	padding: 10px 20px;
-	margin: 0 !important;
+	margin: 0;
 }
 
 .order-line {
@@ -47,7 +47,7 @@
 .order-summary-wrapper .collapsible {
 	border: 0;
 	margin: 0;
-	-webkit-box-shadow: none !important;
+	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
