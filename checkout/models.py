@@ -63,6 +63,9 @@ class Order(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
+        """
+        Return order number using string method.
+        """
         return self.order_number
 
 

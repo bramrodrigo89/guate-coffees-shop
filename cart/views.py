@@ -7,9 +7,7 @@ from products.models import Product
 
 
 def view_cart(request):
-    """
-    A view that renders all cart items
-    """
+    """ A view that renders all cart items """
     return render(request, 'cart/cart.html')
 
 

@@ -21,10 +21,11 @@ class CustomerInquiry(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
+        """ Return category name with string method. """
         return f'{self.category} sent by {self.user}'
 
     def _send_confirmation_email(self, form):
-        """Send an order confirmation email"""
+        """ Send an order confirmation email. """
         customer_email = form.email
         subject = render_to_string(
             'home/confirmation_emails/confirmation_email_subject.txt',

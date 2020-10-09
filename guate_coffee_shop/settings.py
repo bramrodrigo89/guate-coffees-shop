@@ -1,4 +1,3 @@
-
 """
 Django settings for guate_coffee_shop project.
 

@@ -14,7 +14,9 @@ class ProductForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         """
-        Add placeholders, add custom labels and set autofocus on first field
+
+        Add custom placeholders, custom labels and 
+        set autofocus on first field 'name' 
         """
         super().__init__(*args, **kwargs)
         placeholders = {
@@ -67,6 +69,11 @@ class ProductReviewForm(forms.ModelForm):
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
+        """
+
+        Add custom placeholders, custom labels and
+        make star_percentage and user_rating hidden fields.
+        """
         super().__init__(*args, **kwargs)
         placeholders = {
             'user': 'Your username',

@@ -1,3 +1,4 @@
+""" Template tag to calculate subtotal for every line """
 
 from django import template
 
