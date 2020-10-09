@@ -3,11 +3,14 @@ from .models import CustomerInquiry
 
 
 class CustomerInquiryForm(forms.ModelForm):
+
     class Meta:
+        """Set all fields for customer inquiry form."""
         model = CustomerInquiry
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
+
         """
 
         Add placeholders and labels, remove auto-generated

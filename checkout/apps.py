@@ -5,6 +5,7 @@ class CheckoutConfig(AppConfig):
     name = 'checkout'
 
     def ready(self):
+
         """
 
         Override ready method to import signals module: every time

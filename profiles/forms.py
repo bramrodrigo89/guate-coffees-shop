@@ -3,14 +3,14 @@ from .models import UserInfo
 
 
 class UserInfoForm(forms.ModelForm):
+
     class Meta:
+        """Set all fields for user info form."""
         model = UserInfo
         exclude = ('user',)
 
     def __init__(self, *args, **kwargs):
-        """
-        Add placeholders, add custom labels and set autofocus on first field
-        """
+        """Add placeholders, labels and set autofocus on first field."""
         super().__init__(*args, **kwargs)
         placeholders = {
             'first_name': 'Example: John',

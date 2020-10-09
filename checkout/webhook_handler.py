@@ -12,10 +12,11 @@ import time
 
 
 class StripeWH_Handler:
+
     """Handle Stripe webhooks after payments are processed."""
 
     def __init__(self, request):
-        """save request when string method."""
+        """Save request when string method."""
         self.request = request
 
     def _send_confirmation_email(self, order):
@@ -143,17 +144,13 @@ class StripeWH_Handler:
             status=200)
 
     def handle_event(self, event):
-        """
-        Handle all other types of webhook events
-        """
+        """Handle all other types of webhook events."""
         return HttpResponse(
             content=f'Unhandled Webhook received: {event["type"]}',
             status=200)
 
     def handle_payment_intent_failed(self, event):
-        """
-        Handle the payment_intent.payment_failed webhook from Stripe
-        """
+        """Handle the payment_intent.payment_failed webhook from Stripe."""
         return HttpResponse(
             content=f'Webhook received: {event["type"]}',
             status=200)

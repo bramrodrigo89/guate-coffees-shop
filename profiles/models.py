@@ -7,7 +7,6 @@ from django_countries.fields import CountryField
 
 class UserInfo(models.Model):
     class Meta:
-
         """Define plural name for class."""
         verbose_name_plural = 'Profiles Data'
 
