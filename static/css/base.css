@@ -186,11 +186,11 @@ header nav {
 .btn-floating-label {
   position: fixed;
   right: 85px;
-  padding: 0px 0.5rem;
+  padding: 0 0.5rem;
   width: 80px;
   text-align: center;
   background-color: rgba(50, 50, 50, 0.8);
-  color: #FFF;
+  color: #fff;
   border-radius: 2px;
 }
 
@@ -200,7 +200,7 @@ header nav {
   min-height: 600px;
   line-height: 0;
   height: auto;
-  color: rgba(255, 255, 255, .9);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .parallax-container .section {
@@ -291,7 +291,7 @@ header nav {
 
 #search-bar-modal nav,
 #search-bar-modal .modal {
-  background-color: rgba(0, 0, 0, 0.0);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 #search-bar-modal i,
@@ -336,7 +336,7 @@ header nav {
   max-height: 245px;
   width: auto;
   max-width: 100%;
-  margin: 10px auto 0px auto;
+  margin: 10px auto 0 auto;
 }
 
 .product-card-container .card-content {
@@ -378,7 +378,7 @@ header nav {
 /* Detail Product Page */
 
 .star-ratings {
-  font-size: 1.0rem;
+  font-size: 1rem;
 }
 
 .price-rating-container {
@@ -416,7 +416,7 @@ header nav {
   background-color: #009688;
 }
 
-.input-field.col .dropdown-content [type="checkbox"]+label {
+.input-field.col .dropdown-content [type="checkbox"] + label {
   top: -10px;
   margin-top: 5px;
 }
@@ -509,7 +509,7 @@ footer.page-footer {
 
 @media only screen and (max-width: 768px) {
   table.responsive-table th,
-	table.responsive-table td {
+  table.responsive-table td {
     margin: 0;
     vertical-align: middle;
     height: 180px;
@@ -536,7 +536,7 @@ footer.page-footer {
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     width: 80%;
-    font-size: 2.0rem;
+    font-size: 2rem;
   }
 
   #mobile-button-collapse {
@@ -591,9 +591,9 @@ footer.page-footer {
   }
 
   header nav,
-	header nav .nav-wrapper i,
-	header nav a.button-collapse,
-	header nav a.button-collapse i {
+  header nav .nav-wrapper i,
+  header nav a.button-collapse,
+  header nav a.button-collapse i {
     line-height: 70px;
   }
 
@@ -605,7 +605,7 @@ footer.page-footer {
   }
 
   header nav ul a,
-	header nav .right a {
+  header nav .right a {
     font-size: 1.7rem;
   }
 
