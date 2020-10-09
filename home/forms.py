@@ -15,7 +15,7 @@ class CustomerInquiryForm(forms.ModelForm):
         """
 
         Add placeholders and labels, remove auto-generated
-        labels and set autofocus on first field
+        labels and set autofocus on first field.
         """
         super().__init__(*args, **kwargs)
         placeholders = {

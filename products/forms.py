@@ -70,7 +70,7 @@ class ProductReviewForm(forms.ModelForm):
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
-        """ Add custom placeholders, labels and hidden fields."""
+        """Add custom placeholders, labels and hidden fields."""
         super().__init__(*args, **kwargs)
         placeholders = {
             'user': 'Your username',
