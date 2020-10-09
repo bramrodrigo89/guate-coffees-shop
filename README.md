@@ -21,6 +21,9 @@ Mandatory Requirements:
 13. Security: Make sure to not include any passwords or secret keys in the project repository. Make sure to turn off the Django DEBUG mode, which could expose secrets.
 
 ## Wireframe 
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/175fc9bae297454b803f673afde39dee)](https://app.codacy.com/gh/bramrodrigo89/guate-coffees-shop?utm_source=github.com&utm_medium=referral&utm_content=bramrodrigo89/guate-coffees-shop&utm_campaign=Badge_Grade)
+
 ![Wireframe Image](documentation/images/Wireframe.jpeg)
 
 ## Database ER Diagram
