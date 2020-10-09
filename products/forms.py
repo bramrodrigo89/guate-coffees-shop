@@ -6,6 +6,8 @@ from .models import Product, Region, ProductImage, ProductReview
 class ProductForm(forms.ModelForm):
 
     class Meta:
+        
+        """All fields for this form."""
         model = Product
         fields = '__all__'
 
@@ -15,8 +17,8 @@ class ProductForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         """
 
-        Add custom placeholders, custom labels and 
-        set autofocus on first field 'name' 
+        Add custom placeholders, custom labels and
+        set autofocus on first field 'name'.
         """
         super().__init__(*args, **kwargs)
         placeholders = {

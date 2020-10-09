@@ -12,15 +12,14 @@ import time
 
 
 class StripeWH_Handler:
-    """
-    Handle Stripe webhooks after payments are processed
-    """
+    """Handle Stripe webhooks after payments are processed."""
 
     def __init__(self, request):
+        """save request when string method."""
         self.request = request
 
     def _send_confirmation_email(self, order):
-        """Send an order confirmation email"""
+        """Send an order confirmation email."""
         customer_email = order.email
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
@@ -37,9 +36,7 @@ class StripeWH_Handler:
         )
 
     def handle_payment_intent_succeeded(self, event):
-        """
-        Handle the payment_intent.succeeded webhook from Stripe
-        """
+        """Handle the payment_intent.succeeded webhook from Stripe."""
         intent = event.data.object
         pid = intent.id
         cart = intent.metadata.cart

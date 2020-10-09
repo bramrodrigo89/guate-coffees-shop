@@ -7,6 +7,8 @@ from django_countries.fields import CountryField
 
 class UserInfo(models.Model):
     class Meta:
+
+        """Define plural name for class."""
         verbose_name_plural = 'Profiles Data'
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -27,14 +29,13 @@ class UserInfo(models.Model):
         blank_label='Please select', null=True, blank=True)
 
     def __str__(self):
+        """Return username with string method."""
         return self.user.username
 
 
 @receiver(post_save, sender=User)
 def create_or_update_user_info(sender, instance, created, **kwargs):
-    """
-    Create or update the user personal information
-    """
+    """Create or update the user personal information."""
     if created:
         UserInfo.objects.create(user=instance)
     # For existing users: just save the profile

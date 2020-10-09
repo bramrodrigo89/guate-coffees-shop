@@ -40,6 +40,7 @@ class Product(models.Model):
     main_image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
+        """Return region name with string method."""
         return self.name
 
 
@@ -49,6 +50,7 @@ class ProductImage(models.Model):
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
+        """Return product name with string method."""
         return f'Image for product: {self.product.name}'
 
 
@@ -76,9 +78,7 @@ class ProductReview(models.Model):
         return f'Review from {self.user} for product: {self.product.name}'
 
     def save(self, *args, **kwargs):
-        """
-        Override the original save method to calculate star percentage
-        """
+        """Override the original save method to calculate star percentage."""
         ratio = self.user_rating / settings.STAR_RATINGS_RANGE
         self.star_percentage = ratio * 100
         super().save(*args, **kwargs)

@@ -9,7 +9,7 @@ class CustomerInquiryForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         """
-        
+
         Add placeholders and labels, remove auto-generated
         labels and set autofocus on first field
         """
