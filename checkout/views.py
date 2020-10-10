@@ -36,6 +36,7 @@ def cache_checkout_data(request):
 
 def checkout(request):
     """
+    
     Create Payment Intent session at the beginning and rendering the checkout
     template with information needed for stripe payments
     """

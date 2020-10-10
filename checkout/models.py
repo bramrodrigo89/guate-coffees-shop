@@ -56,9 +56,7 @@ class Order(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        """
-        Return order number using string method.
-        """
+        """Return order number using string method."""
         return self.order_number
 
 
@@ -75,9 +73,7 @@ class OrderLineItem(models.Model):
         editable=False)
 
     def save(self, *args, **kwargs):
-        """
-        Override the original save method to calculate line item total
-        """
+        """Override the original save method to calculate line item total"""
         self.lineitem_total = self.product.retail_price * self.quantity
         super().save(*args, **kwargs)
 

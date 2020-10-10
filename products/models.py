@@ -16,9 +16,11 @@ class Region(models.Model):
     altitude = models.CharField(max_length=100)
 
     def __str__(self):
+        """Return region name with string method."""
         return self.name
 
     def get_friendly_name(self):
+        """Return friendly name."""
         return self.friendly_name
 
 
