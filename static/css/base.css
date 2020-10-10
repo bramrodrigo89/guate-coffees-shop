@@ -6,7 +6,7 @@ html {
 }
 
 body {
-	/* height: calc(100vh - 164px); */
+  /* height: calc(100vh - 164px); */
   background-size: cover;
   font-family: 'Ubuntu Condensed', sans-serif;
   font-size: 20px;
@@ -138,7 +138,7 @@ header nav {
 .header-link {
   color: #fafafa;
   padding: 0 30px;
-  text-shadow: 2px 2px 5px #000000;
+  text-shadow: 2px 2px 5px #000;
 }
 
 .dropdown-content a {
@@ -230,7 +230,6 @@ header nav {
   padding: 5% 0%;
 }
 
-
 /* --------- Reviews ------------- */
 
 .quote-collection {
@@ -283,6 +282,10 @@ header nav {
 }
 
 /* ---------- Search Modal ------ */
+
+.modal .modal-content {
+  padding: 10px;
+}
 
 #search-bar-modal .modal-content {
   padding: 0;
@@ -360,7 +363,7 @@ header nav {
 .card-content .badge {
   float: left;
   margin-right: 14px;
-  margin-left: 0px;
+  margin-left: 0;
   margin-top: 10px;
 }
 
@@ -446,7 +449,7 @@ header nav {
 .decrement-qty,
 .increment-qty {
   width: 70px;
-  padding: 0 !important;
+  padding: 0;
 }
 
 .change-qty-icon {
@@ -457,10 +460,6 @@ header nav {
 .modal-increment-qty {
   width: 45px;
   padding: 0;
-}
-
-.modal .modal-content {
-  padding: 10px;
 }
 
 /* Cart Page */
