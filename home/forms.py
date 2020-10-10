@@ -11,7 +11,6 @@ class CustomerInquiryForm(forms.ModelForm):
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
-
         """
 
         Add placeholders and labels, remove auto-generated

@@ -10,9 +10,7 @@ from .forms import ProductForm, AdditionalImage, ProductReviewForm
 
 
 def all_products(request):
-    """
-    A main view to see all available products and filter options
-    """
+    """A main view to see all available products and filter options."""
     products = Product.objects.all()
     regions = Region.objects.all()
     query = None

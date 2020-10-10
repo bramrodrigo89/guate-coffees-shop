@@ -18,7 +18,7 @@ $( document ).ready(function() {
     // Color changes triggered when one option is selected from countries list 
     $(allCountryOptions).on("click", function(){
         var countrySelected = countryList.find(".selected").find("span").html();
-        if(countrySelected != "Please select") {
+        if(countrySelected !== "Please select") {
             $(countryInput).css("color", "black");
             $(countryInput).addClass("green-bottom-triggered");
         } else {
