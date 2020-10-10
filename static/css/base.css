@@ -18,10 +18,6 @@ p {
   line-height: 2rem;
 }
 
-.text-strong {
-  font-family: 'Ubuntu', sans-serif;
-}
-
 .stuck {
   position: fixed;
   top: 0;
