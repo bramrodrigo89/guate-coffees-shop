@@ -12,16 +12,23 @@ The application is deployed and available in Heroku and can be accessed here:
 
 [Guatemalan Coffees Shop](https://guatemalan-coffees-shop.herokuapp.com/)
 
-Feel free to use it and reach out for any comments or suggestions that you may have. 
+Feel free to use it and reach out for any comments or suggestions that you may have.
 
 **Important!** The Stripe test API is activated for this deployed app. Thus you can use the credit card number 4242-4242-4242-4242 with any expiry date in the future and any CCV to check out and cretae a fictional order. 
 
 ## UX
- 
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
 
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
-- As a user type, I want to perform an action, so that I can achieve a goal.
+The main objective was to create an eCommerce Web application using the Django Full Stack-Framework and a relational database to create an interactive website. The application was developed for a **fictional online commerce store** selling coffee products from Guatemala to users all over the world. Users are able to browse through the store's different products and are exposed to their specific regional facts so they can become more familiar with the country Guatemala and even engaged in supporting the different Guatemalan coffee regions by purcashing the products.
+
+![Guatemalan Coffees Shop Desktop](documentation/images/readme_animation_compressed.gif)
+![Guatemalan Coffees Shop Mobile](documentation/images/readme_animation_compressed2.gif)
+
+**DISCLAIMER** The online store from this application is completely fictional and all the products displayed in this eCommerce store were taken from other online shops with similar scopes. The purpose of creating this store is merely for academic reasons and to demonstrate my own personal software development skills. 
+
+This application's backend allows users to store and manipulate data records on the domain. The project itself was developed using multiple apps in Django, where each app contains a potentially reusable component in the project.
+
+This importance for this web application was identified through some User Stories like the following:
+- I am an expert coffee consumer and find myself usually tring to taste new products from different countries. I prefer to buy my coffee products online because it is the only way I can get them more directly from coffee producers, without large chain stores in between. 
 
 This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
 
@@ -46,7 +53,8 @@ In this section, you should mention all of the languages, frameworks, libraries,
 
 - [JQuery](https://jquery.com)
     - The project uses **JQuery** to simplify DOM manipulation.
-
+- [Animockup](https://animockup.com/)
+    - Free animated mockup maker to create custom GIFs for this RedMe file.
 
 ## Testing
 
