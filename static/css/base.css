@@ -86,6 +86,7 @@ p {
 
 nav .brand-logo {
   font-size: 1.4rem;
+  line-height: normal;
 }
 
 header nav {
