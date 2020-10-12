@@ -28,7 +28,6 @@ def send_inquiry(request):
             'phone_number': request.POST['phone_number'],
             'description': request.POST['description'],
         }
-        print(inquiry_data)
         inquiry_form = CustomerInquiryForm(inquiry_data)
         if inquiry_form.is_valid():
             inquiry = inquiry_form.save()
