@@ -4,9 +4,9 @@
 
 Welcome!
 
-The development of this web application was carried out as my Fourth Milestone Project for the Full-Stack Web Development Diploma from the Code Institute.  
+The development of this web application was carried out as my Fourth Milestone Project for the Full-Stack Web Development Diploma from the Code Institute.
 
-This appliction's code was written on my own using the Django Full-Stack Framework, Python, HTML5, CSS3 and JavaScript to demonstrate my personal skills and acquired knowledge from this online program. Some other libraries which are listed later on were used as well to simplify functions and styling. 
+This appliction's code was written on my own using the Django Full-Stack Framework, Python, HTML5, CSS3 and JavaScript to demonstrate my personal skills and acquired knowledge from this online program. Some other libraries which are listed later on were used as well to simplify functions and styling.
 
 The application is deployed and available in Heroku and can be accessed here:
 
@@ -14,7 +14,7 @@ The application is deployed and available in Heroku and can be accessed here:
 
 Feel free to use it and reach out for any comments or suggestions that you may have.
 
-**Important!** The Stripe test API is activated for this deployed app. Thus you can use the credit card number 4242-4242-4242-4242 with any expiry date in the future and any CCV to check out and cretae a fictional order. 
+**Important!** The Stripe test API is activated for this deployed app. Thus you can use the credit card number 4242-4242-4242-4242 with any expiry date in the future and any CCV to check out and cretae a fictional order.
 
 ## UX
 
@@ -23,14 +23,27 @@ The main objective was to create an eCommerce Web application using the Django F
 ![Guatemalan Coffees Shop Desktop](documentation/images/readme_animation_compressed.gif)
 ![Guatemalan Coffees Shop Mobile](documentation/images/readme_animation_compressed2.gif)
 
-**DISCLAIMER** The online store from this application is completely fictional and all the products displayed in this eCommerce store were taken from other online shops with similar scopes. The purpose of creating this store is merely for academic reasons and to demonstrate my own personal software development skills. 
+**DISCLAIMER** The online store from this application is completely fictional and all the products displayed in this eCommerce store were taken from other online shops with similar scopes. The purpose of creating this store is merely for academic reasons and to demonstrate my own personal software development skills.
 
 This application's backend allows users to store and manipulate data records on the domain. The project itself was developed using multiple apps in Django, where each app contains a potentially reusable component in the project.
 
 This importance for this web application was identified through some User Stories like the following:
-- I am an expert coffee consumer and find myself usually tring to taste new products from different countries. I prefer to buy my coffee products online because it is the only way I can get them more directly from coffee producers, without large chain stores in between. 
+- I am an expert coffee consumer and oftenly find myself trying new coffee products from different countries. I prefer to buy my coffee online because it is the only way I can get them more directly from coffee producers, without the commercial chain stores in-between that only sell low quality coffees.
+- I enjoy buying coffee online. To me quality and freshness are the main criteria for buying coffee. I go for those using rare coffee beans from one specific region or plantation with natural fruity cupping tones. Supermarkets nowadays only sell predesigned industrial blends that are even artificially flavored. That is why I prefer to buy them from smaller shops online that do not use artifical flavors.
+- Whenever I buy coffee, I prefer having the choice to chose the grind size myself and not someone else deciding it for me. It all depends on which coffee method I want to use: Espresso, French-press, Aeropress, etc. And whenever I want to store the coffee for a while at home, I prefer of course the whole bean presentation.
+- Sometimes I have heared Guatemala is a quality coffee producing country. I personally do not know much about the country and would be interested to find out how the coffee is produced there: I would like to see some pictures of the plantations, see local people and get to know some regional facts about where my coffee is really coming from. Sometimes people ignore what's behind the coffee that they are drinking but I believe every coffee has its own history and regional character. That's what I want to learn before I buy my coffee!
+- Online stores websites should be straightforward and easy to use. It is very convenient to be able to create an account in order to save my delivery address so I do not have to enter the same information over and over again. 
+
 
 This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
+
+### Wireframe hosted in LucidChart
+
+Original file can be accessed using the following URL
+- [LucidChart Wireframe](https://app.lucidchart.com/invitations/accept/0df8e03c-b9e6-4dc7-b94e-ecc86fe35869)
+
+This is an image of the wireframe that can be accessed with the URL above.
+![Wireframe Image](documentation/images/Wireframe.jpeg)
 
 ## Features
 
@@ -101,8 +114,7 @@ In addition, if it is not obvious, you should also describe how to run your code
 - I received inspiration for this project from X
 
 
-## Wireframe 
-![Wireframe Image](documentation/images/Wireframe.jpeg)
+
 
 ## Database ER Diagram
 
