@@ -27,7 +27,7 @@ The main objective was to create an eCommerce Web application using the Django F
 
 This application's backend allows users to store and manipulate data records on the domain. The project itself was developed using multiple apps in Django, where each app contains a potentially reusable component in the project.
 
-This importance for this web application was identified through some User Stories like the following:
+The importance for this web application was identified through some User Stories like the following:
 - "I am an expert coffee consumer and oftenly find myself trying new coffee products from different countries. I prefer to buy my coffee online because it is the only way I can get them more directly from coffee producers, without the commercial chain stores in-between that only sell low quality coffees."
 - "I enjoy buying coffee online. To me quality and freshness are the main criteria for buying coffee. I go for those using rare coffee beans from one specific region or plantation with natural fruity cupping tones. Supermarkets nowadays only sell predesigned industrial blends that are even artificially flavored. That is why I prefer to buy them from smaller shops online that do not use artifical flavors."
 - "Whenever I buy coffee, I prefer having the choice to chose the grind size myself and not someone else deciding it for me. It all depends on which coffee method I want to use: Espresso, French-press, Aeropress, etc. And whenever I want to store the coffee for a while at home, I prefer of course the whole bean presentation."
@@ -54,12 +54,14 @@ The design of the database was carried out using an Entity Relationship Diagram 
 Only the main models around this application are displayed in the diagram. Secondary models are the customer inquiry and product image models that were not included directly on the diagram in order to keep a more clear visualization.
 
 ## Features
-
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
+ 
+This application's backend allows users to store and manipulate data records on the domain. The project itself was developed using multiple apps in Django, where each app contains a potentially reusable component in the project. These are the following features already developed and implemented on this application:
  
 ### Existing Features
-- Feature 1 - allows users X to achieve Y, by having them fill out Z
-- ...
+- User Authentication: Users are able to create new accounts with their personal information in order to save their data for future orders, create product reviews or send inquiries to the store.
+- Google Account Registration: Users can register to the application using their personal Google accounts to create a more convenient experience. No need to enter name, last name, email address because the data is colelcted directly from the user's Google account.
+- Administrator User Features: Some extra features are available only to administrator users like creating new products for the store, edit them or delete them, without having to enter the Django Administration interface.
+- Product Filters: The All Products section has some useful features to filter products by origin region, order them by price, rating or to view only those products featured as 'NEW'. These filters can be activated on the filter panel using the checkboxes or simply selecting the desired region.
 
 For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
 
