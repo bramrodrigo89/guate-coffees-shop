@@ -28,22 +28,30 @@ The main objective was to create an eCommerce Web application using the Django F
 This application's backend allows users to store and manipulate data records on the domain. The project itself was developed using multiple apps in Django, where each app contains a potentially reusable component in the project.
 
 This importance for this web application was identified through some User Stories like the following:
-- I am an expert coffee consumer and oftenly find myself trying new coffee products from different countries. I prefer to buy my coffee online because it is the only way I can get them more directly from coffee producers, without the commercial chain stores in-between that only sell low quality coffees.
-- I enjoy buying coffee online. To me quality and freshness are the main criteria for buying coffee. I go for those using rare coffee beans from one specific region or plantation with natural fruity cupping tones. Supermarkets nowadays only sell predesigned industrial blends that are even artificially flavored. That is why I prefer to buy them from smaller shops online that do not use artifical flavors.
-- Whenever I buy coffee, I prefer having the choice to chose the grind size myself and not someone else deciding it for me. It all depends on which coffee method I want to use: Espresso, French-press, Aeropress, etc. And whenever I want to store the coffee for a while at home, I prefer of course the whole bean presentation.
-- Sometimes I have heared Guatemala is a quality coffee producing country. I personally do not know much about the country and would be interested to find out how the coffee is produced there: I would like to see some pictures of the plantations, see local people and get to know some regional facts about where my coffee is really coming from. Sometimes people ignore what's behind the coffee that they are drinking but I believe every coffee has its own history and regional character. That's what I want to learn before I buy my coffee!
-- Online stores websites should be straightforward and easy to use. It is very convenient to be able to create an account in order to save my delivery address so I do not have to enter the same information over and over again. 
-
-
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
+- "I am an expert coffee consumer and oftenly find myself trying new coffee products from different countries. I prefer to buy my coffee online because it is the only way I can get them more directly from coffee producers, without the commercial chain stores in-between that only sell low quality coffees."
+- "I enjoy buying coffee online. To me quality and freshness are the main criteria for buying coffee. I go for those using rare coffee beans from one specific region or plantation with natural fruity cupping tones. Supermarkets nowadays only sell predesigned industrial blends that are even artificially flavored. That is why I prefer to buy them from smaller shops online that do not use artifical flavors."
+- "Whenever I buy coffee, I prefer having the choice to chose the grind size myself and not someone else deciding it for me. It all depends on which coffee method I want to use: Espresso, French-press, Aeropress, etc. And whenever I want to store the coffee for a while at home, I prefer of course the whole bean presentation."
+- "Sometimes I have heared Guatemala is a quality coffee producing country. I personally do not know much about the country and would be interested to find out how the coffee is produced there: I would like to see some pictures of the plantations, see local people and get to know some regional facts about where my coffee is really coming from. Sometimes people ignore what's behind the coffee that they are drinking but I believe every coffee has its own history and regional character. That's what I want to learn before I buy my coffee!"
+- "Online stores websites should be straightforward and easy to use. It is very convenient being able to create an account in order to save my delivery address so I do not have to enter the same information over and over again."
+- "Sometimes I find it difficult to select one product among different options. However, it becomes easy by reading some reviews of previous shoppers. It is much easier to make a choice when you can learn from other users' good or bad experiences. Reviews should always be available in any online store."
 
 ### Wireframe hosted in LucidChart
 
-Original file can be accessed using the following URL
+The user experience design of this application was first conceived using wireframes on LucidChart. The file is available for visualization under this following URL: 
 - [LucidChart Wireframe](https://app.lucidchart.com/invitations/accept/0df8e03c-b9e6-4dc7-b94e-ecc86fe35869)
 
 This is an image of the wireframe that can be accessed with the URL above.
 ![Wireframe Image](documentation/images/Wireframe.jpeg)
+
+As observed on the wireframe, the concept of creating a base template with header and footer was considered and the extra content in the middle would be producced in different templates in Django. All sections were developed with some minor variations except for the 'Coffee Clubs' section. This remains as undeveloped because it would require many other views, models, templates and Stripe methods that are not necessary for the purpose of submission of this Milestone Project.
+
+### Database ER Diagram
+
+The design of the database was carried out using an Entity Relationship Diagram (ERD). The relationships between the main entities are shown in the following diagram.
+
+![Database ER Diagram](documentation/images/Database_ER_Diagram.jpeg)
+
+Only the main models around this application are displayed in the diagram. Secondary models are the customer inquiry and product image models that were not included directly on the diagram in order to keep a more clear visualization.
 
 ## Features
 
@@ -112,10 +120,3 @@ In addition, if it is not obvious, you should also describe how to run your code
 ### Acknowledgements
 
 - I received inspiration for this project from X
-
-
-
-
-## Database ER Diagram
-
-![Database ER Diagram](documentation/images/Database_ER_Diagram.jpeg)
