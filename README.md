@@ -76,6 +76,7 @@ This application's backend allows users to store and manipulate data records on 
 - Toasts Messagess: After a successful or unsuccessful action, users are notified accordingly with toast messages that temporarily appear on top or botton of the page without any intrusiveness to confirm or alert the user that an action has been caried out, e.g. order has been succesfully placed.
 - Product Multiple Images: Products can have additional images to include visual content about the region they are produced in. This was achieved using an additional model called 'ProductImage' which contains a single image file. Products can contain more than one of these models and all the images are displayed on their respective page.
 - Search Bar: Products can be searched by using the search icon on top of the page. A search bar shows up and users can enter a related term to query through the different products available. The search term is matched on the backend with any product name, description or region name and the corresponding results are returned on the products page.
+- Webhook Handler for payments: In case an impatient user closes the window or by mistake clicks on the 'back' button while processing an order payment. The webhook handler coming from Stripe deals with this case and looks for that order information in the database that was produced from the payment and in case it does not exist, it creates a new order and confirms the user by sending an email confirmation.
 
 ### Features Left to Implement
 
@@ -132,6 +133,14 @@ During the development phase some bugs have been encountered which had to be sol
 
 1. **Problem**: Google Authentication API was producing unwanted errors when trying to create a new user while being on development environment. Continous error: 'Local host refused to connect'.
     - **Solution**: Project was deployed to Heroku and Google Auth API credentials were saved in Postgres database. When tried again in production, Google API started to function properly.
+2. **Problem**: Some special dependencies for adding a phone number field to a model do not work together very well with the Materializecss dependency to render forms, producing a non-user-friendly enter field for adding a phone number.
+    - **Solution**: Changed the phone number field in Order and ProfileInfo back to a usual Charfield. Solution is being rendered correctly with MaterializeCSS but there is not a specific data validation for phone number entry.
+3. **Problem**: Webhook handler creating a duplicate order because the order was not found in the dabase despite having the same information coming from the Stripe webhook. 
+    - **Solution**: Problem was caused by the different data types coming from the webhook handler: some were integers, some were strings. Removed the SQL 'iexact' lookup for some fields and the webhook handler started to find the respective orders correctly.
+4. **Problem**:
+    - **Solution**:
+5. **Problem**:
+    - **Solution**:
 
 Bugs that remain unsolved:
 
@@ -142,7 +151,14 @@ Bugs that remain unsolved:
 
 These are scenarios whose testings have not been automated, thus it is necessary to test the user stories manually:
 
-1. Contact form:
+1. Placing New Orders:
+    1. Add different products to shopping cart.
+    2. Verify that total and subtotal are correct every time products are added or removed from shopping cart.
+    3. Start filling out check out form with invalid information.
+    4. Try to submit the form with all inputs valid and verify that a toast success message appears.
+    5. Check that email confirmation was submitted to entered address with the subject: 'Thank you for contacting us!'.
+
+2. Customer Inquiry form:
     1. Go to the "Contact Us" page
     2. Try to submit the empty form and verify that an error message about the required fields appears
     3. Try to submit the form with an invalid email address and verify that a relevant error message appears
