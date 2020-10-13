@@ -61,11 +61,23 @@ This application's backend allows users to store and manipulate data records on 
 - User Authentication: Users are able to create new accounts with their personal information in order to save their data for future orders, create product reviews or send inquiries to the store.
 - Google Account Registration: Users can register to the application using their personal Google accounts to create a more convenient experience. No need to enter name, last name, email address because the data is colelcted directly from the user's Google account.
 - Administrator User Features: Some extra features are available only to administrator users like creating new products for the store, edit them or delete them, without having to enter the Django Administration interface.
+    - Adding new products: New products can be succesfully added to the store by using the special page. However, only a main image can be added at this point. Additional images to products still have to be added through the Django Administration interface.
 - Product Filters: The All Products section has some useful features to filter products by origin region, order them by price, rating or to view only those products featured as 'NEW'. These filters can be activated on the filter panel using the checkboxes or simply selecting the desired region.
+- Customer Inquiry: Using the 'Contact' button accessible on every page, registered and non-registered users can send inquiries to the store by filling a short form. When the form is submitted, an email confirmation is sent to the user's email address. When users are registered, the contact information is pre-filled automatically with their contact information.
+- Shopping cart: 
+    - Users can add items to their shopping cart while browing through the store's products. Data is stored safely in the browser's session data so it remains even if the user closes the browser.
+    - The total of the shopping cart is always displayed on top of the page next to the cart icon to remind users how much would be spent.
+    - Users can edit or remove items from their cart before moving on to the checkout page.
+- Checking-Out: Before doing any payment, users are requested to fill out the checkout form to include the contact information, shipping address and billing information. Registered users have the extra feature to 'Save Info' to their account so they don't need to enter it every time they want to check out.
+- Profile Page: Registered users can manually save or edit their profile information for future orders, they can browse through their purchase history and check how many product reviews they have written.
+    - Purchase history: On the right side of the page, users can select a previous order and see all the information stored from that order: billing information, delivery address, etc.
+    - Profile information: Users are able to edit their own profile information any time on the form and using the 'UPDATE' button to save it.
+- Product Reviews: Registered users can additionally rate products using a star rating system (from 1 to 5) and leave a product review about their own personal experince consuming one product. Other users can read those comments and check how the product has been previously rated with the star-rating system.
+- Toasts Messagess: After a successful or unsuccessful action, users are notified accordingly with toast messages that temporarily appear on top or botton of the page without any intrusiveness to confirm or alert the user that an action has been caried out, e.g. order has been succesfully placed.
+- Product Multiple Images: Products can have additional images to include visual content about the region they are produced in. This was achieved using an additional model called 'ProductImage' which contains a single image file. Products can contain more than one of these models and all the images are displayed on their respective page.
+- Search Bar: Products can be searched by using the search icon on top of the page. A search bar shows up and users can enter a related term to query through the different products available. The search term is matched on the backend with any product name, description or region name and the corresponding results are returned on the products page.
 
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
-
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+In addition, these are the plans for additional features to be implemented in the future:
 
 ### Features Left to Implement
 - Another feature idea
