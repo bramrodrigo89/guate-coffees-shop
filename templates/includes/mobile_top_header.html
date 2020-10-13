@@ -1,5 +1,15 @@
 <!-- Mobile Top Header Bar -->
 <div id="mobile-top-header" data-target="red" class="mobile-top-header hide-on-large-only">
+    <!-- Mobile Content Pages Navbar Navbar -->
+    <a href="#" data-activates="content-nav-mobile" class="button-collapse"><i id="mobile-button-collapse" class="material-icons mobile-menu-icon">menu</i></a>
+    <ul id="content-nav-mobile" class="side-nav">
+        <li class="center-align">Content</li>
+        <li><a href="{% url 'home' %}" class="waves-effect waves-light orange accent-2 black-text btn">Home</a></li>
+        <li><a href="{% url 'products' %}" class="waves-effect waves-light black-text btn">Products</a></li>
+        <li><a href="#" class="waves-effect waves-light deep-purple darken-3 btn">Coffee Club</a></li>
+        <li><a href="{% url 'home' %}#about-us-anchor" class="waves-effect waves-light orange accent-2 black-text btn">About</a></li>
+        <li><a href="#contact-us-modal" class="waves-effect waves-light red btn modal-trigger">Contact</a></li>
+    </ul>
     <a class="waves-effect waves-light modal-trigger" href="#search-bar-modal"><i class="material-icons">search</i>Search</a>
     <a id="mobile-account-dropdown-button" data-beloworigin="true" data-stoppropagation="true" class='waves-effect waves-light dropdown-button' data-activates='mobile-dropdown-account'><i class="material-icons">local_cafe</i>Account</a>
     <a href="{% url 'view_cart' %}" class="{% if grand_total %}cyan-text {% endif %}waves-effect">

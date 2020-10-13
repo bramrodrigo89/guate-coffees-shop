@@ -86,7 +86,6 @@ p {
 
 nav .brand-logo {
   font-size: 1.4rem;
-  line-height: normal;
 }
 
 header nav {
@@ -98,6 +97,7 @@ header nav {
 #content-navbar,
 #content-nav-mobile {
   padding: 20px 0;
+  z-index: 999;
 }
 
 #content-navbar {
@@ -113,6 +113,7 @@ header nav {
   color: #fafafa;
   padding: 5px 5px;
   font-size: 1.5rem;
+  vertical-align: middle;
 }
 
 .mobile-top-header a i {
@@ -154,7 +155,7 @@ header nav {
 .logo-image-container img {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 70px;
   width: 150px;
 }
 
@@ -534,10 +535,6 @@ footer.page-footer {
     font-size: 2rem;
   }
 
-  #mobile-button-collapse {
-    color: #444;
-  }
-
   .mobile-top-header a {
     padding: 5px 10px;
     font-size: 1.7rem;
@@ -556,7 +553,7 @@ footer.page-footer {
   }
 
   .logo-image-container img {
-    margin-top: 30px;
+    margin-top: 100px;
     width: 300px;
   }
 
