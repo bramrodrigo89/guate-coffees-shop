@@ -84,44 +84,95 @@ In addition, these are the plans for additional features to be implemented in th
 
 ## Technologies Used
 
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
+Languages, frameworks, libraries, and other tools used to construct this project.
 
-- [JQuery](https://jquery.com)
-    - The project uses **JQuery** to simplify DOM manipulation.
+- HTML5
+    - Language used for the different templates structure on front-end.
+- Python
+    - Language used for the Django framework structure, as well as the different libraries and dependencies used.
+- CSS3
+    - Language used for providing styles to html elements, including some overridings on MaterializeCSS.
+- JavaScript
+    - Language used for enhancing the users frontend experience, some form validation and form submissions.
+- [Django Framework](https://www.djangoproject.com/)
+    - Python-based free and open-source web framework used to building this application following the model-template-views architectural pattern.
+- [jQuery](https://jquery.com/)
+    - jQuery code was used to simplify HTML DOM tree traversal and manipulation, as well as event handling and CSS animation.
+- [Materialize CSS](https://materializecss.com/)
+    - The project uses **Materialize** to simplify giving styles and adding JavaScripts to different elements. Also it is found in the navbar construct, display cards, grid-layout, as well as other Javascript driven elements like modals, toasts, forms, etc to complement the application.
+- [GitPod](https://www.gitpod.io/)
+    - Online IDE for GitHub to develop code of this project.
+- [GitHub](https://github.com/bramrodrigo89/)
+    - Used to manage the version control of the code for this project.
+- [Heroku](https://fontawesome.com/icons?d=gallery)
+    - Cloud platform to deploy this application on the internet.
+- [Google Material Design Icons](https://material.io/resources/icons/?style=baseline)
+    - Imported different icons for different action buttons, links and items.
+- [Unsplash Images](https://unsplash.com/)
+    - Freely-usable images. Background images were downloaded from this source.
 - [Animockup](https://animockup.com/)
-    - Free animated mockup maker to create custom GIFs for this RedMe file.
+    - Free animated mockup maker to create custom GIFs for this ReadMe file.
+- [Codacy: Automated code reviews & code analytics](https://www.codacy.com/)
+    - Automated code quality tools and static analyzers to ensure that this code maintains high quality.
 
 ## Testing
 
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
+### Testing User Stories
 
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
+User stories are addressed in a separate file that can be accessed [here](#).
 
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
+### Problem Solving
+
+During the development phase some bugs have been encountered which had to be solved:
+
+1. **Problem**: Google Authentication API was producing unwanted errors when trying to create a new user while being on development environment. Continous error: 'Local host refused to connect'.
+    - **Solution**: Project was deployed to Heroku and Google Auth API credentials were saved in Postgres database. When tried again in production, Google API started to function properly.
+
+Bugs that remain unsolved:
+
+1. **Problem**: When two or more items of the same product ID but different grind size have been added to the cart, the '+' (plus) and '-' (minus) symbols to add or substract quantities does not work properly because there are two items of the same ID, so the Javascript logic needs to be changed to include grind size in the DOM manipulation.
+2. **Problem**: Additional images cannot be added when creating a new product in the Product Management feature. Only the main image is being uploaded but not the additional images. Python logic needs to be corrected to accept new images and save them as instances of the 'ProductImage' model. 
+
+### Manual Testing
+
+These are scenarios whose testings have not been automated, thus it is necessary to test the user stories manually:
 
 1. Contact form:
     1. Go to the "Contact Us" page
     2. Try to submit the empty form and verify that an error message about the required fields appears
     3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
-
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
-
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+    4. Try to submit the form with all inputs valid and verify that a toast success message appears.
+    5. Check that email confirmation was submitted to entered address with the subject: 'Thank you for contacting us!'.
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+The project is stored on an external repository on [GitHub](https://github.com/bramrodrigo89/guate-coffees-shop) and deployed on Heroku:
+[Guatemalan Coffees Shop](https://guatemalan-coffees-shop.herokuapp.com/)
 
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
+To deploy the project from its repository to Heroku, the following should be taken:
 
-In addition, if it is not obvious, you should also describe how to run your code locally.
-
+1. Log in to Heroku and select 'New' to create a new app. 
+2. Depending on your location, a specific region should be chosen. On this case, United States was selected. Give a unique name to the application of your choice. Then proceed to click on 'Create App'.
+3. Once the app is created, go to Settings to start adding the environmental variables. Go to 'Config Vars' and click on Reveal. 
+4. Start adding the configuration variables in Key, Value pairs. In this case, 10 variables are necessary:
+    4. AWS_ACCESS_KEY_ID = (edited)
+    4. AWS_SECRET_ACCESS_KEY = (edited)
+    4. DATABASE_URL = (edited) **Used to access Postgres Database**
+    4. EMAIL_HOST_PASS = (edited) **Example: Gmail API Pass**
+    4. EMAIL_HOST_USER= Email address, e.g. your_name@gmail.com
+    4. SECRET_KEY = (edited) Django Key
+    4. STRIPE_PUBLIC_KEY = (edited) Stripe Public Key
+    4. STRIPE_SECRET_KEY = (edited) Stripe Secret Key
+    4. STRIPE_WH_SECRET = (edited) Stripe Webhook Secret Key
+    4. USE_AWS = True
+5. Once the environment is set up, go to the 'Deploy' Tab and select 'GitHub' as deploment method. 
+6. Now select this repository (bramrodrigo89/guate-coffees-shop) as the main source to connect to. 
+7. Select 'Enable Automatic Deploys' on the following section from the 'master' branch. 
+8. Now before the first automatic deploy, a requirements.txt file should be added to the project. It can be added by using the pip3 command: ``pip3 freeze --local ->requirements.txt`` This will indicate which are the necessary dependencies to install before the application is run. 
+9. Next make sure that a Procfile is created. Simply add a new file on your main directory as 'Procfile' which should contain the command:  ``web: gunicorn guate_coffee_shop.wsgi:application`` This will tell Heroku to initiate weby dynos with the main appplication of this project called guate_coffee_shop.
+10. Now it is possible to push the project to GitHub and it will automatically transfer it to Heroku for deployment.
+11. Wait for the status 'Build succeeded' in Heroku 'Latest Activity' Section (around 5 minutes). Once the deploment is confirmed, go to 'Open App' to confirm the deployment. The URL can be shared now to access the application. 
+12. In case there is an error and the app cannot open, go to View Logs to check the error messages. 
 
 ## Credits
 
