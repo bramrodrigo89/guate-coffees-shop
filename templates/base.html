@@ -13,6 +13,7 @@
 	{% endblock %}
 
 	{% block extra_meta %}
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
 	{% endblock %}
 
 	{% block corecss %}
@@ -139,8 +140,8 @@
 				<a class="btn-floating btn-floating-label modal-trigger" href="#search-bar-modal">Search</a>
 			</li>
 			<li>
-				<a href="#" class="btn-floating blue waves-effect"><i class="material-icons">local_cafe</i></a>
-				<a href="#" class="btn-floating btn-floating-label">Account</a>
+				<a href="{% if request.user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'account_login' %}{% endif %}" class="btn-floating blue waves-effect"><i class="material-icons">local_cafe</i></a>
+				<a href="{% if request.user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'account_login' %}{% endif %}" class="btn-floating btn-floating-label">Account</a>
 			</li>
 			<li>
 				<a href="{% url 'view_cart' %}" class="btn-floating waves-effect deep-purple darken-3"><i class="material-icons">shopping_cart</i></a>
