@@ -73,7 +73,7 @@ class OrderLineItem(models.Model):
         editable=False)
 
     def save(self, *args, **kwargs):
-        """Override the original save method to calculate line item total"""
+        """Override the original save method to calculate line item total."""
         self.lineitem_total = self.product.retail_price * self.quantity
         super().save(*args, **kwargs)
 

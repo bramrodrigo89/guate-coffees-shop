@@ -36,9 +36,9 @@ def cache_checkout_data(request):
 
 def checkout(request):
     """
-    
+
     Create Payment Intent session at the beginning and rendering the checkout
-    template with information needed for stripe payments
+    template with information needed for stripe payments.
     """
 
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -148,9 +148,7 @@ def checkout(request):
 
 
 def checkout_success(request, order_number):
-    """
-    Handle successful checkouts
-    """
+    """Handle successful checkouts."""
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 

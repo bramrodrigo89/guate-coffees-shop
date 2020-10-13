@@ -77,10 +77,15 @@ This application's backend allows users to store and manipulate data records on 
 - Product Multiple Images: Products can have additional images to include visual content about the region they are produced in. This was achieved using an additional model called 'ProductImage' which contains a single image file. Products can contain more than one of these models and all the images are displayed on their respective page.
 - Search Bar: Products can be searched by using the search icon on top of the page. A search bar shows up and users can enter a related term to query through the different products available. The search term is matched on the backend with any product name, description or region name and the corresponding results are returned on the products page.
 
+### Features Left to Implement
+
 In addition, these are the plans for additional features to be implemented in the future:
 
-### Features Left to Implement
-- Another feature idea
+- Multiple images upload: Authorized users having access to the Product Management pages will be able to upload multiple images at the same while creating one new product in the store. The additional images would be added as instances of the 'ProductImage' model.
+- Cancelling orders: In case the user decides to cancel an order, instead of filling a customer inquiry form to contact the store. Users will have the ability to cancel an existing order within a certain time frame after they placed it.
+- Account Management Tools: Different tools that have not been fully activated yet will be added like 'Reset Password' button, 'Change Password' button, 'Delete my account' option, etc.
+- Picture reviews: The Product Review model will be expanded to accept images so that users can also upload images to their reviews.
+- Avatar pictures: Users will be able to personalize their profile by selecting avatar images or include their own profile picture from their Google account as an avatar that would be displayed when adding a product review.
 
 ## Technologies Used
 
