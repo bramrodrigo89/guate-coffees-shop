@@ -5,8 +5,9 @@ from profiles.models import UserInfo
 
 def customer_inquiry_form(request):
     """
+
     This view is available in all apps via the context processors in order
-    to send inquiry forms from any template throughout the applicaiton
+    to send inquiry forms from any template throughout the application.
     """
     inquiry = CustomerInquiry()
     inquiry_form = CustomerInquiryForm()
