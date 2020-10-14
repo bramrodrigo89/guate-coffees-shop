@@ -165,6 +165,7 @@ def add_product(request):
     if request.method == 'POST':
 
         product_form = ProductForm(request.POST, request.FILES)
+        image_form = AdditionalImage()
 
         if product_form.is_valid():
             new_product = product_form.save()
