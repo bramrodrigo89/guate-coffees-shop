@@ -28,12 +28,12 @@ The main objective was to create an eCommerce Web application using the Django F
 This application's backend allows users to store and manipulate data records on the domain. The project itself was developed using multiple apps in Django, where each app contains a potentially reusable component in the project.
 
 The importance for this web application was identified through some User Stories like the following:
-- "I am an expert coffee consumer and oftenly find myself trying new coffee products from different countries. I prefer to buy my coffee online because it is the only way I can get them more directly from coffee producers, without the commercial chain stores in-between that only sell low quality coffees."
-- "I enjoy buying coffee online. To me quality and freshness are the main criteria for buying coffee. I go for those using rare coffee beans from one specific region or plantation with natural fruity cupping tones. Supermarkets nowadays only sell predesigned industrial blends that are even artificially flavored. That is why I prefer to buy them from smaller shops online that do not use artifical flavors."
-- "Whenever I buy coffee, I prefer having the choice to chose the grind size myself and not someone else deciding it for me. It all depends on which coffee method I want to use: Espresso, French-press, Aeropress, etc. And whenever I want to store the coffee for a while at home, I prefer of course the whole bean presentation."
-- "Sometimes I have heared Guatemala is a quality coffee producing country. I personally do not know much about the country and would be interested to find out how the coffee is produced there: I would like to see some pictures of the plantations, see local people and get to know some regional facts about where my coffee is really coming from. Sometimes people ignore what's behind the coffee that they are drinking but I believe every coffee has its own history and regional character. That's what I want to learn before I buy my coffee!"
-- "Online stores websites should be straightforward and easy to use. It is very convenient being able to create an account in order to save my delivery address so I do not have to enter the same information over and over again."
-- "Sometimes I find it difficult to select one product among different options. However, it becomes easy by reading some reviews of previous shoppers. It is much easier to make a choice when you can learn from other users' good or bad experiences. Reviews should always be available in any online store."
+1. "I am an expert coffee consumer and oftenly find myself trying new coffee products from different countries. I prefer to buy my coffee online because it is the only way I can get them more directly from coffee producers, without the commercial chain stores in-between that only sell low quality coffees."
+2. "I enjoy buying coffee online. To me quality and freshness are the main criteria for buying coffee. I go for those using rare coffee beans from one specific region or plantation with natural fruity cupping tones. Supermarkets nowadays only sell predesigned industrial blends that are even artificially flavored. That is why I prefer to buy them from smaller shops online that do not use artifical flavors."
+3. "Whenever I buy coffee, I prefer having the choice to chose the grind size myself and not someone else deciding it for me. It all depends on which coffee method I want to use: Espresso, French-press, Aeropress, etc. And whenever I want to store the coffee for a while at home, I prefer of course the whole bean presentation."
+4. "Sometimes I have heared Guatemala is a quality coffee producing country. I personally do not know much about the country and would be interested to find out how the coffee is produced there: I would like to see some pictures of the plantations, see local people and get to know some regional facts about where my coffee is really coming from. Sometimes people ignore what's behind the coffee that they are drinking but I believe every coffee has its own history and regional character. That's what I want to learn before I buy my coffee!"
+5. "Online stores websites should be straightforward and easy to use. It is very convenient being able to create an account in order to save my delivery address so I do not have to enter the same information over and over again."
+6. "Sometimes I find it difficult to select one product among different options. However, it becomes easy by reading some reviews of previous shoppers. It is much easier to make a choice when you can learn from other users' good or bad experiences. Reviews should always be available in any online store."
 
 ### Wireframe hosted in LucidChart
 
@@ -112,8 +112,18 @@ Languages, frameworks, libraries, and other tools used to construct this project
     - Used to manage the version control of the code for this project.
 - [Heroku](https://fontawesome.com/icons?d=gallery)
     - Cloud platform to deploy this application on the internet.
+- [SQLite](https://www.sqlite.org/index.html)
+    - The project uses this relational database to store and manage the data behind the application in development mode.
+- [PostgreSQL](https://www.postgresql.org/)
+    - The project uses this relational database to store and manage the data behind the application in production mode connected to the Heroku environment.
+- [Stripe Payments API](https://stripe.com/)
+    - This application relies on Stripe payments to process credit cards and uses Stripe webhooks to create orders and verify their creation when payments are processed. Test API is currently activated for this deployment.
+- [Amazon AWS Free Tier](https://aws.amazon.com/?nc2=h_lg)
+    - Storing static javascript and css files in the cloud, as well as all media images using a 'Storage Bucket'.
 - [Google Material Design Icons](https://material.io/resources/icons/?style=baseline)
     - Imported different icons for different action buttons, links and items.
+- [Google Font Library](https://fonts.google.com/)
+    - Imported 'Ubuntu Condensed' font family with 500 weight for the complete application content.
 - [Unsplash Images](https://unsplash.com/)
     - Freely-usable images. Background images were downloaded from this source.
 - [Animockup](https://animockup.com/)
@@ -125,7 +135,18 @@ Languages, frameworks, libraries, and other tools used to construct this project
 
 ### Testing User Stories
 
-User stories are addressed in a separate file that can be accessed [here](#).
+User stories previously medioned are addressed in the following points:
+
+1. **"I prefer fresh products coming from one single origin region instead of industrial blends"**
+    - Products were categorized in regions for this application, where each products belongs to a single coffee growing region. The same product cannot be added to more than one region thanks to the database one-to-one relationship. Products can as well be filtered by region and each region contain its own regional data that is displayed on the product's description page.
+2. **"Whenever I buy coffee, I prefer having the choice to chose the grind size myself and not someone else deciding it for me."**
+    - Users have to decide for a grind size before adding a product to their shopping cart. This information is saved throughout the checking-out process and finally in the order saved in the database as part of the 'Order Inline Items' instances.
+3. **"I would like to see some pictures of the plantations, see local people and get to know some regional facts about where my coffee is really coming from."**
+    - The Product model has been complemented with an 'Product Image' model that stores different images for a single product which can be used to save images from the coffee plantations and their process. There is no limit of how many images can be added but a maximum of 4 is suggested.
+4. **"It is very convenient being able to create an account in order to save my delivery address so I do not have to enter the same information over and over again."**
+    - After users have registered and created an account, they can opt to save their information from their last order by checking the box 'Save my info' and the data will be stored in their profile, which will be retrieved automatically when checking out.
+5. **"Reviews should always be available in any online store."**
+    - Products can be reviewed by registered users, who can leave a rating using the stars and including an extra comment with the provided form. Other users will be able to see that information when browsing through that same product's page.
 
 ### Problem Solving
 
@@ -137,15 +158,17 @@ During the development phase some bugs have been encountered which had to be sol
     - **Solution**: Changed the phone number field in Order and ProfileInfo back to a usual Charfield. Solution is being rendered correctly with MaterializeCSS but there is not a specific data validation for phone number entry.
 3. **Problem**: Webhook handler creating a duplicate order because the order was not found in the dabase despite having the same information coming from the Stripe webhook. 
     - **Solution**: Problem was caused by the different data types coming from the webhook handler: some were integers, some were strings. Removed the SQL 'iexact' lookup for some fields and the webhook handler started to find the respective orders correctly.
-4. **Problem**:
-    - **Solution**:
-5. **Problem**:
-    - **Solution**:
+4. **Problem**: 'User Rating' model coming from the django-stars-rating dependency could not be extended to add additional text fields, like description, product ID, or date of review. 
+    - **Solution**: Created one independent own model to add user reviews and the star rating number is transfered to own model when saving in the datase. With this approach it is possible for users to simly give a star rating the stars without adding a text review of the product.
+5. **Problem**: Customer Inquiry Form was accessible only from the index.html home page because the model and the views to handle the forms are bound to the 'home' app.
+    - **Solution**: Transfered the customer_inquiry_form function to contexts.py and made this function available througout the app using context processors in settings.py.
 
 Bugs that remain unsolved:
 
 1. **Problem**: When two or more items of the same product ID but different grind size have been added to the cart, the '+' (plus) and '-' (minus) symbols to add or substract quantities does not work properly because there are two items of the same ID, so the Javascript logic needs to be changed to include grind size in the DOM manipulation.
-2. **Problem**: Additional images cannot be added when creating a new product in the Product Management feature. Only the main image is being uploaded but not the additional images. Python logic needs to be corrected to accept new images and save them as instances of the 'ProductImage' model. 
+2. **Problem**: Additional images cannot be added when creating a new product in the Product Management feature. Only the main image is being uploaded but not the additional images. Python logic needs to be corrected to accept new images and save them as instances of the 'ProductImage' model.
+3. **Problem**: Option to 'feature as new' product when adding product is always activated. When checkbox is not selected, the produt is still featured as new product. Thus the checkbox functionality needs to be corrected.
+4. **Problem**: Search terms are in some cases not functioning well for the region names. It is best to activate the region filters from the left panel because the search bar does not provide accurate results when a region name is entered.
 
 ### Manual Testing
 
@@ -153,10 +176,11 @@ These are scenarios whose testings have not been automated, thus it is necessary
 
 1. Placing New Orders:
     1. Add different products to shopping cart.
-    2. Verify that total and subtotal are correct every time products are added or removed from shopping cart.
-    3. Start filling out check out form with invalid information.
-    4. Try to submit the form with all inputs valid and verify that a toast success message appears.
-    5. Check that email confirmation was submitted to entered address with the subject: 'Thank you for contacting us!'.
+    2. Verify that total and subtotal are correctly displayed every time items are added or removed from shopping cart.
+    3. Start filling out check-out form with invalid information and check that fields are not accepted and form cannot be submitted. Toast message should be displayed 'Please verify your information'.
+    4. Try to submit the form with all valid inputs and verify that a toast success message appears when order confirmation page is displayed.
+    5. Check that email confirmation was submitted to the user's email address with the subject: 'Order Confirmation, Order # ...'.
+    6. Verify in the database that order has been created and saved properly.
 
 2. Customer Inquiry form:
     1. Go to the "Contact Us" page
@@ -165,26 +189,69 @@ These are scenarios whose testings have not been automated, thus it is necessary
     4. Try to submit the form with all inputs valid and verify that a toast success message appears.
     5. Check that email confirmation was submitted to entered address with the subject: 'Thank you for contacting us!'.
 
+3. Adding New Products to store:
+    1. As a authorized user with management rights, verify that you can see 'Product Management' under the 'Account' menu options.
+    2. Start adding a new product. Verify that filling out the form with invalid inputs would cause an error toast message 'Please verify that inputs are valid', for example in this situations:
+        1. Entering a negative price lower than US$ 0.01
+        2. Entering a price including more than 5 digits.
+        3. Submitting the form without one of the required fields (marked with the * symbol).
+    3. When filling out form correctly, product should be added to database and success toast message should be displayed 'Product added succesfully'.
+    4. If desired the 'delete' option can be tested too to verify that products can also be removed from database.
+    5. After deleting product, it should not appear anymore in the 'all products' section.
+
+### Performance
+
+![Test Performance Screenshot](documentation/images/lighthouse_report.png)
+A LightHouse Report was generated to evaluate the performance of the web application. The full report can be retrieved here: [Light House Report](documentation/Lighthouse_Complete_Report.pdf)
+In order to run this test it is necessary to open the application on incognito mode of Chrome browser and follow these steps:
+1. Activate Developer Tools by doing right click and select "Inspect"
+2. Click on "Console" from the upper menu items and then click on the two arrows in the end of the list to the right >>
+3. Select "Lighthouse" and then "Generate Report"
+4. Follow the prompt to finalize report. Use the options to print report if necessary. 
+
+### validation
+
+In order to ensure this code meets the various standards, CODACY was used which automatically validates each commit made for this repository and analyzes possible issues in every file. The overall result of this stastical analysis is observed in the Codacy Badge, where 'A' represents the highest score and 'F' the lowest one.
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/b58288b697964acfbbde51a0fed64935)](https://www.codacy.com/gh/bramrodrigo89/guate-coffees-shop/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bramrodrigo89/guate-coffees-shop&amp;utm_campaign=Badge_Grade)
+
+Besides that, Flake8 was used to analyze format issues during development to avoid accumulating several issues to solve in the end. This is available however only for Python files.
+
 ## Deployment
 
 The project is stored on an external repository on [GitHub](https://github.com/bramrodrigo89/guate-coffees-shop) and deployed on Heroku:
 [Guatemalan Coffees Shop](https://guatemalan-coffees-shop.herokuapp.com/)
 
-To deploy the project from its repository to Heroku, the following should be taken:
+To clone this repository the following steps need to be taken:
+
+1. Clone this repository to your own repositories with the given clone option.
+2. Create a virtual development environment that best suits your system. I used GitPod because I use ChromeOS.
+3. Makes sure you have have Python 3.7 installed or a higher version.
+4. In order to install all of the dependencies required to run the project, you can do this giving the command `pip3 install -r requirements.txt`. This should install all of the packages listed in the file recursively.
+5. Add the following variables to your work environment:
+    5. DEVELOPMENT = True
+    5. SECRET_KEY = (edited) Django Secret Key
+    5. STRIPE_PUBLIC_KEY = (edited) Stripe Public Key **Use from own Stripe account**
+    5. STRIPE_SECRET_KEY = (edited) Stripe Secret Key **Use from own Stripe account**
+    5. STRIPE_WH_SECRET = (edited) Stripe Webhook Secret Key **Use from own Stripe account**
+6. Use the command `python3 manage,py runserver` to get the project running on your localhost.
+7. You will need to change the email settings in settings.py to get the project to send order confirmations via your own email services.
+
+To deploy the project from your own repository to Heroku, the following steps should be taken:
 
 1. Log in to Heroku and select 'New' to create a new app. 
 2. Depending on your location, a specific region should be chosen. On this case, United States was selected. Give a unique name to the application of your choice. Then proceed to click on 'Create App'.
 3. Once the app is created, go to Settings to start adding the environmental variables. Go to 'Config Vars' and click on Reveal. 
 4. Start adding the configuration variables in Key, Value pairs. In this case, 10 variables are necessary:
-    4. AWS_ACCESS_KEY_ID = (edited)
-    4. AWS_SECRET_ACCESS_KEY = (edited)
+    4. AWS_ACCESS_KEY_ID = (edited) **Add your own AWS bucket storage credentials**
+    4. AWS_SECRET_ACCESS_KEY = (edited) **Add your own AWS bucket storage credentials**
     4. DATABASE_URL = (edited) **Used to access Postgres Database**
-    4. EMAIL_HOST_PASS = (edited) **Example: Gmail API Pass**
+    4. EMAIL_HOST_PASS = (edited) **Example: Gmail API Pass, use your own**
     4. EMAIL_HOST_USER= Email address, e.g. your_name@gmail.com
-    4. SECRET_KEY = (edited) Django Key
-    4. STRIPE_PUBLIC_KEY = (edited) Stripe Public Key
-    4. STRIPE_SECRET_KEY = (edited) Stripe Secret Key
-    4. STRIPE_WH_SECRET = (edited) Stripe Webhook Secret Key
+    4. SECRET_KEY = (edited) Django Secret Key
+    4. STRIPE_PUBLIC_KEY = (edited) Stripe Public Key **Use from own Stripe account**
+    4. STRIPE_SECRET_KEY = (edited) Stripe Secret Key **Use from own Stripe account**
+    4. STRIPE_WH_SECRET = (edited) Stripe Webhook Secret Key **Use from own Stripe account**
     4. USE_AWS = True
 5. Once the environment is set up, go to the 'Deploy' Tab and select 'GitHub' as deploment method. 
 6. Now select this repository (bramrodrigo89/guate-coffees-shop) as the main source to connect to. 
@@ -198,11 +265,18 @@ To deploy the project from its repository to Heroku, the following should be tak
 ## Credits
 
 ### Content
-- The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
+- Information from different coffee regions in Guatemala, weather and geographical data were taken from [The Guide To Guatemalan Coffee: Brewing And Buying Tips](https://www.homegrounds.co/guatemalan-coffee/) in HomeGrounds.com.
+- Product descriptions were taken from their respective coffee dealers' websites.
 
 ### Media
-- The photos used in this site were obtained from ...
+- Background images used in parallax sections were taken from Unsplash.
+- Guatemalan Coffes logo shown below was taken from the Guatemalan Coffee Association online store, which is referenced also in the Footer as an 'External Link' called 'Guatemalan Coffees'.
+![Guatemalan Coffees Logo](documentation/images/guatemalan_coffees_logo.png)
+- Product images from all products were taken from actual commercial products available. The aim of this application is merely for showing a sample of personal development skills and it is not an intention to do any type of advertising for any of these produts displayed here.
 
 ### Acknowledgements
 
-- I received inspiration for this project from X
+- I received inspiration for this project from my family. 
+- Special thanks to my mentor from Code Institute for the direction I needed:
+    - Anthony Ngene @tonymontaro_mentor
+- And last but not least, many thanks to the Slack Community and Tutor Team from Code Institute for coming with great solutions whenever I needed help. 
