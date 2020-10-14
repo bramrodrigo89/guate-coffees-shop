@@ -228,11 +228,11 @@ To clone this repository the following steps need to be taken:
 2. Create a virtual development environment that best suits your system. I used GitPod because I use ChromeOS.
 3. Makes sure you have have Python 3.7 installed or a higher version.
 4. In order to install all of the dependencies required to run the project, you can do this giving the command `pip3 install -r requirements.txt`. This should install all of the packages listed in the file recursively.
-5. Add the following variables to your work environment:
-    5. DEVELOPMENT = True
-    5. SECRET_KEY = (edited) Django Secret Key
-    5. STRIPE_PUBLIC_KEY = (edited) Stripe Public Key **Use from own Stripe account**
-    5. STRIPE_SECRET_KEY = (edited) Stripe Secret Key **Use from own Stripe account**
+5. Add the following 5 variables to your work environment:
+    1. DEVELOPMENT = True
+    2. SECRET_KEY = (edited) Django Secret Key
+    3. STRIPE_PUBLIC_KEY = (edited) Stripe Public Key **Use from own Stripe account**
+    4. STRIPE_SECRET_KEY = (edited) Stripe Secret Key **Use from own Stripe account**
     5. STRIPE_WH_SECRET = (edited) Stripe Webhook Secret Key **Use from own Stripe account**
 6. Use the command `python3 manage,py runserver` to get the project running on your localhost.
 7. You will need to change the email settings in settings.py to get the project to send order confirmations via your own email services.
@@ -243,16 +243,16 @@ To deploy the project from your own repository to Heroku, the following steps sh
 2. Depending on your location, a specific region should be chosen. On this case, United States was selected. Give a unique name to the application of your choice. Then proceed to click on 'Create App'.
 3. Once the app is created, go to Settings to start adding the environmental variables. Go to 'Config Vars' and click on Reveal. 
 4. Start adding the configuration variables in Key, Value pairs. In this case, 10 variables are necessary:
-    4. AWS_ACCESS_KEY_ID = (edited) **Add your own AWS bucket storage credentials**
-    4. AWS_SECRET_ACCESS_KEY = (edited) **Add your own AWS bucket storage credentials**
-    4. DATABASE_URL = (edited) **Used to access Postgres Database**
+    1. AWS_ACCESS_KEY_ID = (edited) **Add your own AWS bucket storage credentials**
+    2. AWS_SECRET_ACCESS_KEY = (edited) **Add your own AWS bucket storage credentials**
+    3. DATABASE_URL = (edited) **Used to access Postgres Database**
     4. EMAIL_HOST_PASS = (edited) **Example: Gmail API Pass, use your own**
-    4. EMAIL_HOST_USER= Email address, e.g. your_name@gmail.com
-    4. SECRET_KEY = (edited) Django Secret Key
-    4. STRIPE_PUBLIC_KEY = (edited) Stripe Public Key **Use from own Stripe account**
-    4. STRIPE_SECRET_KEY = (edited) Stripe Secret Key **Use from own Stripe account**
-    4. STRIPE_WH_SECRET = (edited) Stripe Webhook Secret Key **Use from own Stripe account**
-    4. USE_AWS = True
+    5. EMAIL_HOST_USER= Email address, e.g. your_name@gmail.com
+    6. SECRET_KEY = (edited) Django Secret Key
+    7. STRIPE_PUBLIC_KEY = (edited) Stripe Public Key **Use from own Stripe account**
+    8. STRIPE_SECRET_KEY = (edited) Stripe Secret Key **Use from own Stripe account**
+    9. STRIPE_WH_SECRET = (edited) Stripe Webhook Secret Key **Use from own Stripe account**
+    10. USE_AWS = True
 5. Once the environment is set up, go to the 'Deploy' Tab and select 'GitHub' as deploment method. 
 6. Now select this repository (bramrodrigo89/guate-coffees-shop) as the main source to connect to. 
 7. Select 'Enable Automatic Deploys' on the following section from the 'master' branch. 
